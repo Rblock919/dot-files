@@ -1,0 +1,94 @@
+First, check to make sure you have booted in UEFI mode:
+ls -l /sys/firmware/efi
+	- if the directory exists, then you are good to go
+
+ip link
+wifi-menu -o wlp2s0
+
+cfdisk /dev/sda
+
+create an EFI partition (for booting) about 800MB
+create a Linux root (x86-64) parition, about 30GB
+create a swap parition, about 150% of RAM
+create a Linux home parition with the rest of remaining memory
+
+mkfs.fat -F32 /dev/sda(number of EFI)
+mkfs.ext4 /dev/sda(number of root, do again for home)
+mkswap /dev/sda(number of swap)
+swapon /dev/sda(number of swap)
+
+mount root parition to /mnt
+mkdir /mnt/home
+mkdir /mnt/boot
+mount boot part to /mnt/boot
+mount home part to /mnt/home
+
+pacstrap /mnt base base-devel
+
+genfstab -U /mnt >> /mnt/etc/fstab
+
+arch-chroot /mnt
+passwd (set new password)
+
+vi /etc/locale.gen
+uncomment the two en_US entries
+
+locale-gen
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+export LANG=en_US.UTF-8
+
+echo hostname > /etc/hostname
+
+vi /etc/hosts/ (look up what it should be on arch wiki)
+
+ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
+hwclock --systohc --utc
+
+pacman -S wpa_supplicant dialog iw (for wireless)
+
+pacman -S intel-ucode (for intel processors)
+
+pacman -S grub 
+
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch_grub
+
+grub-mkconfig -o /boot/grub/grub.cfg
+
+exit (exit the arch-root)
+
+umount -R /mnt
+
+reboot, then login
+
+ip link
+
+ip link set dev interface up
+
+wpa_passphrase NETGEAR19-5G icyject603 > /etc/wpa_supplicant/example.conf
+
+wpa_supplicant -B -i interface -c /etc/wpa_supplicant/example.conf
+
+dhcpcd interface
+
+(ping google to check internet connection)
+
+useradd -m -G wheel -s /bin/bash newusername
+passwd newusername
+
+vi /etc/sudoers
+uncomment line that allows members of group wheel to execute any command
+
+logout, then login as new user
+
+pacman -S xf86-input-libinput (for touchpads)
+
+pacman -S xorg-server xorg-apps xorg-xinit
+
+pacman -S xf86-video-nouveau (open source gpu driver for nvidia)
+	OR
+pacman -S virtualbox-guest-utils (for vm)
+
+
+----- This is where you begin display managers/DE/WMs installation process -----
+
+
