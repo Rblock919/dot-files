@@ -38,3 +38,4 @@
 URxvt.scrollBar:    false
 URxvt.cursorColor:  magenta
 URxvt.font:         xft:monospace:size=11
+URxvt.letterSpace: -2
