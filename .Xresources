@@ -1,41 +1,63 @@
-! special
-*.foreground:   #e51bc0
-*.background:   #1d1f21
-*.cursorColor:  #e51bc0
+Xft.rgba:      rgba
+Xft.antialias: 1
+URxvt*font: xft:Hack:pixelsize=14:style=bold
 
-! black
-*.color0:       #282a2e
-*.color8:       #373b41
+URxvt*dynamicColors: on
+URxvt.imLocale: en_US.UTF-8
+URxvt.saveLines: 5000
+URxvt.scrollBar: false
+URxvt.scrollstyle: plain
+URxvt*termName: xterm-256color
+URxvt.transparent: false
+URxvt.visualBell: false
+URxvt*depth: 32
+URxvt.letterSpace: -1
 
-! red
-*.color1:       #a54242
-*.color9:       #d31c1c
+! Colors
+*.boldMode: true
+*.colorBDMode: false
+!*.colorBD: cyan
 
-! green
-*.color2:       #8c9440
-*.color10:      #c2db23
+! Base16 Eighties
+#define col1 #292b2e
+#define col2 #ee3333
+#define col3 #20ad80
+#define col4 #dd75dd
+#define col5 #875faf
+#define col6 #d75f87
+#define col7 #4f97d7
+#define col8 #ececec
 
-! yellow
-*.color3:       #2091d7
-*.color11:      #ebe9e5
+*.foreground:   #33ccee
+*.background:   rgba:2900/2b00/2e00/dede
+*.cursorColor:  col8
+*.cursorBlink: true
 
-! blue
-*.color4:       #5f819d
-*.color12:      #ebebec
+*.color0:       rgba:2900/2b00/2e00/dede
+*.color1:       col2
+*.color2:       col3
+*.color3:       col4
+*.color4:       col5
+*.color5:       col6
+*.color6:       col7
+*.color7:       col8
+*.color8:       rgba:2900/2b00/2e00/dede
+*.color9:       col2
+*.color10:      col3
+*.color11:      col4
+*.color12:      col5
+*.color13:      col6
+*.color14:      col7
+*.color15:      col8
 
-! magenta
-*.color5:       #85678f
-*.color13:      #b294bb
+! Rofi Configuration
+rofi.color-enabled:                  true
+rofi.color-window:                   argb:AA000000, argb:AA000000, #dd75dd, argb:AA000000, #00ffff
+rofi.color-normal:                   argb:AA000000, #00ffff, argb:AA000000, #00ffff, #dd75dd
+rofi.color-active:                   argb:AA000000, #00ffff, #00ffff, #00ffff, #00ffff
+rofi.color-urgent:                   argb:AA000000, #dd75dd, #00ffff, #00ffff, #dd75dd
+rofi.font:  Hack 12
 
-! cyan
-*.color6:       #5e8d87
-*.color14:      #f5f5f7
+! argb:ee02143f
 
-! white
-*.color7:       #2ab25f
-*.color15:      #e51bc0
-
-URxvt.scrollBar:    false
-URxvt.cursorColor:  magenta
-URxvt.font:         xft:monospace:size=11
-URxvt.letterSpace: -2
+rofi.separator-style:                solid

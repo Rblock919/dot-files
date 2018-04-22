@@ -39,7 +39,7 @@ bindsym $mod+Shift+q kill
 # bindsym $mod+d exec dmenu_run
 
 # start rofi
-bindsym $mod+d exec rofi -show run -lines 4 -eh 2 -width 40 -padding 25 -opacity "50"
+bindsym $mod+d exec rofi -show run -lines 4 -eh 2 -width 40 -padding 25 -hide-scrollbar
 
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -185,17 +185,20 @@ gaps outer 10
 bindsym $mod+shift+x exec i3lock --color "#000000"
 
 exec_always --no-startup-id /home/ryan/.config/polybar/launch.sh
-exec_always feh --bg-scale /home/ryan/Pictures/arch-retro-background.png
+exec_always feh --bg-scale /home/ryan/Pictures/retroBiker.jpg
 exec compton -f
 
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+#Disable title bar
+new_window pixel
+
+# Alsa Audio controls
+bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 10+ unmute"
+bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 10- unmute"
+bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
