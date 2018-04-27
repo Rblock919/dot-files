@@ -10,7 +10,7 @@
 
 ;=====================================================
 ;
-;                                        - - - - COLORS - - - - 
+;               - - - - COLORS - - - - 
 ;
 ;=====================================================
 
@@ -48,7 +48,7 @@ yellow=#FFFF66
 
 ;=====================================================
 ;
-;                                            - - - - BARS - - - - 
+;                - - - - BARS - - - - 
 ;
 ;=====================================================
 
@@ -82,7 +82,7 @@ modules-center =
 modules-right =  volume arrow7 memory arrow6 cpu arrow7 wlan arrow6 battery arrow7 temperature arrow6 date
 ;modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature date powermenu
 
-tray-position = right
+tray-position = ;right
 tray-padding = 4
 ;tray-transparent = true
 ;tray-background = #0063ff
@@ -103,7 +103,7 @@ cursor-scroll = ns-resize
 
 ;=====================================================
 ;
-;                                   - - - - DECORATIONS - - - - 
+;            - - - - DECORATIONS - - - - 
 ;
 ;=====================================================
 
@@ -134,7 +134,7 @@ content-background = ${colors.background}
 
 ;=====================================================
 ;
-;                                      - - - - MODULES - - - - 
+;               - - - - MODULES - - - - 
 ;
 ;=====================================================
 
@@ -203,7 +203,7 @@ ws-icon-5 = 6;6
 ws-icon-6 = 7;7
 ws-icon-7 = 8;8
 ws-icon-8 = 9;9
-ws-icon-9 = 10;10
+ws-icon-9 = 10;
 
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
