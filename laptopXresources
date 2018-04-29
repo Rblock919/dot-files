@@ -1,0 +1,75 @@
+Xft.rgba:      rgba
+Xft.antialias: 1
+URxvt*font: xft:Hack:pixelsize=14:style=bold
+
+URxvt*dynamicColors: on
+URxvt.imLocale: en_US.UTF-8
+URxvt.saveLines: 5000
+URxvt.scrollBar: false
+URxvt.scrollstyle: plain
+URxvt*termName: xterm-256color
+URxvt.transparent: false
+URxvt.visualBell: false
+URxvt*depth: 32
+URxvt.letterSpace: -1
+
+! Colors
+*.boldMode: true
+*.colorBDMode: false
+!*.colorBD: cyan
+
+! Base16 Eighties
+#define col1 #292b2e
+#define col2 #ee3333
+#define col3 #20ad80
+#define col4 #dd75dd
+#define col5 #875faf
+#define col6 #d75f87
+#define col7 #4f97d7
+#define col8 #ececec
+
+*.foreground:   #33ccee
+*.background:   rgba:2900/2b00/2e00/dede
+*.cursorColor:  col8
+*.cursorBlink: true
+
+*.color0:       rgba:2900/2b00/2e00/dede
+*.color1:       col2
+*.color2:       col3
+*.color3:       col4
+*.color4:       col5
+*.color5:       col6
+*.color6:       col7
+*.color7:       col8
+*.color8:       rgba:2900/2b00/2e00/dede
+*.color9:       col2
+*.color10:      col3
+*.color11:      col4
+*.color12:      col5
+*.color13:      col6
+*.color14:      col7
+*.color15:      col8
+
+!! Extentions:
+URxvt.perl-ext-common: default,matcher,resize-font,keyboard-select
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+
+!! Resize font
+URxvt.keysym.C-j:		resize-font:smaller
+URxvt.keysym.C-k:		resize-font:bigger
+
+!! Keyboard-select (Alt+escape)
+URxvt.keysym.M-Escape:		perl:keyboard-select:activate
+
+! Rofi Configuration
+rofi.color-enabled:                  true
+rofi.color-window:                   argb:AA000000, argb:AA000000, #dd75dd, argb:AA000000, #00ffff
+rofi.color-normal:                   argb:AA000000, #00ffff, argb:AA000000, #00ffff, #dd75dd
+rofi.color-active:                   argb:AA000000, #00ffff, #00ffff, #00ffff, #00ffff
+rofi.color-urgent:                   argb:AA000000, #dd75dd, #00ffff, #00ffff, #dd75dd
+rofi.font:  Hack 12
+
+! argb:ee02143f
+
+rofi.separator-style:                solid
