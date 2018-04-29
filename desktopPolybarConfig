@@ -79,7 +79,7 @@ font-2 = FontAwesome:style=Regular;3
 
 modules-left = i3
 modules-center = 
-modules-right =  volume arrow7 memory arrow6 cpu arrow7 wlan arrow6 battery arrow7 temperature arrow6 date
+modules-right =  volume arrow7 memory arrow6 cpu arrow7 wlan arrow6 temperature arrow7 date
 ;modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature date powermenu
 
 tray-position = ;right
@@ -226,12 +226,14 @@ label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %icon%
+label-visible-foreground = ${colors.cyan}
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %icon%
+label-urgent-foreground = ${colors.red}
 label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
@@ -292,7 +294,7 @@ label-background = ${colors.background}
 
 [module/wlan]
 type = internal/network
-interface = wlp2s0
+interface = wlp8s0
 interval = 3.0
 
 format-connected = <label-connected>

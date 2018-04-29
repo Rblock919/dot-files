@@ -1,6 +1,6 @@
 Xft.rgba:      rgba
 Xft.antialias: 1
-URxvt*font: xft:Hack:pixelsize=14:style=bold
+URxvt*font: xft:Hack:pixelsize=15:style=bold
 
 URxvt*dynamicColors: on
 URxvt.imLocale: en_US.UTF-8
@@ -50,9 +50,22 @@ URxvt.letterSpace: -1
 *.color14:      col7
 *.color15:      col8
 
+!! Extensions:
+URxvt.perl-ext-common:	default,matcher,resize-font,keyboard-select
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+
+!!Resize font
+URxvt.keysym.C-j:	resize-font:smaller
+URxvt.keysym.C-k:	resize-font:bigger
+
+!!Keyboard-select (Alt+Escape)
+URxvt.keysym.M-Escape:	perl:keyboard-select:activate
+
 ! Rofi Configuration
 rofi.color-enabled:                  true
 rofi.color-window:                   argb:AA000000, argb:AA000000, #dd75dd, argb:AA000000, #00ffff
+
 rofi.color-normal:                   argb:AA000000, #00ffff, argb:AA000000, #00ffff, #dd75dd
 rofi.color-active:                   argb:AA000000, #00ffff, #00ffff, #00ffff, #00ffff
 rofi.color-urgent:                   argb:AA000000, #dd75dd, #00ffff, #00ffff, #dd75dd
