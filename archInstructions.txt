@@ -19,11 +19,11 @@ swapon /dev/sda(number of swap)
 
 mount root parition to /mnt
 mkdir /mnt/home
-mkdir /mnt/boot
-mount boot part to /mnt/boot
+mkdir /mnt/boot or /mnt/boot/efi
+mount boot part to /mnt/boot or /mnt/boot/efi
 mount home part to /mnt/home
 
-pacstrap /mnt base base-devel
+pacstrap /mnt base base-devel (can also install wpa_supplicant, dialog (optional) and iw here)
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
@@ -39,7 +39,15 @@ export LANG=en_US.UTF-8
 
 echo hostname > /etc/hostname
 
-vi /etc/hosts/ (look up what it should be on arch wiki)
+vi /etc/hosts/
+
+# #---/etc/hosts/ file---# #
+
+127.0.0.1	localhost
+::1		localhost
+127.0.1.1	myhostname.localdomain	myhostname
+
+# #---end of file---# #
 
 ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
 hwclock --systohc --utc
@@ -48,7 +56,9 @@ pacman -S wpa_supplicant dialog iw (for wireless)
 
 pacman -S intel-ucode (for intel processors)
 
-pacman -S grub 
+mkinitcpio -p linux
+
+pacman -S grub efibootmgr
 
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch_grub
 
@@ -64,14 +74,6 @@ ip link
 
 ip link set dev interface up
 
-wpa_passphrase NETGEAR19-5G icyject603 > /etc/wpa_supplicant/example.conf
-
-wpa_supplicant -B -i interface -c /etc/wpa_supplicant/example.conf
-
-dhcpcd interface
-
-(ping google to check internet connection)
-
 useradd -m -G wheel -s /bin/bash newusername
 passwd newusername
 
@@ -82,7 +84,7 @@ logout, then login as new user
 
 pacman -S xf86-input-libinput (for touchpads)
 
-pacman -S xorg-server xorg-apps xorg-xinit
+pacman -S x-org xorg-server xorg-apps xorg-xinit
 
 pacman -S xf86-video-nouveau (open source gpu driver for nvidia)
 	OR
