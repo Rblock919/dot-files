@@ -1,0 +1,196 @@
+# vim: filetype=i3
+
+# Ryan Block // Laptop i3-gaps config file
+
+font pango:monospace 13
+
+
+set $mod Mod4
+set $term urxvt
+set $browser firefox
+
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+hide_edge_borders both
+gaps inner 10
+gaps outer 10
+
+exec_always --no-startup-id /home/ryan/.config/polybar/launch.sh
+exec_always feh --bg-scale /home/ryan/Pictures/retropic.jpg
+exec compton -f
+
+new_window pixel
+
+# #---Basic Bindings---# #
+
+bindsym $mod+Return exec i3-sensible-terminal
+
+bindsym $mod+space focus mode_toggle
+bindsym $mod+Shift+space floating toggle
+
+# #---Letter Key Bindings---# #
+
+##bindsym $mod+q
+bindsym $mod+Shift+q 			kill
+
+bindsym $mod+w 				layout tabbed
+##bindsym $mod+Shift+w
+
+bindsym $mod+e 				layout toggle split
+bindsym $mod+Shift+e 			exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# bindsym $mod+r	 			exec $term -e ranger
+bindsym $mod+Shift+r 			restart
+
+bindsym $mod+t				split toggle
+bindsym $mod+Shift+t			gaps inner current set 10; gaps outer current set 10
+
+##bindsym $mod+y
+bindsym $mod+Shift+y			resize shrink width 10 px or 10 ppt
+
+##bindsym $mod+u
+bindsym $mod+Shift+u			resize shrink height 10 px or 10 ppt
+
+##bindsym $mod+i
+bindsym $mod+Shift+i			resize grow height 10 px or 10 ppt
+
+##bindsym $mod+o
+bindsym $mod+Shift+o			resize grow width 10 px or 10 ppt
+
+##bindsym $mod+p
+##bindsym $mod+Shift+p
+
+bindsym $mod+a 				focus parent
+##bindsym $mod+Shift+a
+
+bindsym $mod+s 				layout stacking
+##bindsym $mod+Shift+s
+
+bindsym $mod+d 				exec rofi -show run -lines 4 -eh 2 -width 40 -padding 25 -hide-scrollbar
+bindsym $mod+Shift+d			gaps inner current set 0; gaps outer current set 0
+
+bindsym $mod+f 				fullscreen toggle
+##bindsym $mod+Shift+f
+
+bindsym $mod+g				workspace prev
+##bindsym $mod+Shift+g
+
+bindsym $mod+h				focus left
+bindsym $mod+Shift+h			move left
+
+bindsym $mod+j 				focus down
+bindsym $mod+Shift+j 			move down
+
+bindsym $mod+k 				focus up
+bindsym $mod+Shift+k 			move up
+
+bindsym $mod+l 				focus right
+bindsym $mod+Shift+l 			move right
+
+##bindsym $mod+semicolon
+##bindsym $mod+Shift+semicolon
+
+bindsym $mod+z				gaps outer current plus 5
+bindsym $mod+Shift+z			gaps outer current minus 5
+
+##bindsym $mod+x
+bindsym $mod+shift+x 			exec i3lock --color "#000000"
+
+##bindsym $mod+c
+bindsym $mod+Shift+c 			reload
+
+##bindsym $mod+v
+##bindsym $mod+Shift+v
+
+##bindsym $mod+b
+##bindsym $mod+Shift+b
+
+##bindsym $mod+n
+##bindsym $mod+Shift+n
+
+##bindsym $mod+m
+##bindsym $mod+Shift+m
+
+# #---Arrow Keys---# #
+
+bindsym $mod+Left 			focus left
+bindsym $mod+Shift+Left 		move left
+
+bindsym $mod+Right 			focus right
+bindsym $mod+Shift+Right 		move right
+
+bindsym $mod+Down 			focus down
+bindsym $mod+Shift+Down 		move down
+
+bindsym $mod+Up 			focus up
+bindsym $mod+Shift+Up 			move up
+
+# #---Work Spaces---# #
+
+# Define names for default workspaces for which we configure key bindings later on.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+assign [class="Firefox"] $ws2
+assign [class="Code"] $ws3
+assign [class="discord"] $ws10
+
+
+#bar {
+#        status_command i3blocks -c ~/.config/i3/i3blocks.conf 
+#	position top
+#}
+
+# #---Media Key Bindings---# #
+
+# Alsa Audio controls
+bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 10+ unmute"
+bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 10- unmute"
+bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
