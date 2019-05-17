@@ -53,7 +53,7 @@ yellow=#FFFF66
 ;=====================================================
 
 [bar/example]
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR:LVDS1}
 width = 100%
 height = 27
 ;offset-x = 1%
@@ -93,8 +93,6 @@ tray-padding = 4
 ;wm-restack = i3
 
 ;override-redirect = true
-
-;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
 
 ;scroll-up = i3wm-wsnext
@@ -228,12 +226,14 @@ label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %icon%
+label-visible-foreground = ${colors.cyan}
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %icon%
+label-urgent-foreground = ${colors.red}
 label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 

@@ -18,7 +18,7 @@ gaps inner 10
 gaps outer 10
 
 exec_always --no-startup-id /home/ryan/.config/polybar/launch.sh
-exec_always feh --bg-scale /home/ryan/Pictures/retropic.jpg
+exec_always feh --bg-scale /home/ryan/Pictures/macbookBackground.jpg
 exec compton -f
 
 new_window pixel
@@ -41,7 +41,7 @@ bindsym $mod+w 				layout tabbed
 bindsym $mod+e 				layout toggle split
 bindsym $mod+Shift+e 			exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# bindsym $mod+r	 			exec $term -e ranger
+bindsym $mod+r	 			exec $term -e ranger
 bindsym $mod+Shift+r 			restart
 
 bindsym $mod+t				split toggle
@@ -79,6 +79,7 @@ bindsym $mod+g				workspace prev
 
 bindsym $mod+h				focus left
 bindsym $mod+Shift+h			move left
+bindsym $mod+ctrl+h			move workspace to output right
 
 bindsym $mod+j 				focus down
 bindsym $mod+Shift+j 			move down
@@ -88,6 +89,7 @@ bindsym $mod+Shift+k 			move up
 
 bindsym $mod+l 				focus right
 bindsym $mod+Shift+l 			move right
+bindsym $mod+ctrl+l			move container to output right
 
 ##bindsym $mod+semicolon
 ##bindsym $mod+Shift+semicolon
@@ -166,7 +168,7 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 assign [class="Firefox"] $ws2
-assign [class="Code"] $ws3
+assign [class="code-oss"] $ws3
 assign [class="discord"] $ws10
 
 
