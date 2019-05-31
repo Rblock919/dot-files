@@ -184,7 +184,11 @@ bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 10+ unmute"
 bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 10- unmute"
 bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
 
-# Sreen brightness controls
+# Keyboard brightness controls
+bindsym XF86KbdBrightnessUp exec /usr/local/bin/kb-light.py + 70 # increase keyboard brightness
+bindsym XF86KbdBrightnessDown exec /usr/local/bin/kb-light.py - 70 # decrease keyboard brightness
+
+# Screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
