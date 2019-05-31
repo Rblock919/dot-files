@@ -18,8 +18,10 @@ gaps inner 10
 gaps outer 10
 
 exec_always --no-startup-id /home/ryan/.config/polybar/launch.sh
-exec_always feh --bg-scale /home/ryan/Pictures/retroBiker.jpg
+exec_always feh --bg-scale /home/ryan/Pictures/retroArch.png
 exec compton -f
+# exec xrandr --auto
+# exec --no-startup-id xrandr --output VGA1 --right-of LVDS1 
 
 new_window pixel
 
@@ -60,8 +62,6 @@ bindsym $mod+Shift+i			resize grow height 10 px or 10 ppt
 bindsym $mod+Shift+o			resize grow width 10 px or 10 ppt
 
 ##bindsym $mod+p
-##bindsym $mod+Shift+p
-
 bindsym $mod+a 				focus parent
 ##bindsym $mod+Shift+a
 
@@ -79,6 +79,7 @@ bindsym $mod+g				workspace prev
 
 bindsym $mod+h				focus left
 bindsym $mod+Shift+h			move left
+bindsym $mod+ctrl+h			move workspace to output right
 
 bindsym $mod+j 				focus down
 bindsym $mod+Shift+j 			move down
@@ -88,6 +89,7 @@ bindsym $mod+Shift+k 			move up
 
 bindsym $mod+l 				focus right
 bindsym $mod+Shift+l 			move right
+bindsym $mod+ctl+l			move container to output right
 
 ##bindsym $mod+semicolon
 ##bindsym $mod+Shift+semicolon
@@ -166,9 +168,10 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 assign [class="Firefox"] $ws2
-assign [class="Code"] $ws3
+assign [class="code-oss"] $ws3
 assign [class="discord"] $ws10
 
+workspace $ws10 output VGA1
 
 #bar {
 #        status_command i3blocks -c ~/.config/i3/i3blocks.conf 
@@ -182,7 +185,11 @@ bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 10+ unmute"
 bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 10- unmute"
 bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
 
-# Sreen brightness controls
+# Keyboard brightness controls
+bindsym $mod+F1 exec /usr/local/bin/kb-light.py + 1 # increase keyboard backlight 50%
+bindsym $mod+F2 exec /usr/local/bin/kb-light.py - 1 # decrease keyboard backlight 50%
+
+# Screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
