@@ -1,5 +1,4 @@
 # vim: filetype=config
-
 # Ryan Block // Arch Thinkpad i3-gaps config file
 
 font pango:monospace 13
@@ -98,7 +97,8 @@ bindsym $mod+z				gaps outer current plus 5
 bindsym $mod+Shift+z			gaps outer current minus 5
 
 ##bindsym $mod+x
-bindsym $mod+shift+x 			exec i3lock --color "#000000"
+#bindsym $mod+shift+x 			exec i3lock --color "#000000"
+bindsym $mod+shift+x			exec --no-startup-id /usr/bin/bash -c /home/ryan/scripts/lock.sh
 
 ##bindsym $mod+c
 bindsym $mod+Shift+c 			reload
