@@ -1,6 +1,6 @@
-# vim: filetype=i3
+# vim: filetype=config
 
-# Ryan Block // Laptop i3-gaps config file
+# Ryan Block // Arch Thinkpad i3-gaps config file
 
 font pango:monospace 13
 
