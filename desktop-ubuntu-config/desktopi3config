@@ -1,6 +1,6 @@
-# vim: filetype=i3
+# vim: filetype=config
 
-# Ryan Block // Desktop i3-gaps config file
+# Ryan Block // Ubuntu Desktop i3-gaps config file
 
 font pango:monospace 8
 
