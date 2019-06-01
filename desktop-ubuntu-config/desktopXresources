@@ -19,21 +19,33 @@ URxvt.letterSpace: -1
 !*.colorBD: cyan
 
 ! Base16 Eighties
-#define col1 #292b2e
+! dark blue almost black
+! #define col1 #292b2e
+#define col1 rgba:2900/2b00/2e00/dede
+! red
 #define col2 #ee3333
+! green
 #define col3 #20ad80
+! pink
 #define col4 #dd75dd
+! purple
 #define col5 #875faf
+! pinkish red
 #define col6 #d75f87
+! lightish blue
 #define col7 #4f97d7
+! white
 #define col8 #ececec
 
+! lightblue
 *.foreground:   #33ccee
-*.background:   rgba:2900/2b00/2e00/dede
+! *.background:   rgba:2900/2b00/2e00/dede
+URxvt.background:   col1
 *.cursorColor:  col8
 *.cursorBlink: true
 
-*.color0:       rgba:2900/2b00/2e00/dede
+!*.color0:       rgba:2900/2b00/2e00/dede
+*.color0:       col8
 *.color1:       col2
 *.color2:       col3
 *.color3:       col4
@@ -41,7 +53,8 @@ URxvt.letterSpace: -1
 *.color5:       col6
 *.color6:       col7
 *.color7:       col8
-*.color8:       rgba:2900/2b00/2e00/dede
+! *.color8:	rgba:2900/2b00/2e00/dede
+*.color8:       col8
 *.color9:       col2
 *.color10:      col3
 *.color11:      col4
