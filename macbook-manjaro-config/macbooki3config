@@ -1,5 +1,4 @@
 # vim: filetype=config
-
 # Ryan Block // Manjaro Macbook 8,1 i3-gaps config file
 
 font pango:monospace 13
@@ -19,7 +18,7 @@ gaps outer 10
 
 exec_always --no-startup-id /home/ryan/.config/polybar/launch.sh
 exec_always feh --bg-scale /home/ryan/Pictures/macbookBackground.jpg
-exec compton -f
+exec_always compton --config /home/ryan/.config/compton/compton.conf
 
 new_window pixel
 
@@ -69,6 +68,7 @@ bindsym $mod+s 				layout stacking
 ##bindsym $mod+Shift+s
 
 bindsym $mod+d 				exec rofi -show run -lines 4 -eh 2 -width 40 -padding 25 -hide-scrollbar
+bindsym $mod+ctrl+d 			exec --no-startup-id rofi -show themes:~/scripts/themeswitch.sh -lines 8 -eh 2 -width 40 -padding 25 -hide-scrollbar
 bindsym $mod+Shift+d			gaps inner current set 0; gaps outer current set 0
 
 bindsym $mod+f 				fullscreen toggle
@@ -171,6 +171,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 assign [class="Firefox"] $ws2
 assign [class="code-oss"] $ws3
 assign [class="discord"] $ws10
+assign [class="vlc"] $ws9
 
 
 #bar {
@@ -181,9 +182,17 @@ assign [class="discord"] $ws10
 # #---Media Key Bindings---# #
 
 # Alsa Audio controls
-bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 10+ unmute"
-bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 10- unmute"
-bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
+bindsym XF86AudioRaiseVolume exec "amixer set Master 10%+"
+bindsym XF86AudioLowerVolume exec "amixer set Master 10%-"
+bindsym XF86AudioMute exec "amixer set Master toggle"
+#bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 10+ unmute"
+#bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 10- unmute"
+#bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
+
+# Pulseaudio controls
+#bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +10%"
+#bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -10%"
+#bindsym XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
 
 # Keyboard brightness controls
 bindsym XF86KbdBrightnessUp exec /usr/local/bin/kb-light.py + 70 # increase keyboard brightness
@@ -201,3 +210,10 @@ bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+# Eject Disk
+bindsym XF86Eject exec eject /dev/sr0
+
+# Enable Monitor Scripts
+bindsym XF86LaunchA 			exec --no-startup-id /usr/bin/bash -c /home/ryan/scripts/monitors/initHomeMonitor.sh
+bindsym XF86LaunchB			exec --no-startup-id /usr/bin/bash -c /home/ryan/scripts/monitors/initTwoBackgrounds.sh

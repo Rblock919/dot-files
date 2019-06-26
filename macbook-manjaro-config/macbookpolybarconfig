@@ -52,17 +52,34 @@ yellow=#FFFF66
 ;
 ;=====================================================
 
-[bar/example]
-monitor = ${env:MONITOR:LVDS1}
+[bar/base]
 width = 100%
-height = 27
+height = 25
+radius = 1.0
+fixed-center = true
+foreground = ${colors.white}
+background = ${colors.background}
+
+padding-left = 1
+padding-right = 1
+
+;separator = " | "
+
+
+[bar/top]
+inherit = bar/base
+
+monitor = ${env:MONITOR:LVDS1}
+padding-left = 0
+width = 100%
+height = 25
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 1.0
 fixed-center = true
 
-background = ${colors.trans}
-foreground = ${colors.foreground}
+;background = ${colors.trans}
+;foreground = ${colors.foreground}
 
 ;line-size = 3
 ;line-color = #f00
@@ -80,11 +97,12 @@ font-2 = FontAwesome:style=Regular;3
 ;font-3 = FontAwesome5Brands:style=Solid:pixelsize=11
 
 modules-left = i3
-modules-center = 
-modules-right =  volume arrow7 memory arrow6 cpu arrow7 eth wlan arrow6 battery arrow7 temperature arrow6 date
+modules-center = date
+modules-right = volume separator eth wlan
+;modules-right = volume arrow7 memory arrow6 cpu arrow7 eth wlan arrow6 battery arrow7 temperature arrow6 date
 ;modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature date powermenu
 
-tray-position = ;right
+tray-position = right
 tray-padding = 4
 ;tray-transparent = true
 ;tray-background = #0063ff
@@ -101,11 +119,52 @@ tray-padding = 4
 cursor-click = pointer
 cursor-scroll = ns-resize
 
+[bar/bottom]
+inherit = bar/base
+
+bottom = true
+
+tray-position = right
+tray-padding = 4
+
+modules-left = hostname separator temperature
+modules-center = mpd
+modules-right = memory separator cpu separator battery 
+
+font-0 = Hack:pixelsize=11:weight=bold;2
+font-1 = Hack:pixelsize=32;2
+font-2 = FontAwesome:style=Regular;3
+
+width = 100%
+height = 25
+;offset-x = 1%
+;offset-y = 1%
+radius = 1.0
+fixed-center = true
+
+;background = ${colors.trans}
+;foreground = ${colors.foreground}
+
+;line-size = 3
+;line-color = #f00
+
+border-size = 2
+border-color =  #131313
+
+
+
 ;=====================================================
 ;
 ;            - - - - DECORATIONS - - - - 
 ;
 ;=====================================================
+
+[module/separator]
+type = custom/text
+content = " | "
+content-font = 3
+content-foreground = ${colors.white}
+content-background = ${colors.background}
 
 [module/arrow6]
 ; grey to bg
@@ -137,6 +196,16 @@ content-background = ${colors.background}
 ;               - - - - MODULES - - - - 
 ;
 ;=====================================================
+
+[module/hostname]
+type = custom/script
+exec = echo "$(uname -n)"
+interval = 256
+format = "<label> "
+label-foreground = "${colors.white}"
+format-prefix = "  "
+format-prefix-foreground = ${colors.white}
+;format-padding = 0
 
 [module/xwindow]
 type = internal/xwindow
@@ -202,7 +271,7 @@ ws-icon-4 = 5;5
 ws-icon-5 = 6;6
 ws-icon-6 = 7;7
 ws-icon-7 = 8;8
-ws-icon-8 = 9;9
+ws-icon-8 = 9;
 ws-icon-9 = 10;
 
 ; Only show workspaces on the same output as the bar
@@ -215,7 +284,8 @@ label-mode-background = ${colors.grey}
 ; focused = Active workspace on focused monitor
 label-focused = %icon%
 label-focused-foreground = ${colors.cyan}
-label-focused-background = ${module/bspwm.label-focused-background}
+;label-focused-background = ${module/bspwm.label-focused-background}
+label-focused-background = ${colors.background}
 label-focused-underline = ${module/bspwm.label-focused-underline}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
@@ -239,16 +309,22 @@ label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
 [module/mpd]
 type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+format-online = <label-song> <icon-prev> <icon-stop> <toggle> <icon-next>
 
+; icon-prev = 
 icon-prev = 
 icon-stop = 
 icon-play = 
 icon-pause = 
 icon-next = 
-
-label-song-maxlen = 25
+format-prefix = test
+format-prefix-foreground = ${colors.white}
+label-song =  - %title% by %artist% - 
+label-song-foreground = ${colors.blue}
+label-song-maxlen = 40
 label-song-ellipsis = true
+label-time = (%elapsed% / %total%)
+label-time-foreground = ${colors.blue}
 
 [module/xbacklight]
 type = internal/xbacklight
@@ -285,7 +361,7 @@ label-background = ${colors.background}
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "RAM "
+format-prefix = " RAM "
 format-prefix-foreground = ${colors.pink}
 format-prefix-background = ${colors.background}
 label = %percentage_used%%
@@ -299,7 +375,7 @@ interval = 3.0
 
 format-connected = <label-connected>
 
-label-connected = %essid%
+label-connected = " %essid%"
 label-connected-foreground = ${colors.yellow}
 label-connected-background = ${colors.background}
 
@@ -323,7 +399,7 @@ interval = 3.0
 format-connected-underline = #55aa55
 ;format-connected-prefix = " "
 ;format-connected-prefix-foreground = ${colors.yellow}
-label-connected = %local_ip%
+label-connected = " %local_ip%"
 label-connected-foreground = ${colors.yellow}
 label-connected-background = ${colors.background}
 
@@ -353,27 +429,27 @@ label-background = ${colors.background}
 [module/volume]
 type = internal/volume
 
-; mapping = true
+mapping = true
 format-volume = <ramp-volume><label-volume>
 
 label-volume = %percentage%%
-label-volume-foreground = ${colors.blue}
+label-volume-foreground = ${colors.oldpink}
 label-volume-background = ${colors.background}
-label-muted = " MUTED "
-label-muted-foreground = ${colors.blue}
+label-muted = " MUTED "
+label-muted-foreground = ${colors.oldpink}
 label-muted-background = ${colors.background}
 
-ramp-volume-0 = " VOL "
-ramp-volume-0-foreground = ${colors.blue}
+ramp-volume-0 = "  "
+ramp-volume-0-foreground = ${colors.oldpink}
 ramp-volume-0-background = ${colors.background}
-ramp-volume-1 = " VOL "
-ramp-volume-1-foreground = ${colors.blue}
+ramp-volume-1 = "  "
+ramp-volume-1-foreground = ${colors.oldpink}
 ramp-volume-1-background = ${colors.background}
-ramp-volume-2 = " VOL "
-ramp-volume-2-foreground = ${colors.blue}
+ramp-volume-2 = "  "
+ramp-volume-2-foreground = ${colors.oldpink}
 ramp-volume-2-background = ${colors.background}
-ramp-volume-3 = " VOL "
-ramp-volume-3-foreground = ${colors.blue}
+ramp-volume-3 = "  "
+ramp-volume-3-foreground = ${colors.oldpink}
 ramp-volume-3-background = ${colors.background}
 
 [module/battery]
@@ -392,24 +468,24 @@ format-full = <label-full>
 format-full-foreground = ${colors.green}
 format-full-background = ${colors.background}
 
-label-charging = "CHR %percentage%%"
-label-discharging = "BAT %percentage%%"
+label-charging = %percentage%%
+label-discharging = %percentage%%
 label-discharging-foreground = ${colors.green}
-label-full = "BAT %percentage%%"
+label-full = " %percentage%%"
 
-ramp-capacity-0 =
+ramp-capacity-0 = 
 ramp-capacity-0-foreground = ${colors.red}
-ramp-capacity-1 =
+ramp-capacity-1 = 
 ramp-capacity-1-foreground = ${colors.red}
-ramp-capacity-2 =
-ramp-capacity-3 =
-ramp-capacity-4 =
-animation-charging-0 =
-animation-charging-1 =
-animation-charging-2 =
-animation-charging-3 =
-animation-charging-4 = 
-animation-charging-framerate = 750
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 1000
 
 [module/temperature]
 type = internal/temperature
@@ -419,10 +495,10 @@ warn-temperature = 60
 format = <label>
 format-warn = <label-warn>
 
-label = TMP %temperature%
+label =  %temperature%
 label-foreground = ${colors.cyan}
 label-background = ${colors.background}
-label-warn = %temperature%
+label-warn =  %temperature%
 label-warn-foreground = ${colors.red}
 label-warn-background = ${colors.background}
 
@@ -462,7 +538,7 @@ menu-2-1-exec = menu-open-0
 
 ;=====================================================
 ;
-;                                       - - - - SETTINGS - - - - 
+;              	- - - - SETTINGS - - - - 
 ;
 ;=====================================================
 
