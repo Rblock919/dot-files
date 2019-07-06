@@ -65,7 +65,7 @@ bindsym $mod+a 				focus parent
 ##bindsym $mod+Shift+a
 
 bindsym $mod+s 				layout stacking
-##bindsym $mod+Shift+s
+bindsym $mod+Shift+s			exec scrot /tmp/screenShot.jpg
 
 bindsym $mod+d 				exec rofi -show run -lines 4 -eh 2 -width 40 -padding 25 -hide-scrollbar
 bindsym $mod+ctrl+d 			exec --no-startup-id rofi -show themes:~/scripts/themeswitch.sh -lines 8 -eh 2 -width 40 -padding 25 -hide-scrollbar
@@ -79,20 +79,22 @@ bindsym $mod+g				workspace prev
 
 bindsym $mod+h				focus left
 bindsym $mod+Shift+h			move left
-bindsym $mod+ctrl+h			move workspace to output right
+bindsym $mod+ctrl+h			move container to output left
 
 bindsym $mod+j 				focus down
 bindsym $mod+Shift+j 			move down
+bindsym $mod+ctrl+j			move container to output down
 
 bindsym $mod+k 				focus up
 bindsym $mod+Shift+k 			move up
+bindsym $mod+ctrl+k			move container to output up
 
 bindsym $mod+l 				focus right
 bindsym $mod+Shift+l 			move right
 bindsym $mod+ctrl+l			move container to output right
 
 ##bindsym $mod+semicolon
-##bindsym $mod+Shift+semicolon
+#bindsym $mod+Shift+semicolon
 
 bindsym $mod+z				gaps outer current plus 5
 bindsym $mod+Shift+z			gaps outer current minus 5
@@ -104,13 +106,13 @@ bindsym $mod+shift+x			exec --no-startup-id /usr/bin/bash -c /home/ryan/scripts/
 ##bindsym $mod+c
 bindsym $mod+Shift+c 			reload
 
-##bindsym $mod+v
+bindsym $mod+v				exec vlc dvd:///dev/sr0
 ##bindsym $mod+Shift+v
 
 ##bindsym $mod+b
 ##bindsym $mod+Shift+b
 
-##bindsym $mod+n
+bindsym $mod+n exec $term -hold -e ncmpcpp
 ##bindsym $mod+Shift+n
 
 ##bindsym $mod+m
@@ -120,15 +122,19 @@ bindsym $mod+Shift+c 			reload
 
 bindsym $mod+Left 			focus left
 bindsym $mod+Shift+Left 		move left
+bindsym $mod+ctrl+Left			move workspace to output left
 
 bindsym $mod+Right 			focus right
 bindsym $mod+Shift+Right 		move right
+bindsym $mod+ctrl+Right			move workspace to output right
 
 bindsym $mod+Down 			focus down
 bindsym $mod+Shift+Down 		move down
+bindsym $mod+ctrl+Down			move workspace to output down
 
 bindsym $mod+Up 			focus up
 bindsym $mod+Shift+Up 			move up
+bindsym $mod+ctrl+Up			move workspace to output up
 
 # #---Work Spaces---# #
 
@@ -203,13 +209,13 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
 # Touchpad controls
-bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+#bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec mpc toggle
+bindsym XF86AudioPause exec mpc toggle
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec mpc prev
 
 # Eject Disk
 bindsym XF86Eject exec eject /dev/sr0

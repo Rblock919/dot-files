@@ -53,6 +53,7 @@ yellow=#FFFF66
 ;=====================================================
 
 [bar/base]
+monitor = ${env:MONITOR:LVDS1}
 width = 100%
 height = 25
 radius = 1.0
@@ -69,7 +70,6 @@ padding-right = 1
 [bar/top]
 inherit = bar/base
 
-monitor = ${env:MONITOR:LVDS1}
 padding-left = 0
 width = 100%
 height = 25
@@ -309,19 +309,23 @@ label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
 [module/mpd]
 type = internal/mpd
-format-online = <label-song> <icon-prev> <icon-stop> <toggle> <icon-next>
+format-online = <icon-prev> <label-song> <icon-stop> <toggle> <icon-next>
 
-; icon-prev = 
 icon-prev = 
+;icon-prev-foreground = ${colors.blue}
 icon-stop = 
 icon-play = 
+;icon-play =  paused
+;icon-play-foreground = ${colors.blue}
 icon-pause = 
+;icon-pause =  playing
+;icon-pause-foreground = ${colors.blue}
 icon-next = 
 format-prefix = test
 format-prefix-foreground = ${colors.white}
 label-song =  - %title% by %artist% - 
 label-song-foreground = ${colors.blue}
-label-song-maxlen = 40
+label-song-maxlen = 80
 label-song-ellipsis = true
 label-time = (%elapsed% / %total%)
 label-time-foreground = ${colors.blue}
@@ -471,15 +475,21 @@ format-full-background = ${colors.background}
 label-charging = %percentage%%
 label-discharging = %percentage%%
 label-discharging-foreground = ${colors.green}
+label-ramp-capacity-1-foreground = ${colors.red}
 label-full = " %percentage%%"
 
 ramp-capacity-0 = 
 ramp-capacity-0-foreground = ${colors.red}
 ramp-capacity-1 = 
-ramp-capacity-1-foreground = ${colors.red}
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
+#ramp-capacity-1-foreground = ${colors.red}
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+#ramp-capacity-7 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
