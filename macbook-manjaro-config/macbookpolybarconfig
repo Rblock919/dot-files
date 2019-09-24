@@ -162,7 +162,7 @@ border-color =  #131313
 [module/separator]
 type = custom/text
 content = " | "
-content-font = 3
+content-font = 1
 content-foreground = ${colors.white}
 content-background = ${colors.background}
 
