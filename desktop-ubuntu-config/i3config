@@ -17,9 +17,17 @@ gaps outer 10
 
 for_window [class="^.*"] border pixel 2
 
+# rotate right monitor because it's currently sitting vertical
+exec xrandr --output "HDMI-0" --rotate "right"
+
+#exec killall -q notify-osd
+exec_always killall -q notify-osd
+exec_always killall -q dunst
+
 exec_always --no-startup-id /home/ryan/.config/polybar/launch.sh
 exec_always --no-startup-id nitrogen --restore
-exec compton -f
+exec_always --no-startup-id compton --config /home/ryan/.config/compton/compton.conf
+exec_always --no-startup-id dunst -config /home/ryan/.config/dunst/dunstrc
 
 new_window pixel
 
@@ -171,11 +179,20 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
+# mpd music control binds
+bindsym XF86AudioPlay exec mpc toggle
+bindsym XF86AudioPrev exec mpc prev
+bindsym XF86AudioNext exec mpc next
+
 # assign specific programs to specific workspaces
 assign [class="Firefox"] $ws2
 assign [class="Code"] $ws3
 assign [class="jetbrains-idea"] $ws3
+assign [class="jetbrains-webstorm"] $ws3
 assign [class="discord"] $ws10
+assign [class="slack"] $ws10
+assign [class="Slack"] $ws10
+
 
 # make sure discord/ws10 always appears on right monitor
 workspace $ws10 output HDMI-0

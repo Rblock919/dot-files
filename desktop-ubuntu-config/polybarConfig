@@ -1,3 +1,5 @@
+; vim: set syntax=dosini
+
 ;=====================================================
 ;
 ;   To learn more about how to configure Polybar
@@ -52,17 +54,27 @@ yellow=#FFFF66
 ;
 ;=====================================================
 
-[bar/example]
-;monitor = ${env:MONITOR:HDMI-1}
+[bar/base]
 width = 100%
-height = 27
-;offset-x = 1%
-;offset-y = 1%
+height = 25
 radius = 1.0
 fixed-center = true
+foreground = ${colors.white}
+background = ${colors.background}
 
-background = ${colors.trans}
-foreground = ${colors.foreground}
+padding-left = 1
+padding-right = 1
+
+[bar/left]
+inherit = bar/base
+
+monitor = ${env:MONITOR:HDMI-0}
+;monitor = ${env:MONITOR:DVI-I-1}
+;offset-x = 1%
+;offset-y = 1%
+
+;background = ${colors.trans}
+;foreground = ${colors.foreground}
 
 ;line-size = 3
 ;line-color = #f00
@@ -77,9 +89,9 @@ font-0 = Hack:pixelsize=10:weight=bold;2
 font-1 = Hack:pixelsize=32;2
 font-2 = FontAwesome:style=Regular;3
 
-modules-left = i3
-modules-center = 
-modules-right =  volume arrow7 memory arrow6 cpu arrow7 wlan arrow6 temperature arrow7 date
+modules-left = hostname separator temperature
+modules-center = mpd
+modules-right =  volume separator memory separator cpu
 ;modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature date powermenu
 
 tray-position = ;right
@@ -101,11 +113,68 @@ tray-padding = 4
 cursor-click = pointer
 cursor-scroll = ns-resize
 
+[bar/right]
+inherit = bar/base
+
+;monitor = ${env:MONITOR:HDMI-0}
+monitor = ${env:MONITOR:DVI-I-1}
+;offset-x = 1%
+;offset-y = 1%
+
+;background = ${colors.trans}
+;foreground = ${colors.foreground}
+
+;line-size = 3
+;line-color = #f00
+
+border-size = 2
+border-color =  #131313
+
+;module-margin-left = 1
+;module-margin-right = 2
+
+font-0 = Hack:pixelsize=10:weight=bold;2
+font-1 = Hack:pixelsize=32;2
+font-2 = FontAwesome:style=Regular;3
+
+modules-left = i3
+modules-center = mpd
+modules-right =  wlan separator date
+;modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature date powermenu
+
+tray-position = ;right
+tray-padding = 4
+;tray-transparent = true
+;tray-background = #0063ff
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+
 ;=====================================================
 ;
 ;            - - - - DECORATIONS - - - - 
 ;
 ;=====================================================
+
+[module/separator]
+type = custom/text
+content = " | "
+content-font = 3
+content-foreground = ${colors.white}
+content-background = ${colors.background}
 
 [module/arrow6]
 ; grey to bg
@@ -137,6 +206,15 @@ content-background = ${colors.background}
 ;               - - - - MODULES - - - - 
 ;
 ;=====================================================
+
+[module/hostname]
+type = custom/script
+exec = echo "$(uname -n)"
+interval = 256
+format = "<label> "
+label-foreground = "${colors.white}"
+format-prefix = "  "
+format-prefix-foreground = ${colors.white}
 
 [module/xwindow]
 type = internal/xwindow
@@ -202,8 +280,9 @@ ws-icon-4 = 5;5
 ws-icon-5 = 6;6
 ws-icon-6 = 7;7
 ws-icon-7 = 8;8
-ws-icon-8 = 9;9
+ws-icon-8 = 9;
 ws-icon-9 = 10;
+;ws-icon-9 = 10;
 
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
@@ -215,7 +294,8 @@ label-mode-background = ${colors.grey}
 ; focused = Active workspace on focused monitor
 label-focused = %icon%
 label-focused-foreground = ${colors.cyan}
-label-focused-background = ${module/bspwm.label-focused-background}
+;label-focused-background = ${module/bspwm.label-focused-background}
+label-focused-background = ${colors.background}
 label-focused-underline = ${module/bspwm.label-focused-underline}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
@@ -247,8 +327,14 @@ icon-play = 
 icon-pause = 
 icon-next = 
 
-label-song-maxlen = 25
+format-prefix = test
+format-prefix-foreground = ${colors.white}
+label-song =  - %title% by %artist% - 
+label-song-foreground = ${colors.blue}
+label-song-maxlen = 80
 label-song-ellipsis = true
+label-time = (%elapsed% / %total%)
+label-time-foreground = ${colors.blue}
 
 [module/xbacklight]
 type = internal/xbacklight
@@ -275,7 +361,7 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "CPU "
+format-prefix = " "
 format-prefix-foreground = ${colors.purple}
 format-prefix-background = ${colors.background}
 label = %percentage%%
@@ -285,7 +371,7 @@ label-background = ${colors.background}
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "RAM "
+format-prefix = "  "
 format-prefix-foreground = ${colors.pink}
 format-prefix-background = ${colors.background}
 label = %percentage_used%%
@@ -299,7 +385,7 @@ interval = 3.0
 
 format-connected = <label-connected>
 
-label-connected = %essid%
+label-connected =  %essid%
 label-connected-foreground = ${colors.yellow}
 label-connected-background = ${colors.background}
 
@@ -321,7 +407,7 @@ interface = net0
 interval = 3.0
 
 format-connected-underline = #55aa55
-format-connected-prefix = " "
+format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
 
@@ -355,23 +441,23 @@ type = internal/volume
 format-volume = <ramp-volume><label-volume>
 
 label-volume = %percentage%%
-label-volume-foreground = ${colors.blue}
+label-volume-foreground = ${colors.oldpink}
 label-volume-background = ${colors.background}
-label-muted = " MUTED "
-label-muted-foreground = ${colors.blue}
+label-muted = " MUTED "
+label-muted-foreground = ${colors.oldpink}
 label-muted-background = ${colors.background}
 
-ramp-volume-0 = " VOL "
-ramp-volume-0-foreground = ${colors.blue}
+ramp-volume-0 = "  "
+ramp-volume-0-foreground = ${colors.oldpink}
 ramp-volume-0-background = ${colors.background}
-ramp-volume-1 = " VOL "
-ramp-volume-1-foreground = ${colors.blue}
+ramp-volume-1 = "  "
+ramp-volume-1-foreground = ${colors.oldpink}
 ramp-volume-1-background = ${colors.background}
-ramp-volume-2 = " VOL "
-ramp-volume-2-foreground = ${colors.blue}
+ramp-volume-2 = "  "
+ramp-volume-2-foreground = ${colors.oldpink}
 ramp-volume-2-background = ${colors.background}
-ramp-volume-3 = " VOL "
-ramp-volume-3-foreground = ${colors.blue}
+ramp-volume-3 = "  "
+ramp-volume-3-foreground = ${colors.oldpink}
 ramp-volume-3-background = ${colors.background}
 
 [module/battery]
@@ -417,10 +503,10 @@ warn-temperature = 60
 format = <label>
 format-warn = <label-warn>
 
-label = TMP %temperature%
+label =  %temperature%
 label-foreground = ${colors.cyan}
 label-background = ${colors.background}
-label-warn = %temperature%
+label-warn =  %temperature%
 label-warn-foreground = ${colors.red}
 label-warn-background = ${colors.background}
 

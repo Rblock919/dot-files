@@ -1,7 +1,8 @@
 Xft.rgba:      rgba
 Xft.antialias: 1
-URxvt*font: xft:Hack:pixelsize=15:style=bold
+URxvt*font: xft:Hack:pixelsize=16:style=bold
 
+URxvt.internalBorder: 0
 URxvt*dynamicColors: on
 URxvt.imLocale: en_US.UTF-8
 URxvt.saveLines: 5000
@@ -10,8 +11,12 @@ URxvt.scrollstyle: plain
 URxvt*termName: xterm-256color
 URxvt.transparent: false
 URxvt.visualBell: false
-URxvt*depth: 32
+URxvt*depth: 24
 URxvt.letterSpace: -1
+
+! Cursor
+Xcursor.theme: oxy-neon-large
+Xcursor.size: 48
 
 ! Colors
 *.boldMode: true
@@ -82,7 +87,7 @@ rofi.color-window:                   argb:AA000000, argb:AA000000, #dd75dd, argb
 rofi.color-normal:                   argb:AA000000, #00ffff, argb:AA000000, #00ffff, #dd75dd
 rofi.color-active:                   argb:AA000000, #00ffff, #00ffff, #00ffff, #00ffff
 rofi.color-urgent:                   argb:AA000000, #dd75dd, #00ffff, #00ffff, #dd75dd
-rofi.font:  Hack 12
+rofi.font:  Hack 14
 
 ! argb:ee02143f
 
