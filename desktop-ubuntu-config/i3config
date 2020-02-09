@@ -20,6 +20,9 @@ for_window [class="^.*"] border pixel 2
 # rotate right monitor because it's currently sitting vertical
 exec xrandr --output "HDMI-0" --rotate "right"
 
+# reconfigure left_alt and left_cmd to swap
+exec xmodmap ~/.xmodmaprc
+
 #exec killall -q notify-osd
 exec_always killall -q notify-osd
 exec_always killall -q dunst
