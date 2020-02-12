@@ -19,6 +19,8 @@ for_window [class="^.*"] border pixel 2
 
 # rotate right monitor because it's currently sitting vertical
 exec xrandr --output "HDMI-0" --rotate "right"
+# set vertical monitor to be to the right of the big 2k monitor 
+exec xrandr --output "HDMI-0" --right-of "DP-1"
 
 # reconfigure left_alt and left_cmd to swap
 exec xmodmap ~/.xmodmaprc
@@ -77,7 +79,7 @@ bindsym $mod+a 			focus parent
 ##bindsym $mod+Shift+a
 
 bindsym $mod+s 			layout stacking
-##bindsym $mod+Shift+s
+bindsym $mod+Shift+s		exec scrot /home/ryan/Pictures/screenshot.jpg
 
 bindsym $mod+d 			exec rofi -show run -lines 4 -eh 2 -width 40 -padding 25 -hide-scrollbar
 bindsym $mod+Shift+d		gaps inner current set 0; gaps outer current set 0
