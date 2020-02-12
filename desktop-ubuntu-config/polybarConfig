@@ -69,6 +69,7 @@ padding-right = 1
 inherit = bar/base
 
 monitor = ${env:MONITOR:HDMI-0}
+;monitor = ${env:MONITOR:DP-1}
 ;monitor = ${env:MONITOR:DVI-I-1}
 ;offset-x = 1%
 ;offset-y = 1%
@@ -117,7 +118,7 @@ cursor-scroll = ns-resize
 inherit = bar/base
 
 ;monitor = ${env:MONITOR:HDMI-0}
-monitor = ${env:MONITOR:DVI-I-1}
+monitor = ${env:MONITOR:DP-1}
 ;offset-x = 1%
 ;offset-y = 1%
 
