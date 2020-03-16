@@ -17,6 +17,8 @@ gaps outer 10
 
 for_window [class="^.*"] border pixel 2
 
+# set huge monitor to be primary, for some reason GNOME settings aren't persisting
+exec xrandr --output "DP-1" --primary
 # rotate right monitor because it's currently sitting vertical
 exec xrandr --output "HDMI-0" --rotate "right"
 # set vertical monitor to be to the right of the big 2k monitor 
@@ -28,6 +30,7 @@ exec xmodmap ~/.xmodmaprc
 #exec killall -q notify-osd
 exec_always killall -q notify-osd
 exec_always killall -q dunst
+exec_always killall -q compton
 
 exec_always --no-startup-id /home/ryan/.config/polybar/launch.sh
 exec_always --no-startup-id nitrogen --restore
