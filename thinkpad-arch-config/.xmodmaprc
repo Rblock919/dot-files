@@ -1,0 +1,33 @@
+! Erase existing bindings for cmd + alt
+clear mod1
+clear mod4
+
+clear Lock
+keycode 66 = Escape
+
+! keysym Caps_lock = Escape
+! add Lock = Escape
+
+! add Lock = Escape
+! caps lock keycode = 66
+! esc keycode = 9
+! remove Lock = Caps_Lock
+! add Lock = Escape
+
+! keysym Lock = Escape
+! keysym Escape = Caps_Lock
+
+! Map left cmd (Super_L) to the where left_alt (Alt_L) is
+keycode 64 = Super_L
+! Map left_alt (Alt_L) to where the left cmd (Super_L) key was
+keycode 133 = Alt_L
+
+! Update modifier settings
+add mod1 = Alt_L
+add mod1 = Alt_R
+add mod1 = Meta_L
+
+add mod4 = Super_R
+add mod4 = Super_L
+
+! add Lock = Escape
