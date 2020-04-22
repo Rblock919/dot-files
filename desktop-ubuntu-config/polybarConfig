@@ -65,11 +65,13 @@ background = ${colors.background}
 padding-left = 1
 padding-right = 1
 
-[bar/left]
+[bar/bottom]
 inherit = bar/base
 
-monitor = ${env:MONITOR:HDMI-0}
-;monitor = ${env:MONITOR:DP-1}
+bottom = true
+
+;monitor = ${env:MONITOR:HDMI-0}
+monitor = ${env:MONITOR:DP-1}
 ;monitor = ${env:MONITOR:DVI-I-1}
 ;offset-x = 1%
 ;offset-y = 1%
@@ -86,16 +88,22 @@ border-color =  #131313
 ;module-margin-left = 1
 ;module-margin-right = 2
 
-font-0 = Hack:pixelsize=10:weight=bold;2
-font-1 = Hack:pixelsize=32;2
-font-2 = FontAwesome:style=Regular;3
+font-0=Hack:pixelsize=12:weight=bold;2
+font-1=Hack:pixelsize=32;2
+; To get these icons, open file font-logos.svg and find unicode for icon
+; Then run 'echo -ne "\uf11b" where 11b depends on the icon
+font-2=Font Awesome 5 Free Regular:size=12;3
+font-3=Font Awesome 5 Free Solid:size=12;3
+font-4=Font Awesome 5 Brands:size=12;3
+font-5=font\-logos:size=12;3
+font-6=FontAwesome:style=Regular:size=12;3
 
-modules-left = hostname separator temperature
-modules-center = mpd
-modules-right =  volume separator memory separator cpu
-;modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature date powermenu
+modules-left = powermenu separator hostname separator email separator volume 
+modules-center = corona
+modules-right =  cpu separator memory separator temperature
+;modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth temperature date powermenu
 
-tray-position = ;right
+;tray-position = right
 tray-padding = 4
 ;tray-transparent = true
 ;tray-background = #0063ff
@@ -114,7 +122,7 @@ tray-padding = 4
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-[bar/right]
+[bar/top]
 inherit = bar/base
 
 ;monitor = ${env:MONITOR:HDMI-0}
@@ -134,16 +142,23 @@ border-color =  #131313
 ;module-margin-left = 1
 ;module-margin-right = 2
 
-font-0 = Hack:pixelsize=10:weight=bold;2
-font-1 = Hack:pixelsize=32;2
-font-2 = FontAwesome:style=Regular;3
+font-0=Hack:pixelsize=11:weight=bold;2
+font-1=Hack:pixelsize=32;2
+font-2=FontAwesome:style=Regular:size=12;3
+font-3=Font Awesome 5 Free Regular:size=12;3
+font-4=Font Awesome 5 Free Solid:size=12;3
+font-5=Font Awesome 5 Brands:size=12;3
+font-6=font\-logos:size=12;3
+
+;font-2 = FontAwesome5Free;style=solid;3
+;font-2 = FontAwesome:style=Solid:size=10;3
 
 modules-left = i3
 modules-center = mpd
 modules-right =  wlan separator date
-;modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature date powermenu
+;modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth temperature date powermenu
 
-tray-position = ;right
+;tray-position = right
 tray-padding = 4
 ;tray-transparent = true
 ;tray-background = #0063ff
@@ -207,14 +222,29 @@ content-background = ${colors.background}
 ;               - - - - MODULES - - - - 
 ;
 ;=====================================================
+[module/email]
+type = custom/script
+exec = /home/ryan/scripts/checkEmail.sh
+interval = 45
+format = "<label>"
+label-foreground = "${colors.green}"
+;label-font=7
+
+[module/corona]
+type = custom/script
+exec = /home/ryan/scripts/coronaVirusStatus.sh
+interval = 960
+format = "<label>"
+label-foreground = "${colors.blue}"
 
 [module/hostname]
 type = custom/script
 exec = echo "$(uname -n)"
 interval = 256
-format = "<label> "
+format = "<label>"
 label-foreground = "${colors.white}"
-format-prefix = "  "
+format-prefix = " "
+format-prefix-font=6
 format-prefix-foreground = ${colors.white}
 
 [module/xwindow]
@@ -278,11 +308,14 @@ ws-icon-1 = 2;
 ws-icon-2 = 3;
 ws-icon-3 = 4;4
 ws-icon-4 = 5;5
-ws-icon-5 = 6;6
-ws-icon-6 = 7;7
+ws-icon-5 = 6;%{T6}
+ws-icon-6 = 7;
 ws-icon-7 = 8;
 ws-icon-8 = 9;
-ws-icon-9 = 10;
+; use the slack icon from font-awesome 5. most other workspace icons look bad in font awesome 5
+ws-icon-9 = 10;%{T6}
+ws-icon-9-font=7
+;ws-icon-9 = 10;
 ;ws-icon-9 = 10;
 
 ; Only show workspaces on the same output as the bar
@@ -365,6 +398,11 @@ interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.purple}
 format-prefix-background = ${colors.background}
+; Available tokens:
+;   %percentage% (default) - total cpu load averaged over all cores
+;   %percentage-sum% - Cumulative load on all cores
+;   %percentage-cores% - load percentage for each core
+;   %percentage-core[1-9]% - load percentage for specific core
 label = %percentage%%
 label-foreground = ${colors.purple}
 label-background = ${colors.background}
@@ -372,10 +410,27 @@ label-background = ${colors.background}
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "  "
+format-prefix = " "
 format-prefix-foreground = ${colors.pink}
 format-prefix-background = ${colors.background}
-label = %percentage_used%%
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+;   %percentage_swap_used%
+;   %percentage_swap_free%
+;   %mb_swap_total%
+;   %mb_swap_free%
+;   %mb_swap_used%
+;   %gb_swap_total%
+;   %gb_swap_free%
+;   %gb_swap_used%
+label = %gb_used%
 label-foreground = ${colors.pink}
 label-background = ${colors.background}
 
@@ -422,8 +477,9 @@ format-disconnected =
 type = internal/date
 interval = 5
 
-date = "%Y-%m-%d"
-date-alt = 
+;date = "%Y-%m-%d"
+date = "%d %b %y"
+date-alt = "%d %B %Y"
 
 ;time = %H:%M:%S
 ;time-alt = %H:%M:%S
@@ -431,7 +487,7 @@ date-alt =
 time = %I:%M%p
 time-alt = %I:%M%p
 
-label = %date% %time%
+label =  %date% %time%
 label-foreground = ${colors.white}
 label-background = ${colors.background}
 
@@ -448,53 +504,18 @@ label-muted = " MUTED "
 label-muted-foreground = ${colors.oldpink}
 label-muted-background = ${colors.background}
 
-ramp-volume-0 = "  "
+ramp-volume-0 = " "
 ramp-volume-0-foreground = ${colors.oldpink}
 ramp-volume-0-background = ${colors.background}
-ramp-volume-1 = "  "
+ramp-volume-1 = " "
 ramp-volume-1-foreground = ${colors.oldpink}
 ramp-volume-1-background = ${colors.background}
-ramp-volume-2 = "  "
+ramp-volume-2 = " "
 ramp-volume-2-foreground = ${colors.oldpink}
 ramp-volume-2-background = ${colors.background}
-ramp-volume-3 = "  "
+ramp-volume-3 = " "
 ramp-volume-3-foreground = ${colors.oldpink}
 ramp-volume-3-background = ${colors.background}
-
-[module/battery]
-type = internal/battery
-battery = BAT0
-adapter = AC0
-full-at = 98
-
-format-charging = <animation-charging> <label-charging>
-format-charging-foreground = ${colors.green}
-format-charging-background = ${colors.background}
-format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-foreground = ${colors.green}
-format-discharging-background = ${colors.background}
-format-full = <label-full>
-format-full-foreground = ${colors.green}
-format-full-background = ${colors.background}
-
-label-charging = "CHR %percentage%%"
-label-discharging = "BAT %percentage%%"
-label-discharging-foreground = ${colors.green}
-label-full = "BAT %percentage%%"
-
-ramp-capacity-0 =
-ramp-capacity-0-foreground = ${colors.red}
-ramp-capacity-1 =
-ramp-capacity-1-foreground = ${colors.red}
-ramp-capacity-2 =
-ramp-capacity-3 =
-ramp-capacity-4 =
-animation-charging-0 =
-animation-charging-1 =
-animation-charging-2 =
-animation-charging-3 =
-animation-charging-4 = 
-animation-charging-framerate = 750
 
 [module/temperature]
 type = internal/temperature
@@ -516,38 +537,50 @@ ramp-1 =
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
 
+[module/power]
+type = custom/text
+content = P
+click-left = "exec /home/ryan/scripts/powerMenu.sh"
+content-padding = 2
+
 [module/powermenu]
 type = custom/menu
 
 expand-right = true
 
 format-spacing = 1
+format-margin = 0
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+format-color1 = ${colors.red}
+format-padding = 0
 
-label-open = 
-label-open-foreground = ${colors.secondary}
-label-close =  cancel
-label-close-foreground = ${colors.secondary}
+label-open = 
+label-close = 
 label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
 
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
+; reboot
+menu-0-1 = 
 menu-0-1-exec = menu-open-2
+; poweroff
+menu-0-2 = 
+menu-0-2-exec = menu-open-3
+; logout
+menu-0-0 = 
+menu-0-0-exec = menu-open-1
 
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
+menu-2-0 = 
+menu-2-0-exec = reboot
 
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
+menu-3-0 = 
+menu-3-0-exec = poweroff
+
+menu-1-0 = 
+menu-1-0-exec = i3-msg exit || openbox --exit
 
 ;=====================================================
 ;
-;                                       - - - - SETTINGS - - - - 
+;               - - - - SETTINGS - - - - 
 ;
 ;=====================================================
 

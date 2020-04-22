@@ -42,6 +42,9 @@ Xcursor.size: 48
 ! white
 #define col8 #ececec
 
+! yellow
+#define col9 #182db5
+
 ! lightblue
 *.foreground:   #33ccee
 ! *.background:   rgba:2900/2b00/2e00/dede
@@ -50,7 +53,7 @@ URxvt.background:   col1
 *.cursorBlink: true
 
 !*.color0:       rgba:2900/2b00/2e00/dede
-*.color0:       col8
+*.color0:       col9
 *.color1:       col2
 *.color2:       col3
 *.color3:       col4
@@ -59,7 +62,7 @@ URxvt.background:   col1
 *.color6:       col7
 *.color7:       col8
 ! *.color8:	rgba:2900/2b00/2e00/dede
-*.color8:       col8
+*.color8:       col9
 *.color9:       col2
 *.color10:      col3
 *.color11:      col4

@@ -34,7 +34,10 @@ exec_always killall -q compton
 
 exec_always --no-startup-id /home/ryan/.config/polybar/launch.sh
 exec_always --no-startup-id nitrogen --restore
-exec_always --no-startup-id compton --config /home/ryan/.config/compton/compton.conf
+# TODO: try off-loading to a script like reddit post suggested to fix tyrone-compton fork not picking up config file being called via i3
+#exec_always --no-startup-id compton -b --config /home/ryan/.config/compton/compton.conf
+# For some reason the tyrone-compton fork wont read from my config file inside i3
+exec_always --no-startup-id compton --blur-background --blur-method kawase --blur-strength 8 --opacity-rule 85:'class_g="URxvt"' --opacity-rule 90:'class_g="Code"' --opacity-rule 80:'class_g="Slack"' --opacity-rule 80:'class_g="Polybar"' --opacity-rule 80:'class_g="discord"' --shadow-exclude 'name="cpt_frame_window"' --backend glx --config /home/ryan/.config/compton/compton.conf
 exec_always --no-startup-id dunst -config /home/ryan/.config/dunst/dunstrc
 
 new_window pixel
@@ -84,8 +87,11 @@ bindsym $mod+a 			focus parent
 bindsym $mod+s 			layout stacking
 bindsym $mod+Shift+s		exec scrot /home/ryan/Pictures/screenshot.jpg
 
-bindsym $mod+d 			exec rofi -show run -lines 4 -eh 2 -width 40 -padding 25 -hide-scrollbar
-bindsym $mod+Shift+d		gaps inner current set 0; gaps outer current set 0
+bindsym $mod+d 			exec "rofi -modi run,window -show run -lines 4 -eh 2 -width 40 -padding 25 -hide-scrollbar -sidebar-mode"
+#bindsym $mod+Shift+d		exec "rofi -combi-modi window,run -show combi -modi combi"
+bindsym $mod+ctrl+d		gaps inner current set 0; gaps outer current set 0
+#bindsym $mod+Shift+d		exec "rofi -modi Work:~/scripts/vscodeWorkDirectories.sh,Projects:~/scripts/vscodeProjectDirectories.sh -show Work -lines 5 -eh 2 -width 40 -padding 25 -hide-scrollbar -sidebar-mode"
+bindsym $mod+Shift+d		exec "rofi -modi Work:~/scripts/workFileFinder.sh,All:~/scripts/allProgFileFinder.sh -show Work -lines 6 -eh 2 -width 40 -padding 25 -hide-scrollbar -sidebar-mode"
 
 bindsym $mod+f 			fullscreen toggle
 ##bindsym $mod+Shift+f
@@ -197,12 +203,13 @@ assign [class="Firefox"] $ws2
 assign [class="Code"] $ws3
 assign [class="jetbrains-idea"] $ws3
 assign [class="jetbrains-webstorm"] $ws3
-assign [class="discord"] $ws10
+assign [class="discord"] $ws6
+assign [class="zoom"] $ws7
 assign [class="slack"] $ws10
 assign [class="Slack"] $ws10
 
 
-# make sure discord/ws10 always appears on right monitor
+# make sure slack/discord/ws10 always appears on right monitor
 workspace $ws10 output HDMI-0
 
 
