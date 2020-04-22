@@ -21,7 +21,7 @@ exec_always --no-startup-id compton --config /home/ryan/.config/compton/compton.
 # exec xrandr --auto
 
 # reconfigure caps_lock to be esc and swap left cmd <-> alt
-exec xmodmap ~/.xmodmaprc
+exec --no-startup-id xmodmap ~/.xmodmaprc
 
 new_window pixel
 

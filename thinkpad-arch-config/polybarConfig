@@ -89,7 +89,8 @@ border-color =  #131313
 font-0 = Hack:pixelsize=11:weight=bold;2
 font-1 = Hack:pixelsize=32;2
 font-2 = FontAwesome:style=Regular;3
-;font-2 = FontAwesome5Free:style=Solid:pixelsize=11
+;font-2 = FontAwesome5Free:style=Solid:size=11;2
+;font-3 = FontAwesome:style=Regular;3
 ;font-3 = FontAwesome5Brands:style=Solid:pixelsize=11
 
 modules-left = i3
@@ -123,13 +124,18 @@ bottom = true
 tray-position = right
 tray-padding = 4
 
-modules-left = hostname separator temperature
-modules-center = music
+modules-left = hostname separator temperature 
+modules-center = mpd
+;modules-center = corona
 modules-right = memory separator cpu separator battery 
 
 font-0 = Hack:pixelsize=11:weight=bold;2
 font-1 = Hack:pixelsize=32;2
-font-2 = FontAwesome:style=Regular;3
+;font-2 = FontAwesome:style=Regular;3
+font-2 = FontAwesome5Free:style=Solid:size=11;2
+font-3 = font\-logos:size=11;3
+;font-3 = FontAwesome:style=Regular;3
+;font-3 = FontAwesome5Brands:style=Solid:pixelsize=11
 
 width = 100%
 height = 25
@@ -239,13 +245,54 @@ content-background = ${colors.background}
 ;               - - - - MODULES - - - - 
 ;
 ;=====================================================
+[module/github]
+type = internal/github
+
+; Accessing an access token stored in file
+token = ${file:/home/ryan/access.token}
+
+; Accessing an access token stored in an environment variable
+;token = ${env:GITHUB_ACCESS_TOKEN}
+
+; Whether empty notifications should be displayed or not
+empty-notifications = true
+
+; Number of seconds in between requests
+interval = 10
+
+; Github API URL (unreleased)
+; Default: https://api.github.com/
+api-url = https://hub.example.org/api/v3/
+
+; Available tags:
+;   <label> (default)
+format = <label>
+
+; Available tokens:
+;   %notifications% (default)
+; Default: Notifications: %notifications%
+label = Git Notifications: %notifications%
+
+; Used when GitHub can't be reached (unreleased)
+; Available tags:
+;   <label-offline> (default)
+format-offline = <label-offline>
+
+; (unreleased)
+; Available tokens:
+;   None
+; Default: Offline
+label-offline = Offline
+
 [module/hostname]
 type = custom/script
 exec = echo "$(uname -n)"
 interval = 256
 format = "<label> "
 label-foreground = "${colors.white}"
-format-prefix = "  "
+format-prefix = "  "
+format-prefix-font = 4
+;format-prefix = "  "
 format-prefix-foreground = ${colors.white}
 ;format-padding = 0
 
@@ -253,7 +300,17 @@ format-prefix-foreground = ${colors.white}
 type = custom/script
 #exec = echo " - $(mpc --format %title% current) by $(mpc --format %artist% current) - "
 exec = /home/ryan/scripts/musicScript.sh
-interval = 1
+interval = 2
+format = "<label> "
+label-foreground = "${colors.blue}"
+;format-prefix = "  "
+;format-prefix-foreground = ${colors.white}
+;format-padding = 0
+
+[module/corona]
+type = custom/script
+exec = /home/ryan/scripts/coronaVirusStatus.sh
+interval = 60
 format = "<label> "
 label-foreground = "${colors.blue}"
 ;format-prefix = "  "
@@ -324,8 +381,10 @@ wrapping-scroll = false
 ; Workspace Icons
 ws-icon-0 = 1;
 ws-icon-1 = 2;
+;ws-icon-1 = 2;2
 ws-icon-2 = 3;
 ws-icon-3 = 4;4
+;ws-icon-3 = 4;
 ws-icon-4 = 5;5
 ws-icon-5 = 6;6
 ws-icon-6 = 7;7
@@ -343,7 +402,8 @@ label-mode-background = ${colors.grey}
 ; focused = Active workspace on focused monitor
 label-focused = %icon%
 label-focused-foreground = ${colors.cyan}
-label-focused-background = ${module/bspwm.label-focused-background}
+;label-focused-background = ${module/bspwm.label-focused-background}
+label-focused-background = ${colors.background}
 label-focused-underline = ${module/bspwm.label-focused-underline}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
@@ -354,17 +414,16 @@ label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %icon%
+label-visible-foreground = ${colors.cyan}
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
-label-visible-foreground = ${colors.cyan}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %icon%
+label-urgent-foreground = ${colors.red}
 label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
-label-urgent-foreground = ${colors.red}
-
 
 [module/mpd]
 type = internal/mpd
@@ -414,9 +473,14 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "CPU "
+format-prefix = " "
 format-prefix-foreground = ${colors.purple}
 format-prefix-background = ${colors.background}
+; Available tokens:
+;   %percentage% (default) - total cpu load averaged over all cores
+;   %percentage-sum% - Cumulative load on all cores
+;   %percentage-cores% - load percentage for each core
+;   %percentage-core[1-9]% - load percentage for specific core
 label = %percentage%%
 label-foreground = ${colors.purple}
 label-background = ${colors.background}
@@ -424,10 +488,28 @@ label-background = ${colors.background}
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "RAM "
+;format-prefix = 
 format-prefix-foreground = ${colors.pink}
 format-prefix-background = ${colors.background}
-label = %percentage_used%%
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+;   %percentage_swap_used%
+;   %percentage_swap_free%
+;   %mb_swap_total%
+;   %mb_swap_free%
+;   %mb_swap_used%
+;   %gb_swap_total%
+;   %gb_swap_free%
+;   %gb_swap_used%
+label =  %gb_used%
+;label-font = 1
 label-foreground = ${colors.pink}
 label-background = ${colors.background}
 
@@ -438,7 +520,7 @@ interval = 3.0
 
 format-connected = <label-connected>
 
-label-connected = %essid%
+label-connected = " %essid%"
 label-connected-foreground = ${colors.yellow}
 label-connected-background = ${colors.background}
 
@@ -460,9 +542,9 @@ interface = enp0s25
 interval = 3.0
 
 format-connected-underline = #55aa55
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
+;format-connected-prefix = " "
+;format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = " %local_ip%"
 
 format-disconnected =
 ;format-disconnected = <label-disconnected>
@@ -472,16 +554,21 @@ format-disconnected =
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 10
 
-date = "%Y-%m-%d"
-date-alt = 
+;date = "%Y-%m-%d"
+;date-alt = 
 
 ;time = %H:%M:%S
 ;time-alt = %H:%M:%S
 
-time = %I:%M%p
-time-alt = %I:%M%p
+;time = %I:%M%p
+;time-alt = %I:%M%p
+
+time = "%I:%M%p"
+time-alt = "%I:%M%p"
+date = "%d %b %y"
+date-alt = "%d %B %Y"
 
 label = %date% %time%
 label-foreground = ${colors.white}
@@ -494,23 +581,23 @@ type = internal/volume
 format-volume = <ramp-volume><label-volume>
 
 label-volume = %percentage%%
-label-volume-foreground = ${colors.blue}
+label-volume-foreground = ${colors.oldpink}
 label-volume-background = ${colors.background}
-label-muted = " MUTED "
-label-muted-foreground = ${colors.blue}
+label-muted = " MUTED "
+label-muted-foreground = ${colors.oldpink}
 label-muted-background = ${colors.background}
 
-ramp-volume-0 = " VOL "
-ramp-volume-0-foreground = ${colors.blue}
+ramp-volume-0 = "  "
+ramp-volume-0-foreground = ${colors.oldpink}
 ramp-volume-0-background = ${colors.background}
-ramp-volume-1 = " VOL "
-ramp-volume-1-foreground = ${colors.blue}
+ramp-volume-1 = "  "
+ramp-volume-1-foreground = ${colors.oldpink}
 ramp-volume-1-background = ${colors.background}
-ramp-volume-2 = " VOL "
-ramp-volume-2-foreground = ${colors.blue}
+ramp-volume-2 = "  "
+ramp-volume-2-foreground = ${colors.oldpink}
 ramp-volume-2-background = ${colors.background}
-ramp-volume-3 = " VOL "
-ramp-volume-3-foreground = ${colors.blue}
+ramp-volume-3 = "  "
+ramp-volume-3-foreground = ${colors.oldpink}
 ramp-volume-3-background = ${colors.background}
 
 [module/battery]
@@ -529,24 +616,30 @@ format-full = <label-full>
 format-full-foreground = ${colors.green}
 format-full-background = ${colors.background}
 
-label-charging = "CHR %percentage%%"
-label-discharging = "BAT %percentage%%"
+label-charging = %percentage%%
+label-discharging = %percentage%%
 label-discharging-foreground = ${colors.green}
-label-full = "BAT %percentage%%"
+label-ramp-capacity-1-foreground = ${colors.red}
+label-full = " %percentage%%"
 
-ramp-capacity-0 =
+ramp-capacity-0 = 
 ramp-capacity-0-foreground = ${colors.red}
-ramp-capacity-1 =
-ramp-capacity-1-foreground = ${colors.red}
-ramp-capacity-2 =
-ramp-capacity-3 =
-ramp-capacity-4 =
-animation-charging-0 =
-animation-charging-1 =
-animation-charging-2 =
-animation-charging-3 =
-animation-charging-4 = 
-animation-charging-framerate = 750
+ramp-capacity-1 = 
+#ramp-capacity-1-foreground = ${colors.red}
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+#ramp-capacity-7 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 1000
 
 [module/temperature]
 type = internal/temperature
@@ -556,10 +649,10 @@ warn-temperature = 60
 format = <label>
 format-warn = <label-warn>
 
-label = TMP %temperature%
+label =  %temperature%
 label-foreground = ${colors.cyan}
 label-background = ${colors.background}
-label-warn = %temperature%
+label-warn =  %temperature%
 label-warn-foreground = ${colors.red}
 label-warn-background = ${colors.background}
 
