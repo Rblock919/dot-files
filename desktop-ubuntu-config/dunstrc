@@ -409,7 +409,7 @@
 [slack] # a name for the filter: this is just used to identify what we are doing here
     appname = "Slack" # this is the application name, see below
     summary = "*" # this is the filter criterion applied to the message, see below
-    # urgency = critical # those attributes could be used to set details of the message in the script called below
+    urgency = low # those attributes could be used to set details of the message in the script called below
     # format = "" # could be used to alter the popup text, see below
     format = "<u>%s</u>\n%b"
     script = /home/ryan/scripts/dunst-urgent-notification.sh

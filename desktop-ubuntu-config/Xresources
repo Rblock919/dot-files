@@ -1,6 +1,6 @@
 Xft.rgba:      rgba
 Xft.antialias: 1
-URxvt*font: xft:Hack:pixelsize=16:style=bold
+URxvt*font: xft:Hack:pixelsize=20:style=bold
 
 URxvt.internalBorder: 0
 URxvt*dynamicColors: on
