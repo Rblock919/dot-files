@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+cmd=exec "/home/ryan/Applications/altair.AppImage" & >/dev/null 2>&1
+
+$cmd >/dev/null 2>&1

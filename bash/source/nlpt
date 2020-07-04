@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+if [[ -z "$1" ]] || [[ -z "$2" ]] ; then
+  echo "Usage: "
+  echo "  nlpt <npm package directory> <location to copy package tarball and install>"
+  echo ""
+  echo "Example: "
+  echo "  nlpt ../../../npm-module-library/shared-npm-module example-service/tmp"
+  echo ""
+  echo "  (in above example, example-service is the project the package is being installed into"
+  echo "   and it has a .gitignored tmp directory to place the file in)"
+  exit 1
+fi
+
+pushd $1
+file=$(npm pack | tail -n 1)
+popd
+
+cp "$1/$file" "$2"
+
+pushd $2
+npm i "./$file"
+popd
