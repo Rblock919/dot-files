@@ -1,0 +1,74 @@
+                                        Ryan Vim Cheatsheet
+
+    -- Random Commands --
+% -> bounces around to start/ends of code blocks (if elses, etc)
+o (in visual mode) -> alternates which end of the visual block to extend
+:noh -> turn off highlighting until next search
+
+    -- Window Commands --
+ctrl + w + 
+
+    -- Find letter occurance --
+fX (x being the letter searched for)
+FX (find prev occurance) 
+: , (navigate finds)
+
+    -- Search -- 
+/ -> search forward
+? -> search backwards
+n/N -> next/prev match
+*/# -> if already on word, search for next/prev occurances
+^> exact matches, use g*/g# to find word as a part of a potentially larger word
+^> append '/+4' to go to 4 lines below match or '/e+4' to go 4 characters after match (- also works)
+can prepend operators such as delete, yank, visual, change
+^> d/Vim/e -> delete from cursor to end of next 'Vim' match
+
+    -- Search & Replace --
+:%s/search/replace
+^> append a 'g' to make it global, others flags include c (confirm), i (ignore case), I (case-sensitive), n (show number of matches), p (print matching lines)
+* if search string is not given then last used search string will be used
+* if replacement string is not given will just delete the occurances
+* omit % to only search on current line, % searches current file
+
+    -- Search & Execute --
+:[range]g[lobal]/{pattern}/[cmd]
+
+    -- Screen Movement --
+Ctrl-y Moves screen up one line
+Ctrl-e Moves screen down one line
+Ctrl-u Moves cursor & screen up ½ page
+Ctrl-d Moves cursor & screen down ½ page
+Ctrl-b Moves screen up one page, cursor to last line
+Ctrl-f Moves screen down one page, cursor to first line
+*Ctrl-y and Ctrl-e only change the cursor position if it would be moved off screen*
+
+    -- Folding --
+z + M(all) R(all) c(close) o(open) a(toggle) k(move up) j(move down)
+
+    -- Registers --
+(hello there!)
+(hello there!)
+""p - paste last thing in register (in normal mode)
+"0p - paste 2nd to last thing in register (can go all the way up to "9p)
+
+    -- Recordings/Macros --
+qa -> (start recording named 'a')
+* perform any # of commands *
+q -> (quit recording)
+
+then
+
+@a -> execute recording 'a'
+@@ -> execute last recording
+5@a -> execute recording 'a' 5 times
+
+    -- Plugins to Explore -- 
+- fuzzy finder
+- buffer explorer
+- some git plugin
+- ack.vim -> download ack (sudo apt install ack-grep) and have vim use ack
+- pathogen? (copy into ~.vim/autoload) (then can copy plugins into the ~/.vim/bundle directory)
+- surround plugin
+- snipmate (for live-templates, better vim abbreviations)
+- tcomment (also nerdcommenter)
+

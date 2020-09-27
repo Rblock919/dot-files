@@ -1,0 +1,36 @@
+" Normal Mode Mappings
+nmap <C-N> :set invnumber<CR>
+nmap <CR> G
+
+" Visual Mode Mappings
+vmap > >gv
+vmap < <gv
+vmap <Tab> >gv
+vmap <S-Tab> <gv
+
+" Insert Mode Mappings
+imap <S-Tab> <C-P>
+" map ctrl+space to auto complete suggestions
+imap <C-@> <C-P>
+
+
+" Settings
+set number showmode
+set t_Co=16
+set modeline
+set softtabstop=2
+set shiftwidth=2
+set wildmode=list:longest " Autocomplete directories and files
+set expandtab " Use spaces instead of tabs
+set hlsearch
+
+" Highlighted Color
+hi Search ctermbg=LightYellow
+
+" Boolean Settings
+syntax on
+filetype on
+
+" Abbreviations
+:iab impt import {} from '';
+:iab cnsl console.log();
