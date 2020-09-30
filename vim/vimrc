@@ -1,3 +1,8 @@
+execute pathogen#infect()
+
+filetype plugin indent on
+syntax on
+
 " Normal Mode Mappings
 nmap <C-N> :set invnumber<CR>
 nmap <CR> G
@@ -13,7 +18,6 @@ imap <S-Tab> <C-P>
 " map ctrl+space to auto complete suggestions
 imap <C-@> <C-P>
 
-
 " Settings
 set number showmode
 set t_Co=16
@@ -23,13 +27,11 @@ set shiftwidth=2
 set wildmode=list:longest " Autocomplete directories and files
 set expandtab " Use spaces instead of tabs
 set hlsearch
+set undodir=/home/ryan/.vim/undodir
+set undofile
 
 " Highlighted Color
 hi Search ctermbg=LightYellow
-
-" Boolean Settings
-syntax on
-filetype on
 
 " Abbreviations
 :iab impt import {} from '';
