@@ -140,6 +140,9 @@ fi
 #export BIT_TOKEN="0ebbac45-f313-4f6f-9709-be5200c2f633"
 export BIT_TOKEN="a02d37fb-7fef-4921-abbb-d1c76fa8839e"
 
+# Set default editor
+export EDITOR="vim"
+
 export PATH="/home/ryan/Scripts/source:$PATH"
 #export NVM_DIR="$HOME/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
