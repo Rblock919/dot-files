@@ -137,8 +137,8 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # Lineage Project
-#export BIT_TOKEN="0ebbac45-f313-4f6f-9709-be5200c2f633"
-export BIT_TOKEN="a02d37fb-7fef-4921-abbb-d1c76fa8839e"
+#export BIT_TOKEN=""
+export BIT_TOKEN=""
 
 # Set default editor
 export EDITOR="vim"
@@ -148,5 +148,5 @@ export PATH="/home/ryan/Scripts/source:$PATH"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export SENTRY_AUTH_TOKEN='87c4d0afa97f4a54a24f67d5d8d40949c653dbffc70f4db692c1dcf932c8cc85'
-export SENTRY_ORG='lineage-logistics'
+export SENTRY_AUTH_TOKEN=''
+export SENTRY_ORG=''
