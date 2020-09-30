@@ -15,7 +15,7 @@ URxvt*depth: 24
 URxvt.letterSpace: -1
 
 ! Cursor
-Xcursor.theme: oxy-neon-large
+Xcursor.theme: Rage-Purple-Cursor
 Xcursor.size: 48
 
 ! Colors
@@ -80,8 +80,13 @@ URxvt.matcher.button: 1
 URxvt.keysym.C-j:	resize-font:smaller
 URxvt.keysym.C-k:	resize-font:bigger
 
-!!Keyboard-select (Alt+Escape)
-URxvt.keysym.M-Escape:	perl:keyboard-select:activate
+!! Keyboard-select 
+! (Alt + Escape)
+!URxv.keysym.M-Escape:	perl:keyboard-select:activate
+! (Ctrl + m)
+URxvt.keysym.C-m:	perl:keyboard-select:activate
+! Yanking Will Copy to System Clipboard
+URxvt.keyboard-select.clipboard: true
 
 ! Rofi Configuration
 rofi.color-enabled:                  true

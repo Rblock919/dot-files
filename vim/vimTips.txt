@@ -11,7 +11,7 @@ ctrl + w +
     -- Find letter occurance --
 fX (x being the letter searched for)
 FX (find prev occurance) 
-: , (navigate finds)
+: , (navigate finds) "asdf"
 
     -- Search -- 
 / -> search forward
@@ -25,7 +25,7 @@ can prepend operators such as delete, yank, visual, change
 
     -- Search & Replace --
 :%s/search/replace
-^> append a 'g' to make it global, others flags include c (confirm), i (ignore case), I (case-sensitive), n (show number of matches), p (print matching lines)
+^> append a 'g' to make it global, others flags include c (confirm), i (ignore case), I (case-sensitive), n (show number of matches), p (print matching lines) gglobal
 * if search string is not given then last used search string will be used
 * if replacement string is not given will just delete the occurances
 * omit % to only search on current line, % searches current file
@@ -46,17 +46,17 @@ Ctrl-f Moves screen down one page, cursor to first line
 z + M(all) R(all) c(close) o(open) a(toggle) k(move up) j(move down)
 
     -- Registers --
-(hello there!)
-(hello there!)
+:reg - list registers
 ""p - paste last thing in register (in normal mode)
 "0p - paste 2nd to last thing in register (can go all the way up to "9p)
+* deleting something places it in the un-named register, so that can be easily overridden 
 
     -- Recordings/Macros --
 qa -> (start recording named 'a')
 * perform any # of commands *
 q -> (quit recording)
 
-then
+then last change here
 
 @a -> execute recording 'a'
 @@ -> execute last recording
@@ -71,4 +71,5 @@ then
 - surround plugin
 - snipmate (for live-templates, better vim abbreviations)
 - tcomment (also nerdcommenter)
+- coc.nvim
 
