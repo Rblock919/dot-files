@@ -1,17 +1,14 @@
-# General Unix Aliases
+# General Aliases
 alias df='df -h'
-
 alias la='ls -la'
-alias ll='ls -l'
+alias ll='ls -alF'
 
 # Git Aliases
 alias gs='git status'
 alias gb='git branch'
-
+alias gpoh='git push origin HEAD'
 alias gc='git checkout'
 __git_complete gc _git_checkout # Enable autocompletion for alias
-
-alias gpoh='git push origin HEAD'
 
 # Docker Aliases
 alias dimg='docker images'
