@@ -5,9 +5,10 @@ alias ll='ls -alF'
 
 # Git Aliases
 alias gs='git status'
+alias gpoh='git push origin HEAD'
+alias gcm='git commit -m'
 alias gb='git branch'
 __git_complete gb _git_branch # Enable autocompletion for alias
-alias gpoh='git push origin HEAD'
 alias gc='git checkout'
 __git_complete gc _git_checkout # Enable autocompletion for alias
 
