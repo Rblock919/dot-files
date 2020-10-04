@@ -73,3 +73,10 @@ then last change here
 - tcomment (also nerdcommenter)
 - coc.nvim
 
+    -- Getting fzf to work with vim --
+sudo apt install fzf
+cd ~/.vim/bundle
+git clone https://github.com/junegunn/fzf.vim
+git clone https://github.com/junegunn/fzf.git
+run :Helptags inside vim afterwards
+
