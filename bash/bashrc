@@ -128,7 +128,7 @@ export EDITOR="vim"
 export FZF_COMPLETION_TRIGGER='$$'
 
 # Use ripgrep instead of find
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules,dist}/*"'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,**/dist,**/node_modules}/*"'
 
 # Openfaas configuration
 export OPENFAAS_URL=http://192.168.1.11:31112
