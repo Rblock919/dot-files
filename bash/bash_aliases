@@ -16,6 +16,7 @@ __git_complete gc _git_checkout # Enable autocompletion for alias
 alias dimg='docker images'
 alias dps='docker ps -a'
 
+# Sweeter Neofetch Alias
 alias neo='neofetch'
 
 # Quick Edit Config Files Aliases
@@ -25,3 +26,6 @@ alias xres='vim /home/ryan/.Xresources'
 
 # Screenshot Alias
 alias ss='maim -s /home/ryan/Pictures/screenshot.png'
+
+# Fzf -> Vim Alias
+alias ff='vim $(fzf)'
