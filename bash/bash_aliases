@@ -29,3 +29,14 @@ alias ss='maim -s /home/ryan/Pictures/screenshot.png'
 
 # Fzf -> Vim Alias
 alias ff='vim $(fzf)'
+
+# Nice Git Diff -> Fzf function
+fd()
+{
+  if [ -d .git ]; then
+    preview="git diff $@ --color=always -- {-1}"
+    git diff $@ --name-only | fzf -m --ansi --preview "$preview"
+  else
+    echo "Error: Either not a git repository or not at the root of the project"
+  fi;
+}
