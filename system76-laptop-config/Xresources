@@ -1,0 +1,117 @@
+Xft.rgba:      rgba
+Xft.antialias: 1
+URxvt*font: xft:Hack:pixelsize=22:style=bold
+
+URxvt.internalBorder: 0
+URxvt*dynamicColors: on
+URxvt.imLocale: en_US.UTF-8
+URxvt.saveLines: 5000
+URxvt.scrollBar: false
+URxvt.scrollstyle: plain
+URxvt*termName: xterm-256color
+URxvt.transparent: false
+URxvt.visualBell: false
+URxvt*depth: 24
+URxvt.letterSpace: -1
+
+! Cursor
+Xcursor.theme: Rage-Gothic
+Xcursor.size: 48
+
+! Colors
+*.boldMode: true
+*.colorBDMode: false
+!*.colorBD: cyan
+
+! Base16 Eighties
+! dark blue almost black
+! #define col1 #292b2e
+#define col1 rgba:2900/2b00/2e00/dede
+! red
+#define col2 #ee3333
+! green
+#define col3 #20ad80
+! pink
+#define col4 #dd75dd
+! purple
+#define col5 #875faf
+! pinkish red
+#define col6 #d75f87
+! lightish blue
+#define col7 #4f97d7
+! white
+#define col8 #ececec
+
+! yellow
+#define col9 #182db5
+
+! lightblue
+! *.background:   rgba:2900/2b00/2e00/dede
+*.cursorBlink: true
+
+!URxvt.background:   col1
+!*.cursorColor:  col8
+!*.foreground:   #33ccee
+!*.color0:       rgba:2900/2b00/2e00/dede
+!*.color0:       col9
+!*.color1:       col2
+!*.color2:       col3
+!*.color3:       col4
+!*.color4:       col5
+!*.color5:       col6
+!*.color6:       col7
+!*.color7:       col8
+! *.color8:	rgba:2900/2b00/2e00/dede
+!*.color8:       col9
+!*.color9:       col2
+!*.color10:      col3
+!*.color11:      col4
+!*.color12:      col5
+!*.color13:      col6
+!*.color14:      col7
+!*.color15:      col8
+
+! Dracula Xresources palette
+*.foreground: #F8F8F2
+*.background: #282A36
+*.color0:     #000000
+*.color8:     #4D4D4D
+*.color1:     #FF5555
+*.color9:     #FF6E67
+*.color2:     #50FA7B
+*.color10:    #5AF78E
+*.color3:     #F1FA8C
+*.color11:    #F4F99D
+*.color4:     #BD93F9
+*.color12:    #CAA9FA
+*.color5:     #FF79C6
+*.color13:    #FF92D0
+*.color6:     #8BE9FD
+*.color14:    #9AEDFE
+*.color7:     #BFBFBF
+*.color15:    #E6E6E6
+
+!! Extensions:
+URxvt.perl-ext-common:	default,matcher,resize-font,keyboard-select
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+
+!!Resize font
+URxvt.keysym.C-j:	resize-font:smaller
+URxvt.keysym.C-k:	resize-font:bigger
+
+!!Keyboard-select (Alt+Escape)
+URxvt.keysym.M-Escape:	perl:keyboard-select:activate
+
+! Rofi Configuration
+rofi.color-enabled:                  true
+rofi.color-window:                   argb:AA000000, argb:AA000000, #dd75dd, argb:AA000000, #00ffff
+
+rofi.color-normal:                   argb:AA000000, #00ffff, argb:AA000000, #00ffff, #dd75dd
+rofi.color-active:                   argb:AA000000, #00ffff, #00ffff, #00ffff, #00ffff
+rofi.color-urgent:                   argb:AA000000, #dd75dd, #00ffff, #00ffff, #dd75dd
+rofi.font:  Hack 14
+
+! argb:ee02143f
+
+rofi.separator-style:                solid

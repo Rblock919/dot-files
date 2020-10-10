@@ -122,13 +122,19 @@ fi
 #bind "TAB:menu-complete"
 
 # Set default editor
-export EDITOR="vim"
+export EDITOR="nvim"
+
+# Use ripgrep instead of find
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{**/.git,**/dist,**/node_modules}/*"'
+# Use dracula color theme and use bat instead of cat for preview windows
+export FZF_DEFAULT_OPTS='
+  --preview "bat {-1} -f"
+  --color fg:255,bg:236,hl:84,fg+:255,bg+:236,hl+:215
+  --color info:141,prompt:84,spinner:212,pointer:212,marker:212
+'
 
 # Change fzf wildcard trigger
 export FZF_COMPLETION_TRIGGER='$$'
-
-# Use ripgrep instead of find
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,**/dist,**/node_modules}/*"'
 
 # Openfaas configuration
 export OPENFAAS_URL=http://192.168.1.11:31112

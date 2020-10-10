@@ -1,0 +1,211 @@
+# vim: filetype=config
+
+# Ryan Block // Ubuntu Desktop i3-gaps config file
+
+font pango:monospace 8
+
+set $mod Mod4
+set $term rxvt-unicode
+set $browser firefox
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+hide_edge_borders both
+gaps inner 10
+gaps outer 10
+
+for_window [class="^.*"] border pixel 2
+
+# reconfigure left_alt and left_cmd to swap & esc -> caps_lock
+exec xmodmap ~/.xmodmaprc
+
+# for some reason I can't get ubuntu 18.04 to do this itself when loading i3
+exec xrdb ~/.Xresources
+
+#exec killall -q notify-osd
+exec_always killall -q notify-osd
+exec_always killall -q dunst
+exec_always killall -q compton
+
+exec_always --no-startup-id /home/ryan/.config/polybar/launch.sh
+exec_always --no-startup-id nitrogen --restore
+exec_always --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
+exec_always --no-startup-id compton -b --config /home/ryan/.config/compton/compton.conf
+
+# TODO: re-add the appropriate following commands
+# TODO: try off-loading to a script like reddit post suggested to fix tyrone-compton fork not picking up config file being called via i3
+# For some reason the tyrone-compton fork wont read from my config file inside i3
+#exec_always --no-startup-id compton --blur-background --blur-method kawase --blur-strength 8 --opacity-rule 85:'class_g="URxvt"' --opacity-rule 90:'class_g="Code"' --opacity-rule 80:'class_g="Slack"' --opacity-rule 80:'class_g="Polybar"' --opacity-rule 80:'class_g="discord"' --shadow-exclude 'name="cpt_frame_window"' --backend glx --config /home/ryan/.config/compton/compton.conf
+#exec_always --no-startup-id dunst -config /home/ryan/.config/dunst/dunstrc
+
+new_window pixel
+
+# #---Basic Bindings---# #
+
+bindsym $mod+Return 		exec rxvt-unicode
+
+bindsym $mod+space 		focus mode_toggle
+bindsym $mod+Shift+space 	floating toggle
+
+# #---Letter Key Bindings---# #
+
+##bindsym $mod+q		
+bindsym $mod+Shift+q 		kill
+
+bindsym $mod+w			layout tabbed
+##bindsym $mod+Shift+w
+
+bindsym $mod+e 			layout toggle split
+bindsym $mod+Shift+e 		exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym $mod+r 			exec $term -e ranger
+bindsym $mod+Shift+r 		restart
+
+bindsym $mod+t			split toggle
+bindsym $mod+Shift+t		gaps inner current set 10; gaps outer current set 10
+
+##bindsym $mod+y
+bindsym $mod+Shift+y		resize shrink width 10 px or 10 ppt
+
+##bindsym $mod+u
+bindsym $mod+Shift+u		resize shrink height 10 px or 10 ppt
+
+##bindsym $mod+i
+bindsym $mod+Shift+i		resize grow height 10 px or 10 ppt
+
+##bindsym $mod+o
+bindsym $mod+Shift+o		resize grow width 10 px or 10 ppt
+
+##bindsym $mod+p
+##bindsym $mod+Shift+p
+
+bindsym $mod+a 			focus parent
+##bindsym $mod+Shift+a
+
+bindsym $mod+s 			layout stacking
+bindsym $mod+Shift+s		exec scrot /home/ryan/Pictures/screenshot.jpg
+
+bindsym $mod+d 			exec "rofi -modi run,window -show run -lines 4 -eh 2 -width 40 -padding 25 -hide-scrollbar -sidebar-mode"
+#bindsym $mod+Shift+d		exec "rofi -combi-modi window,run -show combi -modi combi"
+bindsym $mod+ctrl+d		gaps inner current set 0; gaps outer current set 0
+#bindsym $mod+Shift+d		exec "rofi -modi Work:~/scripts/vscodeWorkDirectories.sh,Projects:~/scripts/vscodeProjectDirectories.sh -show Work -lines 5 -eh 2 -width 40 -padding 25 -hide-scrollbar -sidebar-mode"
+#bindsym $mod+Shift+d		exec "rofi -modi Work:~/scripts/workFileFinder.sh,All:~/scripts/allProgFileFinder.sh -show Work -lines 6 -eh 2 -width 40 -padding 25 -hide-scrollbar -sidebar-mode"
+
+bindsym $mod+f 			fullscreen toggle
+##bindsym $mod+Shift+f
+
+bindsym $mod+g			workspace prev
+##bindsym $mod+Shift+g
+
+bindsym $mod+h 			focus left
+bindsym $mod+Shift+h 		move left
+bindsym $mod+ctrl+h 		move workspace to output right
+
+bindsym $mod+j 			focus down
+bindsym $mod+Shift+j		move down
+
+bindsym $mod+k 			focus up
+bindsym $mod+Shift+k 		move up
+
+bindsym $mod+l 			focus right
+bindsym $mod+Shift+l 		move right
+bindsym $mod+ctrl+l	 	move container to output right
+
+##bindsym $mod+semicolon
+##bindsym $mod+Shift+semicolon
+
+bindsym $mod+z			gaps outer current plus 5
+bindsym $mod+Shift+z		gaps outer current minus 5
+
+##bindsym $mod+x
+bindsym $mod+shift+x 		exec --no-startup-id /usr/bin/env /home/ryan/Scripts/rice/lock.sh
+
+##bindsym $mod+c
+bindsym $mod+Shift+c 		reload
+
+##bindsym $mod+v
+##bindsym $mod+Shift+v
+
+##bindsym $mod+b
+##bindsym $mod+Shift+b
+
+##bindsym $mod+n
+##bindsym $mod+Shift+n
+
+##bindsym $mod+m
+##bindsym $mod+Shift+m
+
+# #---Arrow Keys---# #
+
+bindsym $mod+Left 		focus left
+bindsym $mod+Shift+Left 	move left
+
+bindsym $mod+Down 		focus down
+bindsym $mod+Shift+Down 	move down
+
+bindsym $mod+Up 		focus up
+bindsym $mod+Shift+Up 		move up
+
+bindsym $mod+Right 		focus right
+bindsym $mod+Shift+Right 	move right
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# set volume with special keys
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# mpd music control binds
+bindsym XF86AudioPlay exec mpc toggle
+bindsym XF86AudioPrev exec mpc prev
+bindsym XF86AudioNext exec mpc next
+
+# assign specific programs to specific workspaces
+assign [class="Firefox"] $ws2
+assign [class="Opera"] $ws2
+assign [class="Code"] $ws3
+assign [class="discord"] $ws6
+assign [class="zoom"] $ws7
+assign [class="slack"] $ws10
+assign [class="Slack"] $ws10
+
+#bar {
+#        #status_command i3blocks -c ~/.i3blocks.conf
+#	status_command i3status
+#}

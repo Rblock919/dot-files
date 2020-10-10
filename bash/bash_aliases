@@ -3,6 +3,9 @@ alias df='df -h'
 alias la='ls -la'
 alias ll='ls -alF'
 
+# Use neovim over vim
+alias vim='nvim'
+
 # Git Aliases
 alias gs='git status'
 alias gpoh='git push origin HEAD'
@@ -16,18 +19,19 @@ __git_complete gc _git_checkout # Enable autocompletion for alias
 alias dimg='docker images'
 alias dps='docker ps -a'
 
-# Sweeter Neofetch Alias
+# Sweeter Neo
 alias neo='neofetch'
 
-# Quick Edit Config Files Aliases
+# RICE Config Editing Aliases
 alias polycfg='vim /home/ryan/.config/polybar/config'
 alias i3cfg='vim /home/ryan/.config/i3/config'
 alias xres='vim /home/ryan/.Xresources'
+alias vimrc='vim /home/ryan/.config/nvim/init.vim'
 
 # Screenshot Alias
 alias ss='maim -s /home/ryan/Pictures/screenshot.png'
 
-# Fzf -> Vim Alias
+# Fuzzyfind -> Vim Alias
 alias ff='vim $(fzf)'
 
 # Nice Git Diff -> Fzf function
