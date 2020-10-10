@@ -63,20 +63,11 @@ then last change here
 5@a -> execute recording 'a' 5 times
 
     -- Plugins to Explore -- 
-- fuzzy finder
 - buffer explorer
 - some git plugin
-- ack.vim -> download ack (sudo apt install ack-grep) and have vim use ack
-- pathogen? (copy into ~.vim/autoload) (then can copy plugins into the ~/.vim/bundle directory)
-- surround plugin
 - snipmate (for live-templates, better vim abbreviations)
 - tcomment (also nerdcommenter)
-- coc.nvim
 
-    -- Getting fzf to work with vim --
-sudo apt install fzf
-cd ~/.vim/bundle
-git clone https://github.com/junegunn/fzf.vim
-git clone https://github.com/junegunn/fzf.git
-run :Helptags inside vim afterwards
+:CocInstall coc-eslint
+:CocInstall coc-prettier
 

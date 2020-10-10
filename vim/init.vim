@@ -33,6 +33,12 @@ nmap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 " Project Wide Search & Refactor
 nmap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
+" Have Coc-Prettier Format Current File
+nmap <leader>pff :CocCommand prettier.formatFile<CR>
+
+" Have Coc-Eslint Fix Current File
+nmap <leader>elf :CocCommand eslint.executeAutofix<CR>
+
 " Make easier window commands
 nmap <leader>h :wincmd h<CR>
 nmap <leader>j :wincmd j<CR>
@@ -85,10 +91,15 @@ call plug#end()
 " Use dracula Color Theme
 colorscheme dracula
 
+"set eslint.autoFixOnSave=1
+"let g:auto_fix_on_save=1
+
+" Detect & Use Xresource Color Scheme
+"colorscheme default
+
 " Slightly Increase Highlight Duration On Yank
 let g:highlightedyank_highlight_duration = 1750
 
 " Set Popup Window Mode and Color Scheme For fzf Search
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
-" Colors don't work in regular vim for fzf searches :(
-let $FZF_DEFAULT_OPTS='--reverse'
+let $FZF_DEFAULT_OPTS='--reverse --color fg:255,bg:236,hl:84,fg+:255,bg+:236,hl+:215 --color info:141,prompt:84,spinner:212,pointer:212,marker:212'
