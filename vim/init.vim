@@ -86,6 +86,7 @@ Plug 'neoclide/coc-yank'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'jlanzarotta/bufexplorer'
 
 call plug#end()
 
@@ -105,6 +106,6 @@ let $FZF_DEFAULT_OPTS='--reverse --color fg:255,bg:236,hl:84,fg+:255,bg+:236,hl+
 " Redefine the Files command to have a preview window
 command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 
-" Prefer // over /* <code> */ for commentary plugin
+" Prefer // <code> over /* <code> */ for commentary plugin
 autocmd FileType typescript setlocal commentstring=//\ %s
 autocmd FileType javascript setlocal commentstring=//\ %s

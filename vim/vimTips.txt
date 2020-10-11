@@ -11,7 +11,7 @@ ctrl + w +
     -- Find letter occurance --
 fX (x being the letter searched for)
 FX (find prev occurance) 
-: , (navigate finds) "asdf"
+: , (navigate finds)
 
     -- Search -- 
 / -> search forward
@@ -63,7 +63,6 @@ then last change here
 5@a -> execute recording 'a' 5 times
 
     -- Plugins to Explore -- 
-- buffer explorer
 - some git plugin
 - snipmate (for live-templates, better vim abbreviations)
 
