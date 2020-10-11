@@ -1,5 +1,7 @@
-## Dot-file configurations for desktop and laptops
-## Current distros are Ubuntu, Arch & Manjaro
-## Main technologies used are i3, polybar, urxvt, ncmpcpp, mpd, rofi, dunst & compton
+## Dot-files for configurations on desktop and laptops
 
-### Install urxvt perl extentions to ~/.urxvt/ext/
+## Current distros are Ubuntu, Arch & Pop-OS
+
+## Main technologies used are i3, polybar, urxvt, ncmpcpp, mpd, rofi, dunst & compton (picom)
+
+### Copy urxvt perl extentions to ~/.urxvt/ext/
