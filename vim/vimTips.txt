@@ -66,6 +66,9 @@ then last change here
 - some git plugin
 - snipmate (for live-templates, better vim abbreviations)
 
+   -- CocInstall Commands --
 :CocInstall coc-eslint
 :CocInstall coc-prettier
+:CocInstall coc-tsserver
+:CocInstall coc-yank
 
