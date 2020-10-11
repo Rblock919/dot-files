@@ -80,6 +80,7 @@ hi Search ctermbg=LightYellow
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-yank'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -90,9 +91,6 @@ call plug#end()
 
 " Use dracula Color Theme
 colorscheme dracula
-
-"set eslint.autoFixOnSave=1
-"let g:auto_fix_on_save=1
 
 " Detect & Use Xresource Color Scheme
 "colorscheme default
@@ -106,3 +104,7 @@ let $FZF_DEFAULT_OPTS='--reverse --color fg:255,bg:236,hl:84,fg+:255,bg+:236,hl+
 
 " Redefine the Files command to have a preview window
 command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+
+" Prefer // over /* <code> */ for commentary plugin
+autocmd FileType typescript setlocal commentstring=//\ %s
+autocmd FileType javascript setlocal commentstring=//\ %s
