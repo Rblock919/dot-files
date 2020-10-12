@@ -1,0 +1,46 @@
+ -- Controlling Keyboard LED Color --
+
+sudo sh -c "echo FFA500 > /sys/class/leds/system76_acpi\:\:kbd_backlight/color"
+
+-- Controlling Keyboard Brightness --
+
+- Set to max brightness
+sudo sh -c "echo 255 > /sys/class/leds/system76_acpi::kbd_backlight/brightness"
+
+- Set to off
+sudo sh -c "echo 0 > /sys/class/leds/system76_acpi::kbd_backlight/brightness"
+
+-- Keyboard Brightness Levels -- 
+* These are just the ones system76 uses, can use any desired number
+
+255
+192
+144
+96
+72
+48
+0
+
+-- Controlling Touchpad --
+
+* Run `xinput --list` to get list and find name of touchpad device
+
+- Disable
+xinput --set-prop 'SynPS/2 Synaptics TouchPad' 'Device Enabled' 0
+
+- Enable
+xinput --set-prop 'SynPS/2 Synaptics TouchPad' 'Device Enabled' 1
+
+- Check If Enabled
+xinput --list-props 'SynPS/2 Synaptics TouchPad'
+^ need to look on line 2 (Device Enabled (168):	1) to see if enabled
+* system76fn key does not change value of output for that command when in gnome but these commands still work
+
+
+
+-- References --
+
+- https://wiki.archlinux.org/index.php/System76_Darter_Pro_6
+- https://ubuntuforums.org/showthread.php?t=2192864
+- man xinput
+- https://support.system76.com/articles/touchpad-disable/ ?

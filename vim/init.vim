@@ -56,6 +56,8 @@ set t_Co=16
 set modeline
 set softtabstop=2
 set shiftwidth=2
+" Do not wrap text to next 'line', make it bump off screen
+set nowrap
 " Autocomplete directories and files
 set wildmode=list:longest
 " Use spaces instead of tabs
