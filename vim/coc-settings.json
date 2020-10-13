@@ -23,5 +23,6 @@
     "typescriptreact"
   ],
   "tsserver.log": "verbose",
-  "tsserver.npm": "/usr/local/bin/npm"
+  "tsserver.npm": "/usr/local/bin/npm",
+  "suggest.enablePreselect": false
 }

@@ -111,3 +111,16 @@ command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim
 " Prefer // <code> over /* <code> */ for commentary plugin
 autocmd FileType typescript setlocal commentstring=//\ %s
 autocmd FileType javascript setlocal commentstring=//\ %s
+
+" Allow tab to trigger auto-complete, refresh on backspace
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" Check if backspace was just pressed
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
