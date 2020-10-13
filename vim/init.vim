@@ -45,6 +45,7 @@ nmap <leader>qf :CocAction quickfix<CR>
 " Display yank list
 nmap <leader>yl :<C-u>CocList -A --normal yank<CR>
 
+
 " Make easier window commands
 nmap <leader>h :wincmd h<CR>
 nmap <leader>j :wincmd j<CR>
@@ -127,3 +128,6 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" Allow pressing enter on auto-completed suggestions to trigger any need actions (such as an import statement)
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
