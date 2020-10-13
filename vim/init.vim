@@ -39,6 +39,12 @@ nmap <leader>pff :CocCommand prettier.formatFile<CR>
 " Have Coc-Eslint Fix Current File
 nmap <leader>elf :CocCommand eslint.executeAutofix<CR>
 
+" Easy mapping for quickfix
+nmap <leader>qf :CocAction quickfix<CR>
+
+" Display yank list
+nmap <leader>yl :<C-u>CocList -A --normal yank<CR>
+
 " Make easier window commands
 nmap <leader>h :wincmd h<CR>
 nmap <leader>j :wincmd j<CR>
@@ -46,9 +52,6 @@ nmap <leader>k :wincmd k<CR>
 nmap <leader>l :wincmd l<CR>
 nmap <leader>wv :wincmd v<CR>
 nmap <leader>ws :wincmd s<CR>
-
-" Display yank list
-nmap <leader>yl :<C-u>CocList -A --normal yank<CR>
 
 " Settings
 set number showmode
@@ -112,7 +115,7 @@ command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, fzf#vim
 autocmd FileType typescript setlocal commentstring=//\ %s
 autocmd FileType javascript setlocal commentstring=//\ %s
 
-" Allow tab to trigger auto-complete, refresh on backspace
+" Allow tab to traverse options in auto-complete window, refresh on backspace
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
