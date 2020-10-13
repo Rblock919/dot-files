@@ -5,7 +5,7 @@ let mapleader = " "
 syntax on
 
 " Normal Mode Mappings
-nmap <C-N> :set invnumber<CR>
+nmap <C-N> :set invrnu<CR> :set invnumber<CR>
 "nmap <CR> G
 
 " Visual Mode Mappings
