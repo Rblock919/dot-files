@@ -4,9 +4,6 @@ let mapleader = " "
 " filetype plugin indent on
 syntax on
 
-" Normal Mode Mappings
-nmap <C-N> :set invrnu<CR> :set invnumber<CR>
-
 " Visual Mode Mappings
 vmap > >gv
 vmap < <gv
@@ -23,6 +20,9 @@ inoremap ' ''<Esc>i
 inoremap ` ``<Esc>i
 " TODO: find way to delete 2nd character if first is deleted
 " TODO: find way to 'type-through' 2nd character
+
+" Normal Mode Mappings
+nmap <C-N> :set invrnu<CR> :set invnumber<CR>
 
 " Coc.nvim Commands
 nmap <leader>gd <Plug>(coc-definition)
@@ -47,9 +47,11 @@ nmap <leader>elf :CocCommand eslint.executeAutofix<CR>
 " Easy mapping for quickfix
 nmap <leader>qf :CocAction quickfix<CR>
 
+" Keybind for CocRestart
+nmap <leader>cr :CocRestart<CR><CR>
+
 " Display yank list
 nmap <leader>yl :<C-u>CocList -A --normal yank<CR>
-
 
 " Make easier window commands
 nmap <leader>h :wincmd h<CR>
@@ -84,20 +86,20 @@ set relativenumber
 " Highlighted Color
 hi Search ctermbg=LightYellow
 
-" Abbreviations
-":iab impt import {} from '';
-":iab cnsl console.log();
-
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-yank'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'jlanzarotta/bufexplorer'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'herringtondarkholme/yats.vim'
 
 call plug#end()
 
@@ -109,6 +111,9 @@ colorscheme dracula
 
 " Slightly Increase Highlight Duration On Yank
 let g:highlightedyank_highlight_duration = 1750
+
+" Set powerline fonts for vim-airline
+let g:airline_powerline_fonts = 1
 
 " Set Popup Window Mode and Color Scheme For fzf Search
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
