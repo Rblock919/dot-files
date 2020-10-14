@@ -20,4 +20,5 @@
 
 ### Installing urxvt Extentions
 
-#### Copy Perl Extentions To ~/.urxvt/ext/
+- Copy Perl Extentions To ~/.urxvt/ext/
+- Derp, then load urxvt
