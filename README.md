@@ -1,7 +1,23 @@
-## Dot-files for configurations on desktop and laptops
+# Dot-files For Configurations On Desktop And Laptops
 
-## Current distros are Ubuntu, Arch & Pop-OS
+## Current Linux Distros
 
-## Main technologies used are i3, polybar, urxvt, ncmpcpp, mpd, rofi, dunst & compton (picom)
+- Arch
+- Ubuntu 20.04
+- Pop-OS 20.04
 
-### Copy urxvt perl extentions to ~/.urxvt/ext/
+## Main Technologies Used
+
+- neovim
+- i3
+- polybar
+- urxvt
+- ncmpcpp
+- mpd
+- rofi
+- dunst
+- compton (picom fork with kawase blur)
+
+### Installing urxvt Extentions
+
+#### Copy Perl Extentions To ~/.urxvt/ext/
