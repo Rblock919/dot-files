@@ -129,5 +129,5 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Allow pressing enter on auto-completed suggestions to trigger any need actions (such as an import statement)
+" Allow pressing enter on auto-completed suggestions to trigger any needed actions (such as an import statement)
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
