@@ -6,7 +6,6 @@ syntax on
 
 " Normal Mode Mappings
 nmap <C-N> :set invrnu<CR> :set invnumber<CR>
-"nmap <CR> G
 
 " Visual Mode Mappings
 vmap > >gv
@@ -15,9 +14,15 @@ vmap <Tab> >gv
 vmap <S-Tab> <gv
 
 " Insert Mode Mappings
-"imap <S-Tab> <C-P>
-" map ctrl+space to auto complete suggestions
-"imap <C-@> <C-P>
+" I want my damn closing characters
+inoremap { {}<Esc>i
+inoremap ( ()<Esc>i
+inoremap [ []<Esc>i
+inoremap " ""<Esc>i
+inoremap ' ''<Esc>i
+inoremap ` ``<Esc>i
+" TODO: find way to delete 2nd character if first is deleted
+" TODO: find way to 'type-through' 2nd character
 
 " Coc.nvim Commands
 nmap <leader>gd <Plug>(coc-definition)
