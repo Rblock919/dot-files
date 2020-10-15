@@ -118,6 +118,10 @@ if [ -f ~/.bash_work ]; then
   . ~/.bash_work
 fi
 
+if [ -f ~/.git_functions ]; then
+  . ~/.git_functions
+fi
+
 #bind "set show-all-if-ambiguous on"
 #bind "TAB:menu-complete"
 

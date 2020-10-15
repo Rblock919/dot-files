@@ -12,14 +12,12 @@ alias gs='git status'
 alias gpoh='git push origin HEAD'
 alias gc='git commit -m'
 alias gb='git branch'
-__git_complete gb _git_branch # Enable autocompletion for alias
+# Enable autocompletion for git branch alias
+__git_complete gb _git_branch
 alias gco='git checkout'
-__git_complete gco _git_checkout # Enable autocompletion for alias
+# Enable autocompletion for git checkout alias
+__git_complete gco _git_checkout
 alias gcb='gco $(git branch -a | fzf-tmux -d 15 --no-preview | sed "s/remotes\/origin\///g")'
-
-gitFilePreview="git diff $@ --color=always -- {-1}"
-alias gaf='ga $(git diff --name-only | fzf-tmux -m --ansi --preview "$gitFilePreview")'
-alias gcf='gco $(git diff --name-only | fzf-tmux -m --ansi --preview "$gitFilePreview")'
 
 # Tmux Aliases
 alias trw='tmux rename-window'
@@ -35,9 +33,12 @@ alias neo='neofetch'
 alias polycfg='vim /home/ryan/.config/polybar/config'
 alias i3cfg='vim /home/ryan/.config/i3/config'
 alias xres='vim /home/ryan/.Xresources'
+
+# Workflow Config Editing Aliases
 alias vimrc='vim /home/ryan/.config/nvim/init.vim'
 alias bashrc='vim /home/ryan/.bashrc'
 alias bashaliases='vim /home/ryan/.bash_aliases'
+alias tmuxconf='vim /home/ryan/.tmux.conf'
 
 # Screenshot Alias
 alias ss='maim -s /home/ryan/Pictures/screenshot.png'
@@ -45,13 +46,3 @@ alias ss='maim -s /home/ryan/Pictures/screenshot.png'
 # Fuzzyfind -> Vim Alias
 alias ff='vim $(fzf)'
 
-# Nice Git Diff -> Fzf function
-fd()
-{
-  if [ -d .git ]; then
-    # preview="git diff $@ --color=always -- {-1}"
-    git diff $@ --name-only | fzf -m --ansi --preview "$gitFilePreview"
-  else
-    echo "Error: Either not a git repository or not at the root of the project"
-  fi;
-}

@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+showPreview()
+{
+    gitFilePreview="git diff $@ --color=always -- {-1}"
+    git diff $@ --name-only | fzf -m --ansi --preview "$gitFilePreview"
+}
+
+# Nice Function for Git Diff -> fzf
+fd()                                                               
+{
+    if git rev-parse --git-dir > /dev/null 2>&1; then
+        if [ -d .git ]; then
+            showPreview > /dev/null
+        else
+            gitRepoDir=$(git rev-parse --git-dir | sed 's/.git//')
+            pushd $gitRepoDir > /dev/null
+            showPreview > /dev/null
+            popd > /dev/null
+        fi
+    else
+        echo "Error: Not inside a git repository."
+    fi
+}
+
+# TODO: find way to also display un-tracked files (if possible)
+# Nice Function for Git Diff -> fzf -> Git Add
+gaf()
+{
+    if git rev-parse --git-dir > /dev/null 2>&1; then
+        if [ -d .git ]; then
+            ga $(showPreview)
+        else
+            gitRepoDir=$(git rev-parse --git-dir | sed 's/.git//')
+            pushd $gitRepoDir > /dev/null
+            ga $(showPreview)
+            popd > /dev/null
+        fi
+    else
+        echo "Error: Not inside a git repository."
+    fi
+}
+
+# Nice Function for Git Diff -> fzf -> Git Checkout
+gcf()
+{
+    if git rev-parse --git-dir > /dev/null 2>&1; then
+        if [ -d .git ]; then
+            gco $(showPreview)
+        else
+            gitRepoDir=$(git rev-parse --git-dir | sed 's/.git//')
+            pushd $gitRepoDir > /dev/null
+            gco $(showPreview)
+            popd > /dev/null
+        fi
+    else
+        echo "Error: Not inside a git repository."
+    fi
+}
+
