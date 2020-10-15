@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 
+gitFilePreview="git diff $@ --color=always -- {-1}"
+
 showPreview()
 {
-    gitFilePreview="git diff $@ --color=always -- {-1}"
     git diff $@ --name-only | fzf -m --ansi --preview "$gitFilePreview"
+}
+
+showTmuxPreview()
+{
+    git diff $@ --name-only | fzf-tmux -m --ansi --preview "$gitFilePreview"
 }
 
 # Nice Function for Git Diff -> fzf
@@ -29,11 +35,11 @@ gaf()
 {
     if git rev-parse --git-dir > /dev/null 2>&1; then
         if [ -d .git ]; then
-            ga $(showPreview)
+            ga $(showTmuxPreview)
         else
             gitRepoDir=$(git rev-parse --git-dir | sed 's/.git//')
             pushd $gitRepoDir > /dev/null
-            ga $(showPreview)
+            ga $(showTmuxPreview)
             popd > /dev/null
         fi
     else
@@ -46,11 +52,11 @@ gcf()
 {
     if git rev-parse --git-dir > /dev/null 2>&1; then
         if [ -d .git ]; then
-            gco $(showPreview)
+            gco $(showTmuxPreview)
         else
             gitRepoDir=$(git rev-parse --git-dir | sed 's/.git//')
             pushd $gitRepoDir > /dev/null
-            gco $(showPreview)
+            gco $(showTmuxPreview)
             popd > /dev/null
         fi
     else
