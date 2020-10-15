@@ -17,6 +17,7 @@
 - rofi
 - dunst
 - compton (picom fork with kawase blur)
+- tmux
 
 ### Installing urxvt Extentions
 
