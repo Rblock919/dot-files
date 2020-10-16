@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Function to show commits on current repo via fzf with a colored preview and
+# then pipe the output to awk so that you can view the commit diff specifically
+
+hash=$(git log --oneline | fzf -m --ansi --preview='git show {1} --color=always' | awk '{print $1}')
+[[ ! -z "$hash" ]] && git show $hash
