@@ -71,4 +71,5 @@ then last change here
 :CocInstall coc-prettier
 :CocInstall coc-tsserver
 :CocInstall coc-yank
+:CocInstall coc-graphql (also need to add a valid gql-config file, see https://github.com/felippepuhle/coc-graphql)
 

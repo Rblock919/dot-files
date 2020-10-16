@@ -100,6 +100,7 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'herringtondarkholme/yats.vim'
+Plug 'jparise/vim-graphql'
 
 call plug#end()
 
