@@ -93,15 +93,18 @@ Xcursor.size: 48
 
 !! Extensions:
 URxvt.perl-ext-common:	default,matcher,resize-font,keyboard-select
-URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.url-launcher: /usr/bin/opera-beta
+!URxvt.url-launcher: /usr/bin/firefox
 URxvt.matcher.button: 1
 
 !!Resize font
 URxvt.keysym.C-j:	resize-font:smaller
 URxvt.keysym.C-k:	resize-font:bigger
 
-!!Keyboard-select (Alt+Escape)
-URxvt.keysym.M-Escape:	perl:keyboard-select:activate
+!!Keyboard-select (Ctrl+m)
+URxvt.keysym.C-m:	perl:keyboard-select:activate
+!!Copy to System Clipboard
+URxvt.keyboard-select.clipboard: true
 
 ! Rofi Configuration
 rofi.color-enabled:                  true

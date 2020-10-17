@@ -10,7 +10,8 @@ alias vim='nvim'
 alias ga='git add'
 alias gs='git status'
 alias gpoh='git push origin HEAD'
-alias gc='git commit -m'
+alias gc='git commit'
+alias gcm='git commit -m'
 alias gb='git branch'
 # Enable autocompletion for git branch alias
 __git_complete gb _git_branch
