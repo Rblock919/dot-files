@@ -11,10 +11,12 @@
 - neovim
 - i3
 - polybar
+- kitty
 - urxvt
 - ncmpcpp
 - mpd
 - rofi
+- ranger
 - dunst
 - compton (picom fork with kawase blur)
 - tmux
