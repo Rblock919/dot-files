@@ -88,7 +88,7 @@
     ### Text ###
 
     #font = Monospace 8
-    font = Hack 13
+    font = Hack 14
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -412,13 +412,13 @@
     urgency = low # those attributes could be used to set details of the message in the script called below
     # format = "" # could be used to alter the popup text, see below
     format = "<u>%s</u>\n%b"
-    script = /home/ryan/scripts/dunst-urgent-notification.sh
+    script = /home/ryan/Scripts/rice/dunst-urgent-notification.sh
     new_icon = Slack
 
 [Discord]
     appname = "discord"
     format = "<u>%s</u>\n<b>%b</b>"
-    script = /home/ryan/scripts/dunst-urgent-notification.sh
+    script = /home/ryan/Scripts/rice/dunst-urgent-notification.sh
     # I kind of like that discord sends the icon of the users/channels profile picture out of the box
     #new_icon = Discord
 

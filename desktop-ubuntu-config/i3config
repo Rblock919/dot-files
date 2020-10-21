@@ -2,10 +2,15 @@
 
 # Ryan Block // Ubuntu Desktop i3-gaps config file
 
+# update all references to scripts directory
+
+# DP-4 -> primary 2k 33"
+# DP-2 -> 1080p 21.5"
+
 font pango:monospace 8
 
 set $mod Mod4
-set $term rxvt-unicode
+set $term kitty
 set $browser firefox
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -18,33 +23,30 @@ gaps outer 10
 for_window [class="^.*"] border pixel 2
 
 # set huge monitor to be primary, for some reason GNOME settings aren't persisting
-exec xrandr --output "DP-1" --primary
-# rotate right monitor because it's currently sitting vertical
-exec xrandr --output "HDMI-0" --rotate "right"
+exec xrandr --output "DP-4" --primary
 # set vertical monitor to be to the right of the big 2k monitor 
-exec xrandr --output "HDMI-0" --right-of "DP-1"
+exec xrandr --output "DP-2" --right-of "DP-4"
 
-# reconfigure left_alt and left_cmd to swap
-exec xmodmap ~/.xmodmaprc
+exec xrdb /home/ryan/.Xresources
 
-#exec killall -q notify-osd
+exec --no-startup-id xmodmap ~/.xmodmaprc
+
 exec_always killall -q notify-osd
 exec_always killall -q dunst
 exec_always killall -q compton
 
 exec_always --no-startup-id /home/ryan/.config/polybar/launch.sh
 exec_always --no-startup-id nitrogen --restore
-# TODO: try off-loading to a script like reddit post suggested to fix tyrone-compton fork not picking up config file being called via i3
-#exec_always --no-startup-id compton -b --config /home/ryan/.config/compton/compton.conf
-# For some reason the tyrone-compton fork wont read from my config file inside i3
-exec_always --no-startup-id compton --blur-background --blur-method kawase --blur-strength 8 --opacity-rule 85:'class_g="URxvt"' --opacity-rule 90:'class_g="Code"' --opacity-rule 80:'class_g="Slack"' --opacity-rule 80:'class_g="Polybar"' --opacity-rule 80:'class_g="discord"' --shadow-exclude 'name="cpt_frame_window"' --backend glx --config /home/ryan/.config/compton/compton.conf
+exec_always --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec_always --no-startup-id dunst -config /home/ryan/.config/dunst/dunstrc
+# Picom fork with kawase blur is actually installed https://github.com/ibhagwan/picom
+exec_always --no-startup-id compton -b --config /home/ryan/.config/picom/compton.conf
 
 new_window pixel
 
 # #---Basic Bindings---# #
 
-bindsym $mod+Return 		exec rxvt-unicode
+bindsym $mod+Return 		exec $term
 
 bindsym $mod+space 		focus mode_toggle
 bindsym $mod+Shift+space 	floating toggle
@@ -85,13 +87,14 @@ bindsym $mod+a 			focus parent
 ##bindsym $mod+Shift+a
 
 bindsym $mod+s 			layout stacking
-bindsym $mod+Shift+s		exec scrot /home/ryan/Pictures/screenshot.jpg
+# TODO: update to use maim
+bindsym $mod+Shift+s		exec maim -s /home/ryan/Pictures/screenshot.png
 
 bindsym $mod+d 			exec "rofi -modi run,window -show run -lines 4 -eh 2 -width 40 -padding 25 -hide-scrollbar -sidebar-mode"
 #bindsym $mod+Shift+d		exec "rofi -combi-modi window,run -show combi -modi combi"
 bindsym $mod+ctrl+d		gaps inner current set 0; gaps outer current set 0
 #bindsym $mod+Shift+d		exec "rofi -modi Work:~/scripts/vscodeWorkDirectories.sh,Projects:~/scripts/vscodeProjectDirectories.sh -show Work -lines 5 -eh 2 -width 40 -padding 25 -hide-scrollbar -sidebar-mode"
-bindsym $mod+Shift+d		exec "rofi -modi Work:~/scripts/workFileFinder.sh,All:~/scripts/allProgFileFinder.sh -show Work -lines 6 -eh 2 -width 40 -padding 25 -hide-scrollbar -sidebar-mode"
+#bindsym $mod+Shift+d		exec "rofi -modi Work:~/scripts/workFileFinder.sh,All:~/scripts/allProgFileFinder.sh -show Work -lines 6 -eh 2 -width 40 -padding 25 -hide-scrollbar -sidebar-mode"
 
 bindsym $mod+f 			fullscreen toggle
 ##bindsym $mod+Shift+f
@@ -121,7 +124,7 @@ bindsym $mod+Shift+z		gaps outer current minus 5
 
 ##bindsym $mod+x
 #bindsym $mod+shift+x 		exec i3lock --color "#000000"
-bindsym $mod+shift+x 		exec --no-startup-id /usr/bin/env /home/ryan/scripts/lock.sh
+bindsym $mod+shift+x 		exec --no-startup-id /usr/bin/env /home/ryan/Scripts/rice/lock.sh
 
 ##bindsym $mod+c
 bindsym $mod+Shift+c 		reload
@@ -162,7 +165,6 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
-
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -208,10 +210,9 @@ assign [class="zoom"] $ws7
 assign [class="slack"] $ws10
 assign [class="Slack"] $ws10
 
-
-# make sure slack/discord/ws10 always appears on right monitor
-workspace $ws10 output HDMI-0
-
+# make sure slack/ws10 always appears on right monitor
+workspace $ws6 output DP-2
+workspace $ws10 output DP-2
 
 #bar {
 #        #status_command i3blocks -c ~/.i3blocks.conf

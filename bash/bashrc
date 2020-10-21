@@ -110,7 +110,7 @@ fi
 
 # Load Bash Aliases
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
 # Load Work Variables
@@ -118,6 +118,7 @@ if [ -f ~/.bash_work ]; then
   . ~/.bash_work
 fi
 
+# Load Handy Git Functions
 if [ -f ~/.git_functions ]; then
   . ~/.git_functions
 fi

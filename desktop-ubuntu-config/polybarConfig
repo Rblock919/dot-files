@@ -71,7 +71,7 @@ inherit = bar/base
 bottom = true
 
 ;monitor = ${env:MONITOR:HDMI-0}
-monitor = ${env:MONITOR:DP-1}
+;monitor = ${env:MONITOR:DP-1}
 ;monitor = ${env:MONITOR:DVI-I-1}
 ;offset-x = 1%
 ;offset-y = 1%
@@ -98,9 +98,10 @@ font-4=Font Awesome 5 Brands:size=12;3
 font-5=font\-logos:size=12;3
 font-6=FontAwesome:style=Regular:size=12;3
 
-modules-left = powermenu separator hostname separator email separator volume 
+;modules-left = powermenu separator hostname separator email separator volume 
+modules-left = powermenu separator hostname separator volume
 modules-center = corona
-modules-right =  cpu separator memory separator temperature
+modules-right =  temperature separator cpu separator memory
 ;modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth temperature date powermenu
 
 ;tray-position = right
@@ -126,7 +127,7 @@ cursor-scroll = ns-resize
 inherit = bar/base
 
 ;monitor = ${env:MONITOR:HDMI-0}
-monitor = ${env:MONITOR:DP-1}
+;monitor = ${env:MONITOR:DP-1}
 ;offset-x = 1%
 ;offset-y = 1%
 
@@ -154,8 +155,9 @@ font-6=font\-logos:size=12;3
 ;font-2 = FontAwesome:style=Solid:size=10;3
 
 modules-left = i3
-modules-center = mpd
-modules-right =  wlan separator date
+modules-center =
+;modules-center = mpd
+modules-right =  eth separator date
 ;modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth temperature date powermenu
 
 ;tray-position = right
@@ -188,7 +190,7 @@ cursor-scroll = ns-resize
 [module/separator]
 type = custom/text
 content = " | "
-content-font = 3
+content-font = 1
 content-foreground = ${colors.white}
 content-background = ${colors.background}
 
@@ -224,7 +226,7 @@ content-background = ${colors.background}
 ;=====================================================
 [module/email]
 type = custom/script
-exec = /home/ryan/scripts/checkEmail.sh
+exec = /home/ryan/Scripts/rice/checkEmail.sh
 interval = 45
 format = "<label>"
 label-foreground = "${colors.green}"
@@ -232,7 +234,7 @@ label-foreground = "${colors.green}"
 
 [module/corona]
 type = custom/script
-exec = /home/ryan/scripts/coronaVirusStatus.sh
+exec = /home/ryan/Scripts/rice/coronaVirusStatus.sh
 interval = 960
 format = "<label>"
 label-foreground = "${colors.blue}"
@@ -240,7 +242,7 @@ label-foreground = "${colors.blue}"
 [module/hostname]
 type = custom/script
 exec = echo "$(uname -n)"
-interval = 256
+interval = 960
 format = "<label>"
 label-foreground = "${colors.white}"
 format-prefix = " "
@@ -305,6 +307,7 @@ wrapping-scroll = false
 ; Workspace Icons
 ws-icon-0 = 1;
 ws-icon-1 = 2;
+;ws-icon-1 = 2;
 ws-icon-2 = 3;
 ws-icon-3 = 4;4
 ws-icon-4 = 5;5
@@ -369,6 +372,47 @@ label-song-maxlen = 80
 label-song-ellipsis = true
 label-time = (%elapsed% / %total%)
 label-time-foreground = ${colors.blue}
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-charging-foreground = ${colors.green}
+format-charging-background = ${colors.background}
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-foreground = ${colors.green}
+format-discharging-background = ${colors.background}
+format-full = <label-full>
+format-full-foreground = ${colors.green}
+format-full-background = ${colors.background}
+
+label-charging = %percentage%%
+label-discharging = %percentage%%
+label-discharging-foreground = ${colors.green}
+label-ramp-capacity-1-foreground = ${colors.red}
+label-full = " %percentage%%"
+
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = ${colors.red}
+ramp-capacity-1 = 
+#ramp-capacity-1-foreground = ${colors.red}
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+#ramp-capacity-7 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 1000
 
 [module/xbacklight]
 type = internal/xbacklight
@@ -436,7 +480,7 @@ label-background = ${colors.background}
 
 [module/wlan]
 type = internal/network
-interface = wlp8s0
+interface = wlp0s20f3
 interval = 3.0
 
 format-connected = <label-connected>
@@ -459,13 +503,23 @@ ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
-interface = net0
+interface = enp6s0
 interval = 3.0
 
 format-connected-underline = #55aa55
-format-connected-prefix = " "
+;format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
+; All labels support the following tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %local_ip6% [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
+label-connected =  %upspeed%  %downspeed%
+label-connected-foreground = ${colors.green}
 
 format-disconnected =
 ;format-disconnected = <label-disconnected>
@@ -487,8 +541,8 @@ date-alt = "%d %B %Y"
 time = %I:%M%p
 time-alt = %I:%M%p
 
-label =  %date% %time%
-label-foreground = ${colors.white}
+label =  %date%  %time%
+label-foreground = ${colors.yellow}
 label-background = ${colors.background}
 
 [module/volume]
@@ -525,10 +579,10 @@ warn-temperature = 60
 format = <label>
 format-warn = <label-warn>
 
-label =  %temperature%
+label =  %temperature-c%
 label-foreground = ${colors.cyan}
 label-background = ${colors.background}
-label-warn =  %temperature%
+label-warn =  %temperature-c%
 label-warn-foreground = ${colors.red}
 label-warn-background = ${colors.background}
 
