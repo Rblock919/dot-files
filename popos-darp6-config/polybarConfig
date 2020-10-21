@@ -531,7 +531,7 @@ date-alt = "%d %B %Y"
 time = %I:%M%p
 time-alt = %I:%M%p
 
-label =  %date% %time%
+label =  %date%  %time%
 label-foreground = ${colors.white}
 label-background = ${colors.background}
 

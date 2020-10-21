@@ -5,7 +5,7 @@
 font pango:monospace 8
 
 set $mod Mod4
-set $term rxvt-unicode
+set $term kitty
 set $browser firefox
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -25,8 +25,8 @@ exec xrdb ~/.Xresources
 
 #exec killall -q notify-osd
 exec_always killall -q notify-osd
-exec_always killall -q dunst
 exec_always killall -q compton
+#exec_always killall -q dunst
 
 exec_always --no-startup-id /home/ryan/.config/polybar/launch.sh
 exec_always --no-startup-id nitrogen --restore
@@ -43,7 +43,7 @@ new_window pixel
 
 # #---Basic Bindings---# #
 
-bindsym $mod+Return 		exec rxvt-unicode
+bindsym $mod+Return 		exec $term
 
 bindsym $mod+space 		focus mode_toggle
 bindsym $mod+Shift+space 	floating toggle
