@@ -101,7 +101,7 @@ font-6=FontAwesome:style=Regular:size=12;3
 ;modules-left = powermenu separator hostname separator email separator volume 
 modules-left = powermenu separator hostname separator volume
 modules-center = corona
-modules-right =  temperature separator cpu separator memory
+modules-right = memory separator cpu separator temperature
 ;modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth temperature date powermenu
 
 ;tray-position = right
