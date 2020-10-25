@@ -42,11 +42,6 @@ exec_always --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec_always --no-startup-id compton -b --config /home/ryan/.config/compton/compton.conf
 exec_always --no-startup-id dunst -config /home/ryan/.config/dunst/dunstrc
 
-# TODO: re-add the appropriate following commands
-# TODO: try off-loading to a script like reddit post suggested to fix tyrone-compton fork not picking up config file being called via i3
-# For some reason the tyrone-compton fork wont read from my config file inside i3
-#exec_always --no-startup-id compton --blur-background --blur-method kawase --blur-strength 8 --opacity-rule 85:'class_g="URxvt"' --opacity-rule 90:'class_g="Code"' --opacity-rule 80:'class_g="Slack"' --opacity-rule 80:'class_g="Polybar"' --opacity-rule 80:'class_g="discord"' --shadow-exclude 'name="cpt_frame_window"' --backend glx --config /home/ryan/.config/compton/compton.conf
-
 new_window pixel
 
 # #---Basic Bindings---# #
@@ -169,7 +164,6 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-
 # switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -203,6 +197,12 @@ bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioPlay exec mpc toggle
 bindsym XF86AudioPrev exec mpc prev
 bindsym XF86AudioNext exec mpc next
+
+# bind F4
+# bindsym 0xffc1
+
+# bind mod+F4
+bindsym $mod+F4 exec --no-startup-id /usr/bin/env /home/ryan/Scripts/rice/initHomeMonitors.sh
 
 # assign specific programs to specific workspaces
 assign [class="Firefox"] $ws2

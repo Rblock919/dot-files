@@ -95,13 +95,13 @@ font-1=Hack:pixelsize=32;2
 font-2=Font Awesome 5 Free Regular:size=12;3
 font-3=Font Awesome 5 Free Solid:size=12;3
 font-4=Font Awesome 5 Brands:size=12;3
-font-5=font\-logos:size=12;3
+font-5=font\-logos:size=13;3
 font-6=FontAwesome:style=Regular:size=12;3
 
 ;modules-left = powermenu separator hostname separator email separator volume 
-modules-left = powermenu separator hostname separator temperature
-modules-center = corona
-modules-right =  volume separator memory separator cpu separator battery
+modules-left = powermenu separator hostname separator volume separator redshift separator docker separator notifications
+modules-center = 
+modules-right = temperature separator memory separator cpu separator battery
 ;modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth temperature date powermenu
 
 ;tray-position = right
@@ -155,7 +155,7 @@ font-6=font\-logos:size=12;3
 ;font-2 = FontAwesome:style=Solid:size=10;3
 
 modules-left = i3
-modules-center =
+modules-center = corona
 ;modules-center = mpd
 modules-right =  wlan separator date
 ;modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth temperature date powermenu
@@ -224,9 +224,37 @@ content-background = ${colors.background}
 ;               - - - - MODULES - - - - 
 ;
 ;=====================================================
+[module/notifications]
+type = custom/script
+exec = /home/ryan/Scripts/rice/checkDnD.sh
+interval = 3
+format = "<label>"
+label-foreground = "${colors.white}"
+label-font=7
+click-left = /home/ryan/Scripts/rice/toggleNotifications.sh
+
+[module/redshift]
+type = custom/script
+exec = /home/ryan/Scripts/rice/checkRedshift.sh
+interval = 5
+format = "<label>"
+label-foreground = "${colors.white}"
+click-left = /home/ryan/Scripts/rice/toggleRedshift.sh
+;label-font=7
+
+[module/docker]
+type = custom/script
+exec = /home/ryan/Scripts/rice/checkDocker.sh
+interval = 5
+format = "<label>"
+format-prefix = ""
+format-prefix-font=6
+label-foreground = "${colors.white}"
+label-font=6
+
 [module/email]
 type = custom/script
-exec = /home/ryan/scripts/checkEmail.sh
+exec = /home/ryan/Scripts/rice/checkEmail.sh
 interval = 45
 format = "<label>"
 label-foreground = "${colors.green}"
