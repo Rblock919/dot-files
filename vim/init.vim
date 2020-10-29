@@ -10,56 +10,45 @@ vmap < <gv
 vmap <Tab> >gv
 vmap <S-Tab> <gv
 
-" Insert Mode Mappings
-" I want my damn closing characters
-inoremap { {}<Esc>i
-inoremap ( ()<Esc>i
-inoremap [ []<Esc>i
-inoremap " ""<Esc>i
-inoremap ' ''<Esc>i
-inoremap ` ``<Esc>i
-" TODO: find way to delete 2nd character if first is deleted
-" TODO: find way to 'type-through' 2nd character
-
 " Normal Mode Mappings
-nmap <C-N> :set invrnu<CR> :set invnumber<CR>
+nnoremap <C-N> :set invrnu<CR> :set invnumber<CR>
 
 " Coc.nvim Commands
-nmap <leader>gd <Plug>(coc-definition)
-nmap <leader>gr <Plug>(coc-references)
-nmap <leader>gy <Plug>(coc-type-definition)
-nmap <leader>gi <Plug>(coc-implementation)
+nnoremap <silent> <leader>gd :call CocAction('jumpDefinition')<CR>
+nnoremap <silent> <leader>gr :call CocAction('jumpReferences')<CR>
+nnoremap <silent> <leader>gy :call CocAction('jumpTypeDefinition')<CR>
+nnoremap <silent> <leader>gi :call CocAction('jumpImplementation')<CR>
 
 " Open fzf.vim In Current Project
-nmap <leader>fz :Files<CR>
+nnoremap <leader>fz :Files<CR>
 
 " Project Wide Search
-nmap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 " Project Wide Search & Refactor
-nmap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
 " Have Coc-Prettier Format Current File
-nmap <leader>pff :CocCommand prettier.formatFile<CR>
+nnoremap <leader>pff :CocCommand prettier.formatFile<CR>
 
 " Have Coc-Eslint Fix Current File
-nmap <leader>elf :CocCommand eslint.executeAutofix<CR>
+nnoremap <leader>elf :CocCommand eslint.executeAutofix<CR>
 
 " Easy mapping for quickfix
-nmap <leader>qf :CocAction quickfix<CR>
+nnoremap <leader>qf :CocAction quickfix<CR>
 
 " Keybind for CocRestart
-nmap <leader>cr :CocRestart<CR><CR>
+nnoremap <leader>cr :CocRestart<CR><CR>
 
 " Display yank list
-nmap <leader>yl :<C-u>CocList -A --normal yank<CR>
+nnoremap <leader>yl :<C-u>CocList -A --normal yank<CR>
 
 " Make easier window commands
-nmap <leader>h :wincmd h<CR>
-nmap <leader>j :wincmd j<CR>
-nmap <leader>k :wincmd k<CR>
-nmap <leader>l :wincmd l<CR>
-nmap <leader>wv :wincmd v<CR>
-nmap <leader>ws :wincmd s<CR>
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+nnoremap <leader>wv :wincmd v<CR>
+nnoremap <leader>ws :wincmd s<CR>
 
 " Settings
 set number showmode
@@ -82,6 +71,7 @@ set noswapfile
 set nobackup
 set incsearch
 set relativenumber
+set modeline
 
 " Highlighted Color
 hi Search ctermbg=LightYellow
@@ -101,6 +91,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'herringtondarkholme/yats.vim'
 Plug 'jparise/vim-graphql'
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
