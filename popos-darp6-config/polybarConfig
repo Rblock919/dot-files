@@ -95,7 +95,7 @@ font-1=Hack:pixelsize=32;2
 font-2=Font Awesome 5 Free Regular:size=12;3
 font-3=Font Awesome 5 Free Solid:size=12;3
 font-4=Font Awesome 5 Brands:size=12;3
-font-5=font\-logos:size=13;3
+font-5=font\-logos:size=14;3
 font-6=FontAwesome:style=Regular:size=12;3
 
 ;modules-left = powermenu separator hostname separator email separator volume 
@@ -236,21 +236,21 @@ click-left = /home/ryan/Scripts/rice/toggleNotifications.sh
 [module/redshift]
 type = custom/script
 exec = /home/ryan/Scripts/rice/checkRedshift.sh
-interval = 5
+interval = 3
 format = "<label>"
+format-font = 4
 label-foreground = "${colors.white}"
 click-left = /home/ryan/Scripts/rice/toggleRedshift.sh
-;label-font=7
 
 [module/docker]
 type = custom/script
 exec = /home/ryan/Scripts/rice/checkDocker.sh
 interval = 5
 format = "<label>"
+format-font = 4
 format-prefix = ""
 format-prefix-font=6
 label-foreground = "${colors.white}"
-label-font=6
 
 [module/email]
 type = custom/script
@@ -334,8 +334,8 @@ wrapping-scroll = false
 
 ; Workspace Icons
 ws-icon-0 = 1;
-;ws-icon-1 = 2;
-ws-icon-1 = 2;
+ws-icon-1 = 2;
+;ws-icon-1 = 2;
 ws-icon-2 = 3;
 ws-icon-3 = 4;4
 ws-icon-4 = 5;5
