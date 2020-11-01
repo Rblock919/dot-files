@@ -11,7 +11,13 @@ vmap <Tab> >gv
 vmap <S-Tab> <gv
 
 " Normal Mode Mappings
+
+" Toggle Line Numbers all together
+" TODO: intelligently toggle relativenumber in the case that it is already off
 nnoremap <C-N> :set invrnu<CR> :set invnumber<CR>
+
+" Toggle relative line numbers (helpful when pair programming)
+nnoremap <leader>ln :set invrnu<CR>
 
 " Coc.nvim Commands
 nnoremap <silent> <leader>gd :call CocAction('jumpDefinition')<CR>
