@@ -69,7 +69,7 @@ set wildmode=list:longest
 " Use spaces instead of tabs
 set expandtab 
 set hlsearch
-set undodir=~/.vim/undodir
+set undodir=~/.config/nvim/undodir
 set undofile
 set showcmd
 set backspace=indent,eol,start
