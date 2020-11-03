@@ -48,6 +48,9 @@ nnoremap <leader>cr :CocRestart<CR><CR>
 " Display yank list
 nnoremap <leader>yl :<C-u>CocList -A --normal yank<CR>
 
+" Toggle NerdTree
+nnoremap <silent> <leader>nt :NERDTreeToggle<CR>
+
 " Make easier window commands
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
@@ -98,6 +101,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'herringtondarkholme/yats.vim'
 Plug 'jparise/vim-graphql'
 Plug 'jiangmiao/auto-pairs'
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
