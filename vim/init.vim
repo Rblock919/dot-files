@@ -118,6 +118,9 @@ let g:highlightedyank_highlight_duration = 1750
 " Set powerline fonts for vim-airline
 let g:airline_powerline_fonts = 1
 
+" Hide dist/build/node_modules directories
+let g:NERDTreeIgnore = ['node_modules', 'dist', 'build']
+
 " Set Popup Window Mode and Color Scheme For fzf Search
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_OPTS='--reverse --color fg:255,bg:236,hl:84,fg+:255,bg+:236,hl+:215 --color info:141,prompt:84,spinner:212,pointer:212,marker:212'
