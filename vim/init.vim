@@ -11,7 +11,13 @@ vmap <Tab> >gv
 vmap <S-Tab> <gv
 
 " Normal Mode Mappings
+
+" Toggle Line Numbers all together
+" TODO: intelligently toggle relativenumber in the case that it is already off
 nnoremap <C-N> :set invrnu<CR> :set invnumber<CR>
+
+" Toggle relative line numbers (helpful when pair programming)
+nnoremap <leader>ln :set invrnu<CR>
 
 " Coc.nvim Commands
 nnoremap <silent> <leader>gd :call CocAction('jumpDefinition')<CR>
@@ -42,6 +48,9 @@ nnoremap <leader>cr :CocRestart<CR><CR>
 " Display yank list
 nnoremap <leader>yl :<C-u>CocList -A --normal yank<CR>
 
+" Toggle NerdTree
+nnoremap <silent> <leader>nt :NERDTreeToggle<CR>
+
 " Make easier window commands
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
@@ -63,7 +72,7 @@ set wildmode=list:longest
 " Use spaces instead of tabs
 set expandtab 
 set hlsearch
-set undodir=/home/ryan/.vim/undodir
+set undodir=~/.config/nvim/undodir
 set undofile
 set showcmd
 set backspace=indent,eol,start
@@ -92,6 +101,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'herringtondarkholme/yats.vim'
 Plug 'jparise/vim-graphql'
 Plug 'jiangmiao/auto-pairs'
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 

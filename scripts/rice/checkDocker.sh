@@ -2,9 +2,7 @@
 
 if pgrep -x "dockerd" > /dev/null
 then
-    # echo " "
-    echo " "
+    echo " "
 else
-    # echo " "
-    echo " "
+    echo " "
 fi
