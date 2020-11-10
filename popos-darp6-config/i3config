@@ -25,11 +25,11 @@ gaps outer 10
 # Get rid of ugly default titles on top of windows
 for_window [class="^.*"] border pixel 2
 
-# reconfigure left_alt and left_cmd to swap & esc -> caps_lock
-exec xmodmap ~/.xmodmaprc
+# reconfigure (left_alt <-> left_cmd) & (esc -> caps_lock)
+exec --no-startup-id xmodmap ~/.xmodmaprc
 
 # for some reason I can't get ubuntu 18.04 to do this itself when loading i3
-exec xrdb ~/.Xresources
+exec --no-startup-id xrdb ~/.Xresources
 
 #exec killall -q notify-osd
 exec_always killall -q notify-osd
@@ -92,8 +92,7 @@ bindsym $mod+Shift+s		exec maim -s /home/ryan/Pictures/screenshot.png
 bindsym $mod+d 			exec "rofi -modi run,window -show run -lines 4 -eh 2 -width 40 -padding 25 -hide-scrollbar -sidebar-mode"
 #bindsym $mod+Shift+d		exec "rofi -combi-modi window,run -show combi -modi combi"
 bindsym $mod+ctrl+d		gaps inner current set 0; gaps outer current set 0
-#bindsym $mod+Shift+d		exec "rofi -modi Work:~/scripts/vscodeWorkDirectories.sh,Projects:~/scripts/vscodeProjectDirectories.sh -show Work -lines 5 -eh 2 -width 40 -padding 25 -hide-scrollbar -sidebar-mode"
-#bindsym $mod+Shift+d		exec "rofi -modi Work:~/scripts/workFileFinder.sh,All:~/scripts/allProgFileFinder.sh -show Work -lines 6 -eh 2 -width 40 -padding 25 -hide-scrollbar -sidebar-mode"
+bindsym $mod+Shift+d		exec --no-startup-id rofi -show scripts:~/Scripts/rice/runScripts.sh -lines 3 -eh 2 -width 40 -padding 25 -hide-scrollbar
 
 bindsym $mod+f 			fullscreen toggle
 ##bindsym $mod+Shift+f
@@ -120,6 +119,8 @@ bindsym $mod+ctrl+l	 	move container to output right
 
 bindsym $mod+z			gaps outer current plus 5
 bindsym $mod+Shift+z		gaps outer current minus 5
+bindsym $mod+ctrl+z		gaps inner current plus 5
+bindsym $mod+Shift+ctrl+z	gaps inner current minus 5
 
 ##bindsym $mod+x
 bindsym $mod+shift+x 		exec --no-startup-id /usr/bin/env /home/ryan/Scripts/rice/lock.sh
@@ -197,9 +198,6 @@ bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioPlay exec mpc toggle
 bindsym XF86AudioPrev exec mpc prev
 bindsym XF86AudioNext exec mpc next
-
-# bind F4
-# bindsym 0xffc1
 
 # bind mod+F4
 bindsym $mod+F4 exec --no-startup-id /usr/bin/env /home/ryan/Scripts/rice/initHomeMonitors.sh
