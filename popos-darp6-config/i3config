@@ -69,7 +69,7 @@ bindsym $mod+t			split toggle
 bindsym $mod+Shift+t		gaps inner current set 10; gaps outer current set 10
 
 ##bindsym $mod+y
-bindsym $mod+Shift+y		resize shrink width 10 px or 10 ppt
+bindsym $mod+Shift+y		resize grow width 10 px or 10 ppt
 
 ##bindsym $mod+u
 bindsym $mod+Shift+u		resize shrink height 10 px or 10 ppt
@@ -78,7 +78,7 @@ bindsym $mod+Shift+u		resize shrink height 10 px or 10 ppt
 bindsym $mod+Shift+i		resize grow height 10 px or 10 ppt
 
 ##bindsym $mod+o
-bindsym $mod+Shift+o		resize grow width 10 px or 10 ppt
+bindsym $mod+Shift+o		resize shrink width 10 px or 10 ppt
 
 ##bindsym $mod+p
 ##bindsym $mod+Shift+p

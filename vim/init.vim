@@ -59,6 +59,18 @@ nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>wv :wincmd v<CR>
 nnoremap <leader>ws :wincmd s<CR>
 
+" Move window commands
+nnoremap <leader>wh :wincmd H<CR>
+nnoremap <leader>wj :wincmd J<CR>
+nnoremap <leader>wk :wincmd K<CR>
+nnoremap <leader>wl :wincmd L<CR>
+
+" Window resize commands
+nnoremap <leader><s-y> :vertical resize +5<CR>
+nnoremap <leader><s-o> :vertical resize -5<CR>
+nnoremap <leader><s-u> :resize -5<CR>
+nnoremap <leader><s-i> :resize +5<CR>
+
 " Settings
 set number showmode
 set t_Co=16
