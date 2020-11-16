@@ -1,15 +1,59 @@
 #!/usr/bin/env bash
 
-gitFilePreview="git diff $@ --color=always -- {-1}"
+gitFilePreview="git diff HEAD --color=always -- {-1}"
+
+addFiles()
+{
+    if [[ $# -ne 0 ]]; then
+      git add $@
+    fi
+}
+
+resetFiles()
+{
+    if [[ $# -ne 0 ]]; then
+      git reset $@
+    fi
+}
 
 showPreview()
 {
-    git diff $@ --name-only | fzf -m --ansi --preview "$gitFilePreview"
+    # Create an array of untracked files in git
+    declare -a untrackedFiles=($(git ls-files --others --exclude-standard))
+
+    addFiles ${untrackedFiles[@]}
+
+    # Pipe all changes on staged & unstaged changes, then sort by unique incase there is a file with both shaged & non-staged changes
+    { git diff --cached --name-only & git diff --name-only; } | sort -u | fzf -m --ansi --preview "$gitFilePreview"
+
+    resetFiles ${untrackedFiles[@]}
+}
+
+echoArray() {
+  for entry in "$@"; do
+    echo $entry
+  done
 }
 
 showTmuxPreview()
 {
-    git diff $@ --name-only | fzf-tmux -m --ansi --preview "$gitFilePreview"
+    addOrCheckout="$1"
+
+    if [[ $addOrCheckout == 0 ]]; then
+      # if adding 
+      declare -a untrackedFiles=($(git ls-files --others --exclude-standard))
+      addFiles ${untrackedFiles[@]}
+      returnFile=$({ git diff --name-only & echoArray $untrackedFiles; } | fzf-tmux -m --ansi --preview "$gitFilePreview")
+      resetFiles ${untrackedFiles[@]} > /dev/null
+    elif [[ $addOrCheckout == 1 ]]; then
+      # if checking out
+      returnFile=$( git diff --name-only | fzf-tmux -m --ansi --preview "$gitFilePreview")
+    elif [[ $addOrCheckout == 2 ]]; then
+      # if resetting
+      returnFile=$( git diff --cached --name-only | fzf-tmux -m --ansi --preview "$gitFilePreview")
+    fi
+
+    echo "$returnFile"
 }
 
 # Nice Function for Git Diff -> fzf
@@ -29,34 +73,36 @@ fd()
     fi
 }
 
-# TODO: find way to also display un-tracked files (if possible)
 # Nice Function for Git Diff -> fzf -> Git Add
 gaf()
 {
     if git rev-parse --git-dir > /dev/null 2>&1; then
         if [ -d .git ]; then
-            ga $(showTmuxPreview)
+            git add $(showTmuxPreview 0)
         else
             gitRepoDir=$(git rev-parse --git-dir | sed 's/.git//')
             pushd $gitRepoDir > /dev/null
-            ga $(showTmuxPreview)
+            git add $(showTmuxPreview 0)
             popd > /dev/null
         fi
     else
         echo "Error: Not inside a git repository."
     fi
 }
+
+# Comment out if not using zsh with git plugin
+unalias gcf
 
 # Nice Function for Git Diff -> fzf -> Git Checkout
 gcf()
 {
     if git rev-parse --git-dir > /dev/null 2>&1; then
         if [ -d .git ]; then
-            gco $(showTmuxPreview)
+            git checkout $(showTmuxPreview 1)
         else
             gitRepoDir=$(git rev-parse --git-dir | sed 's/.git//')
             pushd $gitRepoDir > /dev/null
-            gco $(showTmuxPreview)
+            git checkout $(showTmuxPreview 1)
             popd > /dev/null
         fi
     else
@@ -64,3 +110,19 @@ gcf()
     fi
 }
 
+# Nice Function for Git Diff -> fzf -> Git Reset
+grf()
+{
+    if git rev-parse --git-dir > /dev/null 2>&1; then
+        if [ -d .git ]; then
+            git reset $(showTmuxPreview 2)
+        else
+            gitRepoDir=$(git rev-parse --git-dir | sed 's/.git//')
+            pushd $gitRepoDir > /dev/null
+            git reset $(showTmuxPreview 2)
+            popd > /dev/null
+        fi
+    else
+        echo "Error: Not inside a git repository."
+    fi
+}
