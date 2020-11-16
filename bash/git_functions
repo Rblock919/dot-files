@@ -38,18 +38,18 @@ echoArray() {
 showTmuxPreview()
 {
     gitAction="$1"
+    # 0 -> adding
+    # 1 -> checking out
+    # 2 -> resetting
 
     if [[ $gitAction == 0 ]]; then
-      # if adding 
       declare -a untrackedFiles=($(git ls-files --others --exclude-standard))
       addFiles ${untrackedFiles[@]}
       returnFile=$({ git diff --name-only & echoArray $untrackedFiles; } | fzf-tmux -m --ansi --preview "$gitFilePreview")
       resetFiles ${untrackedFiles[@]} > /dev/null
     elif [[ $gitAction == 1 ]]; then
-      # if checking out
       returnFile=$( git diff --name-only | fzf-tmux -m --ansi --preview "$gitFilePreview")
     elif [[ $gitAction == 2 ]]; then
-      # if resetting
       returnFile=$( git diff --cached --name-only | fzf-tmux -m --ansi --preview "$gitFilePreview")
     fi
 
