@@ -14,10 +14,10 @@ alias gc='git commit'
 alias gcm='git commit -m'
 alias gb='git branch'
 # Enable autocompletion for git branch alias
-__git_complete gb _git_branch
+__git_complete gb _git_branch # comment out if using zsh with git plugin
 alias gco='git checkout'
 # Enable autocompletion for git checkout alias
-__git_complete gco _git_checkout
+__git_complete gco _git_checkout # comment out if using zsh with git plugin
 alias gcb='gco $(git branch -a | fzf-tmux -d 15 --no-preview | sed "s/remotes\/origin\///g")'
 
 # Tmux Aliases
@@ -40,6 +40,7 @@ alias kittyconf='vim /home/ryan/.config/kitty/kitty.conf'
 alias vimrc='vim /home/ryan/.config/nvim/init.vim'
 alias bashrc='vim /home/ryan/.bashrc'
 alias bashaliases='vim /home/ryan/.bash_aliases'
+alias zshrc='vim /home/ryan/.zshrc'
 alias tmuxconf='vim /home/ryan/.tmux.conf'
 
 # Screenshot Alias
