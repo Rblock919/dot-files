@@ -49,3 +49,13 @@ alias ss='maim -s /home/ryan/Pictures/screenshot.png'
 # Fuzzyfind -> Vim Alias
 alias ff='vim $(fzf)'
 
+# I can never remember their IP addresses
+alias sshpi0='ssh pi@192.168.1.12'
+# wifi
+alias sshpi2='ssh pi@192.168.1.14'
+# lan
+# alias sshpi2='ssh pi@192.168.1.10'
+alias sshpi3='ssh pi@192.168.1.11'
+# had to compile kitty from source because this pi is running ubuntu 18.04 and still not working correctly, this is the fix
+alias sshpi4='ssh ubuntu@192.168.1.13'
+# alias sshpi4='kitty +kitten ssh ubuntu@192.168.1.13'
