@@ -5,10 +5,15 @@ let mapleader = " "
 syntax on
 
 " Visual Mode Mappings
+
+" Indent/Un-Indent Mappings
 vmap > >gv
 vmap < <gv
 vmap <Tab> >gv
 vmap <S-Tab> <gv
+
+" Yank to system clipboard (possibly need to install vim-gtk)
+vnoremap <leader>yc "+y
 
 " Normal Mode Mappings
 
@@ -47,6 +52,9 @@ nnoremap <leader>cr :CocRestart<CR><CR>
 
 " Display yank list
 nnoremap <leader>yl :<C-u>CocList -A --normal yank<CR>
+
+" Yank current line to system clipboard
+nnoremap <leader>yc "+yy
 
 " Toggle NerdTree
 nnoremap <silent> <leader>nt :NERDTreeToggle<CR>
