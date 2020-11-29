@@ -30,6 +30,9 @@ nnoremap <silent> <leader>gr :call CocAction('jumpReferences')<CR>
 nnoremap <silent> <leader>gy :call CocAction('jumpTypeDefinition')<CR>
 nnoremap <silent> <leader>gi :call CocAction('jumpImplementation')<CR>
 
+" Show typescript documentation in preview window
+nnoremap <silent> <leader>i :call <SID>show_documentation()<CR>
+
 " Open fzf.vim In Current Project
 nnoremap <leader>fz :Files<CR>
 
@@ -164,6 +167,15 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Function to show ts documentation about variable under cursor
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
 endfunction
 
 " Allow pressing enter on auto-completed suggestions to trigger any needed actions (such as an import statement)
