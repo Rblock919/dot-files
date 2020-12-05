@@ -11,6 +11,9 @@ elif [[ ${fileType,,} == "jpeg" ]]; then
 elif [[ ${fileType,,} == "png" ]]; then
   echo "creating timelapse off of png file types..."
   ffmpeg -r 24 -pattern_type glob -i '*.png' -s hd1080 -vcodec libx264 timelapse.mp4
+else
+  echo "Error: Filetype '${1}' not JPG, JPEG or PNG" >&2
+  exit 1
 fi
 
 echo "Finished!"
