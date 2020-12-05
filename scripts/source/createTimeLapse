@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+fileType="$1"
+
+if [[ ${fileType,,} == "jpg" ]]; then
+  echo "creating timelapse off of jpg file types..."
+  ffmpeg -r 24 -pattern_type glob -i '*.jpg' -s hd1080 -vcodec libx264 timelapse.mp4
+elif [[ ${fileType,,} == "jpeg" ]]; then
+  echo "creating timelapse off of jpeg file types..."
+  ffmpeg -r 24 -pattern_type glob -i '*.jpg' -s hd1080 -vcodec libx264 timelapse.mp4
+elif [[ ${fileType,,} == "png" ]]; then
+  echo "creating timelapse off of png file types..."
+  ffmpeg -r 24 -pattern_type glob -i '*.jpg' -s hd1080 -vcodec libx264 timelapse.mp4
+fi
+
+echo "Finished!"
