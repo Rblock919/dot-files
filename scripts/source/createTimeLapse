@@ -7,10 +7,10 @@ if [[ ${fileType,,} == "jpg" ]]; then
   ffmpeg -r 24 -pattern_type glob -i '*.jpg' -s hd1080 -vcodec libx264 timelapse.mp4
 elif [[ ${fileType,,} == "jpeg" ]]; then
   echo "creating timelapse off of jpeg file types..."
-  ffmpeg -r 24 -pattern_type glob -i '*.jpg' -s hd1080 -vcodec libx264 timelapse.mp4
+  ffmpeg -r 24 -pattern_type glob -i '*.jpeg' -s hd1080 -vcodec libx264 timelapse.mp4
 elif [[ ${fileType,,} == "png" ]]; then
   echo "creating timelapse off of png file types..."
-  ffmpeg -r 24 -pattern_type glob -i '*.jpg' -s hd1080 -vcodec libx264 timelapse.mp4
+  ffmpeg -r 24 -pattern_type glob -i '*.png' -s hd1080 -vcodec libx264 timelapse.mp4
 fi
 
 echo "Finished!"
