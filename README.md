@@ -20,6 +20,7 @@
 - dunst
 - compton (picom fork with kawase blur)
 - tmux
+- starship (prompt)
 
 ### Installing urxvt Extentions
 
