@@ -1,0 +1,58 @@
+# Don't print a new line at the start of the prompt
+add_newline = true
+
+format = """
+$username\
+$directory\
+${custom.dirty}\
+${custom.clean}\
+$git_branch\
+$nodejs\
+$package\
+$line_break\
+$character"""
+
+[directory]
+truncate_to_repo = true
+truncation_length = 1
+format = " [  $path]($style) "
+
+[username]
+style_user = "white bold"
+style_root = "black bold"
+format = '[\($user\)]($style) '
+disabled = false
+show_always = false
+
+[character]
+success_symbol = "[](white) [➜](white)"
+error_symbol = "[](bold red) [➜](bold red)"
+
+[git_branch]
+symbol = " "
+format = " [$symbol$branch]($style)"
+
+[custom.dirty]
+command = "echo ' '"
+when = "git-dirty"
+style = "fg:red"
+shell = "zsh"
+
+[custom.clean]
+command = "echo ' '"
+when = "git-clean"
+style = "fg:white"
+shell = "zsh"
+
+[nodejs]
+symbol = " "
+format = " [$symbol$version]($style)"
+
+[package]
+symbol = "  "
+format=" [$symbol$version]($style)"
+disabled = false
+
+[cmd_duration]
+disabled = true
+
