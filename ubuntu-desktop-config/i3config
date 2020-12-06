@@ -32,8 +32,9 @@ exec xrandr --output "DP-2" --right-of "DP-4"
 # load xresources
 exec xrdb /home/ryan/.Xresources
 
+# no longer need with moonlander
 # load key remappings
-exec --no-startup-id xmodmap ~/.xmodmaprc
+# exec --no-startup-id xmodmap ~/.xmodmaprc
 
 # kill all 3 upon load & reload
 exec_always killall -q notify-osd
@@ -93,14 +94,13 @@ bindsym $mod+a 			focus parent
 ##bindsym $mod+Shift+a
 
 bindsym $mod+s 			layout stacking
-# TODO: update to use maim
 bindsym $mod+Shift+s		exec maim -s /home/ryan/Pictures/screenshot.png
 
 bindsym $mod+d 			exec "rofi -modi run,window -show run -lines 4 -eh 2 -width 40 -padding 25 -hide-scrollbar -sidebar-mode"
-#bindsym $mod+Shift+d		exec "rofi -combi-modi window,run -show combi -modi combi"
-bindsym $mod+ctrl+d		gaps inner current set 0; gaps outer current set 0
-#bindsym $mod+Shift+d		exec "rofi -modi Work:~/scripts/vscodeWorkDirectories.sh,Projects:~/scripts/vscodeProjectDirectories.sh -show Work -lines 5 -eh 2 -width 40 -padding 25 -hide-scrollbar -sidebar-mode"
-#bindsym $mod+Shift+d		exec "rofi -modi Work:~/scripts/workFileFinder.sh,All:~/scripts/allProgFileFinder.sh -show Work -lines 6 -eh 2 -width 40 -padding 25 -hide-scrollbar -sidebar-mode"
+bindsym $mod+ctrl+d		exec --no-startup-id rofi -modi drun -show drun -lines 4 -eh 2 -width 40 -padding 25 -hide-scrollbar -sidebar-mode
+bindsym $mod+Shift+d		exec --no-startup-id rofi -show scripts:~/Scripts/rice/runScripts.sh -lines 3 -eh 2 -width 40 -padding 25 -hide-scrollbar
+# Move this keybind to something else
+# bindsym $mod+ctrl+d		gaps inner current set 0; gaps outer current set 0
 
 bindsym $mod+f 			fullscreen toggle
 ##bindsym $mod+Shift+f
