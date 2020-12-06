@@ -62,10 +62,6 @@ then last change here
 @@ -> execute last recording
 5@a -> execute recording 'a' 5 times
 
-    -- Plugins to Explore -- 
-- some git plugin
-- snipmate (for live-templates, better vim abbreviations)
-
    -- CocInstall Commands --
 :CocInstall coc-eslint
 :CocInstall coc-prettier
