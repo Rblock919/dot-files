@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+if [[ -z "$1" ]]; then
+  echo "Error: Filetype Argument is Required"
+  exit 1
+fi
+
 fileType="$1"
 
 if [[ ${fileType,,} == "jpg" ]]; then
