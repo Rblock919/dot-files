@@ -1,0 +1,4 @@
+fisher
+z
+fzf
+bax/replay
