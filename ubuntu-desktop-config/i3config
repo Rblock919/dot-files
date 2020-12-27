@@ -2,8 +2,8 @@
 
 # Ryan Block // Ubuntu Desktop i3-gaps config file
 
-# DP-4 -> primary 2k 33"
-# DP-2 -> 1080p 21.5"
+# DP-4 -> 2k 144hz 27" (primary)
+# DP-2 -> 1080p 75hz 21.5"
 
 font pango:monospace 8
 
@@ -39,15 +39,17 @@ exec xrdb /home/ryan/.Xresources
 # kill all 3 upon load & reload
 exec_always killall -q notify-osd
 exec_always killall -q dunst
-exec_always killall -q compton
+exec_always killall -q picom
 
 # load all upon load & reload
 exec_always --no-startup-id /home/ryan/.config/polybar/launch.sh
 exec_always --no-startup-id nitrogen --restore
 exec_always --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec_always --no-startup-id dunst -config /home/ryan/.config/dunst/dunstrc
-# Picom fork with kawase blur is actually installed https://github.com/ibhagwan/picom
-exec_always --no-startup-id compton -b --config /home/ryan/.config/picom/compton.conf
+# Picom fork with kawase blur https://github.com/yshui/picom
+# Have to run with --experimental-backends flag due to having 144hz monitor combined with a 60hz so that dual_kawase can be used for blur effect
+# Also have to turn on 'Force Full Composition Pipeline' in nvidia settings for 144hz monitor
+exec_always --no-startup-id picom -b --config /home/ryan/.config/picom/picom.conf --experimental-backends
 
 new_window pixel
 
@@ -94,9 +96,9 @@ bindsym $mod+a 			focus parent
 ##bindsym $mod+Shift+a
 
 bindsym $mod+s 			layout stacking
-bindsym $mod+Shift+s		exec maim -s /home/ryan/Pictures/screenshot.png
+bindsym $mod+Shift+s		exec --no-startup-id maim -s /home/ryan/Pictures/screenshot.png
 
-bindsym $mod+d 			exec "rofi -modi run,window -show run -lines 4 -eh 2 -width 40 -padding 25 -hide-scrollbar -sidebar-mode"
+bindsym $mod+d 			exec --no-startup-id "rofi -modi run,window -show run -lines 4 -eh 2 -width 40 -padding 25 -hide-scrollbar -sidebar-mode"
 bindsym $mod+ctrl+d		exec --no-startup-id rofi -modi drun -show drun -lines 4 -eh 2 -width 40 -padding 25 -hide-scrollbar -sidebar-mode
 bindsym $mod+Shift+d		exec --no-startup-id rofi -show scripts:~/Scripts/rice/runScripts.sh -lines 3 -eh 2 -width 40 -padding 25 -hide-scrollbar
 # Move this keybind to something else

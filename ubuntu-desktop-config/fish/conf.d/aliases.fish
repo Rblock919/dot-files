@@ -47,6 +47,11 @@ function gcb
 end
 
 # Navigation
+
+function ...
+  cd ../..
+end
+
 function .3
   cd ../../..
 end

@@ -1,5 +1,5 @@
 # Default terminal editor
-set -U EDITOR nvim
+set -x EDITOR nvim
 
 # Fzf options
 set -x FZF_DEFAULT_OPTS '

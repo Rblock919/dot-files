@@ -1,15 +1,21 @@
 set gitFilePreview "git diff HEAD --color=always -- {-1}"
 
 function addFiles
-  if test (count $argv) -ne 0
+  if test (count $argv) -gt 0
     git add $argv
   end
 end
 
 function resetFiles
-  if test (count $argv) -ne 0
+  if test (count $argv) -gt 0
     git reset $argv > /dev/null
   end
+end
+
+# Fish always returns a list as one giant string, helper method to break them
+# up into separate arguments
+function echoList
+  printf '%s\n' (echo $argv | string split " ")
 end
 
 function showPreview
@@ -20,7 +26,7 @@ function showPreview
 
     # Pipe all changes on staged & unstaged changes, then sort by unique incase there is a file with both shaged & non-staged changes
     set files (git diff --cached --name-only & git diff --name-only)
-    printf '%s\n' (echo $files | string split " ") | sort -u | fzf -m --ansi --preview "$gitFilePreview"
+    echoList $files | sort -u | fzf -m --ansi --preview "$gitFilePreview"
 
     resetFiles $untrackedFiles
 end
@@ -51,7 +57,11 @@ function showTmuxPreview
     if test $gitAction -eq 0
       set untrackedFiles (git ls-files --others --exclude-standard)
       addFiles $untrackedFiles
-      set files (git diff --name-only & echo $untrackedFiles)
+      if test -z "$untrackedFiles"
+        set files (git diff --name-only)
+      else
+        set files (git diff --name-only & echo $untrackedFiles)
+      end
       set returnFile (printf '%s\n' (echo $files | string split " ") | fzf-tmux -m --ansi --preview "$gitFilePreview")
       resetFiles $untrackedFiles
     else if test $gitAction -eq 1
@@ -67,11 +77,13 @@ end
 function gaf
     if git rev-parse --git-dir > /dev/null 2>&1
         if [ -d .git ]
-            git add (showTmuxPreview 0)
+            set filesToAdd (showTmuxPreview 0)
+            git add (echoList $filesToAdd)
         else
             set gitRepoDir (git rev-parse --git-dir | sed 's/.git//')
             pushd $gitRepoDir > /dev/null
-            git add (showTmuxPreview 0)
+            set filesToAdd (showTmuxPreview 0)
+            git add (echoList $filesToAdd)
             popd > /dev/null
         end
     else
@@ -83,11 +95,13 @@ end
 function gcf
     if git rev-parse --git-dir > /dev/null 2>&1
         if [ -d .git ]
-            git checkout (showTmuxPreview 1)
+            set filesToCheckout (showTmuxPreview 1)
+            git checkout (echoList $filesToCheckout)
         else
             set gitRepoDir (git rev-parse --git-dir | sed 's/.git//')
             pushd $gitRepoDir > /dev/null
-            git checkout (showTmuxPreview 1)
+            set filesToCheckout (showTmuxPreview 1)
+            git checkout (echoList $filesToCheckout)
             popd > /dev/null
         end
     else
@@ -99,11 +113,13 @@ end
 function grf
     if git rev-parse --git-dir > /dev/null 2>&1
         if [ -d .git ]
-            git reset (showTmuxPreview 2)
+            set filesToReset (showTmuxPreview 2)
+            git reset (echoList $filesToReset)
         else
             set gitRepoDir (git rev-parse --git-dir | sed 's/.git//')
             pushd $gitRepoDir > /dev/null
-            git reset (showTmuxPreview 2)
+            set filesToReset (showTmuxPreview 2)
+            git reset (echoList $filesToReset)
             popd > /dev/null
         end
     else
