@@ -490,13 +490,13 @@ label-background = ${colors.background}
 
 [module/wlan]
 type = internal/network
-interface = wlp0s20f3
+interface = wlp6s0
 interval = 3.0
 
 format-connected = <label-connected>
 
 label-connected =  %essid%
-label-connected-foreground = ${colors.yellow}
+label-connected-foreground = ${colors.green}
 label-connected-background = ${colors.background}
 
 ;format-disconnected =

@@ -118,5 +118,7 @@ zstyle ':completion:*' matcher-list '' \
   'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
   'r:|?=** m:{a-z\-}={A-Z\_}'
 
+export LC_ALL="en_US.UTF-8"
+
 # Initialize Starship Prompt
 eval "$(starship init zsh)"

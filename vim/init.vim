@@ -1,8 +1,8 @@
 " Set Better Leader Key
 let mapleader = " "
 
-" filetype plugin indent on
 syntax on
+filetype plugin indent on
 
 " Visual Mode Mappings
 
@@ -12,7 +12,7 @@ vmap < <gv
 vmap <Tab> >gv
 vmap <S-Tab> <gv
 
-" Yank to system clipboard (possibly need to install vim-gtk)
+" Yank to system clipboard
 vnoremap <leader>yc "+y
 
 " Normal Mode Mappings
@@ -127,6 +127,7 @@ Plug 'jparise/vim-graphql'
 Plug 'jiangmiao/auto-pairs'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
+Plug 'dag/vim-fish'
 
 call plug#end()
 
@@ -180,3 +181,22 @@ endfunction
 
 " Allow pressing enter on auto-completed suggestions to trigger any needed actions (such as an import statement)
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Fish settings
+
+" Tell fish to use a different shell for shell commands
+if &shell =~# 'fish$'
+    set shell=sh
+endif
+
+" Don't autofold everything when opening a fish file
+autocmd FileType fish set nofoldenable
+
+" Set up :make to use fish for syntax checking.
+autocmd FileType fish compiler fish
+
+" Set this to have long lines wrap inside comments.
+autocmd FileType fish setlocal textwidth=79
+
+" Enable folding of block structures in fish.
+autocmd FileType fish setlocal foldmethod=expr

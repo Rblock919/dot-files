@@ -14,10 +14,10 @@ alias gc='git commit'
 alias gcm='git commit -m'
 alias gb='git branch'
 # Enable autocompletion for git branch alias
-# __git_complete gb _git_branch # uncomment if using bash
+# __git_complete gb _git_branch
 alias gco='git checkout'
 # Enable autocompletion for git checkout alias
-# __git_complete gco _git_checkout # uncomment if using bash
+# __git_complete gco _git_checkout
 alias gcb='gco $(git branch -a | fzf-tmux -d 15 --no-preview | sed "s/remotes\/origin\///g")'
 
 # Navigation
@@ -40,13 +40,14 @@ alias polycfg='vim /home/ryan/.config/polybar/config'
 alias i3cfg='vim /home/ryan/.config/i3/config'
 alias xres='vim /home/ryan/.Xresources'
 alias kittyconf='vim /home/ryan/.config/kitty/kitty.conf'
+alias picomconf='vim /home/ryan/.config/picom/picom.conf'
 
 # Workflow Config Editing Aliases
 alias vimrc='vim /home/ryan/.config/nvim/init.vim'
-alias zshrc='vim /home/ryan/.zshrc'
 alias bashrc='vim /home/ryan/.bashrc'
 alias bashaliases='vim /home/ryan/.bash_aliases'
 alias tmuxconf='vim /home/ryan/.tmux.conf'
+alias zshrc='vim /home/ryan/.zshrc'
 
 # Screenshot Alias
 alias ss='maim -s /home/ryan/Pictures/screenshot.png'
@@ -57,7 +58,7 @@ alias ff='vim $(fzf)'
 # switch between shells
 alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
-# alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
+alias tofish="sudo chsh $USER -s /usr/bin/fish && echo 'Now log out.'"
 
 ## get top process eating memory
 alias psmem='ps auxf | sort -nr -k 4'
@@ -102,4 +103,3 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
-

@@ -2,8 +2,8 @@
 
 # Ryan Block // Ubuntu Desktop i3-gaps config file
 
-# DP-4 -> 2k 144hz 27" (primary)
-# DP-2 -> 1080p 75hz 21.5"
+# DP-4 -> primary 144hz 1440p 27.5"
+# DP-2 -> 75hz 1080p 21.5"
 
 font pango:monospace 8
 
@@ -16,7 +16,6 @@ floating_modifier $mod
 
 hide_edge_borders both
 
-
 # Set some sweet gaps
 gaps inner 10
 gaps outer 10
@@ -24,9 +23,7 @@ gaps outer 10
 # Get rid of ugly top name border
 for_window [class="^.*"] border pixel 2
 
-# set huge monitor to be primary, for some reason GNOME settings aren't persisting
 exec xrandr --output "DP-4" --primary
-# set vertical monitor to be to the right of the big 2k monitor 
 exec xrandr --output "DP-2" --right-of "DP-4"
 
 # load xresources
