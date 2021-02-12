@@ -25,10 +25,19 @@ nnoremap <C-N> :set invrnu<CR> :set invnumber<CR>
 nnoremap <leader>ln :set invrnu<CR>
 
 " Coc.nvim Commands
-nnoremap <silent> <leader>gd :call CocAction('jumpDefinition')<CR>
-nnoremap <silent> <leader>gr :call CocAction('jumpReferences')<CR>
-nnoremap <silent> <leader>gy :call CocAction('jumpTypeDefinition')<CR>
-nnoremap <silent> <leader>gi :call CocAction('jumpImplementation')<CR>
+
+" Jump to commands
+nnoremap <silent> <leader>gd :call CocActionAsync('jumpDefinition')<CR>
+nnoremap <silent> <leader>gr :call CocActionAsync('jumpReferences')<CR>
+nnoremap <silent> <leader>gy :call CocActionAsync('jumpTypeDefinition')<CR>
+nnoremap <silent> <leader>gi :call CocActionAsync('jumpImplementation')<CR>
+
+" Fzf search on all properties, methods, classes, etc. in file
+nnoremap <silent> <leader>gf :CocList outline<CR>
+
+" Go to error commands
+nnoremap <silent> <leader>ep :call CocActionAsync('diagnosticPrevious', 'error')<CR>
+nnoremap <silent> <leader>en :call CocActionAsync('diagnosticNext', 'error')<CR>
 
 " Show typescript documentation in preview window
 nnoremap <silent> <leader>i :call <SID>show_documentation()<CR>
@@ -196,7 +205,7 @@ autocmd FileType fish set nofoldenable
 autocmd FileType fish compiler fish
 
 " Set this to have long lines wrap inside comments.
-autocmd FileType fish setlocal textwidth=79
+autocmd FileType fish setlocal textwidth=80
 
 " Enable folding of block structures in fish.
 autocmd FileType fish setlocal foldmethod=expr
