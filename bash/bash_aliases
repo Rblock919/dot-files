@@ -60,6 +60,9 @@ alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
 alias tofish="sudo chsh $USER -s /usr/bin/fish && echo 'Now log out.'"
 
+## Launch shitty globalprotect app ui
+alias globalui="globalprotect launch-ui --recover"
+
 ## get top process eating memory
 alias psmem='ps auxf | sort -nr -k 4'
 alias psmem10='ps auxf | sort -nr -k 4 | head -10'
