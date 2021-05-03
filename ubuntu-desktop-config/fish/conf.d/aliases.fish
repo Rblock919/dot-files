@@ -31,7 +31,7 @@ function gpoh
 end
 
 function gc
-  git commit
+  git commit $argv
 end
 
 function gcm
@@ -151,4 +151,13 @@ end
 
 function sshpi4
   ssh ubuntu@192.168.1.13
+end
+
+# Heroku Logs
+function webchef-logs-dev
+  heroku logs -t --app webchef-recipe-catalog-dev
+end
+
+function webchef-logs-prod
+  heroku logs -t --app webchef-recipe-catalog
 end
