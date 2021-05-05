@@ -98,9 +98,9 @@ font-4=Font Awesome 5 Brands:size=12;3
 font-5=font\-logos:size=14;3
 font-6=FontAwesome:style=Regular:size=12;3
 
-modules-left = powermenu separator hostname separator volume separator redshift separator docker separator notifications
+modules-left = powermenu separator hostname separator redshift separator docker separator notifications
 modules-center = 
-modules-right = temperature separator memory separator cpu separator battery
+modules-right = temperature separator memory separator cpu separator volume separator battery
 
 ;tray-position = right
 tray-padding = 4
@@ -268,6 +268,8 @@ interval = 256
 format = "<label>"
 label-foreground = "${colors.white}"
 format-prefix = " "
+; pop-os icon but unfortunately it looks horrible all small in the polybar
+; format-prefix = " "
 format-prefix-font=6
 format-prefix-foreground = ${colors.white}
 
@@ -338,8 +340,10 @@ ws-icon-5 = 6;
 ws-icon-6 = 7;
 ; ws-icon-7 = 8;
 ws-icon-7 = 8;%{T5}
-ws-icon-8 = 9;
-; use the slack icon from font-awesome 5. most other workspace icons look bad in font awesome 5
+; ws-icon-8 = 9;
+; use the slack icon from font-awesome 5
+ws-icon-8 = 9;%{T6}
+; use the slack icon from font-awesome 5, most other workspace icons look bad in font awesome 5
 ws-icon-9 = 10;%{T6}
 
 ; Only show workspaces on the same output as the bar
