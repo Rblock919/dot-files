@@ -4,7 +4,7 @@
 
 - Arch
 - Ubuntu 20.04
-- Pop-OS 20.04
+- Pop-OS 20.10
 
 ## Main Technologies Used
 
