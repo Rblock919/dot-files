@@ -324,7 +324,8 @@ ws-icon-5 = 6;%{T6}
 ws-icon-6 = 7;
 ; ws-icon-7 = 8;
 ws-icon-7 = 8;%{T5}
-ws-icon-8 = 9;
+ws-icon-8 = 9;%{T6}
+; ws-icon-8 = 9;
 ; use the slack icon from font-awesome 5. most other workspace icons look bad in font awesome 5
 ws-icon-9 = 10;%{T6}
 ws-icon-9-font=7
