@@ -22,7 +22,7 @@ vnoremap <leader>yc "+y
 nnoremap <C-N> :set invrnu<CR> :set invnumber<CR>
 
 " Toggle relative line numbers (helpful when pair programming)
-nnoremap <leader>ln :set invrnu<CR>
+nnoremap <leader>rl :set invrnu<CR>
 
 " Pull up git blame
 nnoremap <silent> <leader>gb :Git blame<CR>
