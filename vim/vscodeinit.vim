@@ -23,6 +23,7 @@ nnoremap <leader>yc "+yy
 " Toggle relative line numbers (helpful when pair programming)
 nnoremap <leader>rl :set invrnu<CR>
 
+" Toggle between tabs in vs-code
 nnoremap <leader>tn :tabnext<CR>
 nnoremap <leader>tp :tabprevious<CR>
 
