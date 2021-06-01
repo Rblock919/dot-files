@@ -91,19 +91,19 @@
       "commands": ["editor.action.quickFix"]
     },
     {
-      "before": ["<leader>", "shift+y"],
+      "before": ["<leader>", "shift+i"],
       "commands": ["workbench.action.increaseViewHeight"]
     },
     {
-      "before": ["<leader>", "shift+o"],
+      "before": ["<leader>", "shift+u"],
       "commands": ["workbench.action.decreaseViewHeight"]
     },
     {
-      "before": ["<leader>", "shift+i"],
+      "before": ["<leader>", "shift+y"],
       "commands": ["workbench.action.increaseViewWidth"]
     },
     {
-      "before": ["<leader>", "shift+u"],
+      "before": ["<leader>", "shift+o"],
       "commands": ["workbench.action.decreaseViewWidth"]
     },
     {
@@ -121,5 +121,5 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.lineNumbers": "on"
+  "editor.lineNumbers": "on",
 }
