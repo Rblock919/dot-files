@@ -1,0 +1,125 @@
+{
+  "window.zoomLevel": 1,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Activate UMBRA protocol",
+  "todo-tree.tree.showScanModeButton": false,
+  "editor.formatOnSave": true,
+  "keyboard.dispatch": "keyCode",
+  "editor.fontFamily": "'Input Mono'",
+  "editor.fontSize": 15,
+  "vim.vimrc.enable": true,
+  "vim.vimrc.path": "/home/ryan/.config/nvim/vscodeinit.vim",
+  "vim.enableNeovim": true,
+  "vim.neovimUseConfigFile": true,
+  "vim.neovimConfigPath": "/home/ryan/.config/nvim/vscodeinit.vim",
+  "vim.leader": "<space>",
+  "vim.highlightedyank.duration": 400,
+  "vim.highlightedyank.enable": true,
+  "vim.highlightedyank.color": "#f1fa8c",
+  "vim.smartRelativeLine": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "e", "n"],
+      "commands": ["editor.action.marker.nextInFiles"]
+    },
+    {
+      "before": ["<leader>", "e", "p"],
+      "commands": ["editor.action.marker.prevInFiles"]
+    },
+    {
+      "before": ["<leader>", "f", "z"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "w", "v"],
+      "commands": ["workbench.action.splitEditor"]
+    },
+    {
+      "before": ["<leader>", "w", "s"],
+      "commands": ["workbench.action.splitEditorOrthogonal"]
+    },
+    {
+      "before": ["<leader>", "g", "f"],
+      "commands": ["workbench.action.gotoSymbol"]
+    },
+    {
+      "before": ["<leader>", "i"],
+      "commands": ["editor.action.showHover"]
+    },
+    {
+      "before": ["<leader>", "h"],
+      "commands": ["workbench.action.navigateLeft"]
+    },
+    {
+      "before": ["<leader>", "l"],
+      "commands": ["workbench.action.navigateRight"]
+    },
+    {
+      "before": ["<leader>", "j"],
+      "commands": ["workbench.action.navigateDown"]
+    },
+    {
+      "before": ["<leader>", "k"],
+      "commands": ["workbench.action.navigateUp"]
+    },
+    {
+      "before": ["<leader>", "g", "d"],
+      "commands": ["editor.action.revealDefinition"]
+    },
+    {
+      "before": ["<leader>", "g", "r"],
+      "commands": ["editor.action.goToReferences"]
+    },
+    {
+      "before": ["<leader>", "g", "y"],
+      "commands": ["editor.action.goToTypeDefinition"]
+    },
+    {
+      "before": ["<leader>", "g", "i"],
+      "commands": ["editor.action.goToImplementation"]
+    },
+    {
+      "before": ["<leader>", "p", "w"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["<leader>", "p", "r", "w"],
+      "commands": ["editor.action.rename"]
+    },
+    {
+      "before": ["<leader>", "q", "f"],
+      "commands": ["editor.action.quickFix"]
+    },
+    {
+      "before": ["<leader>", "shift+y"],
+      "commands": ["workbench.action.increaseViewHeight"]
+    },
+    {
+      "before": ["<leader>", "shift+o"],
+      "commands": ["workbench.action.decreaseViewHeight"]
+    },
+    {
+      "before": ["<leader>", "shift+i"],
+      "commands": ["workbench.action.increaseViewWidth"]
+    },
+    {
+      "before": ["<leader>", "shift+u"],
+      "commands": ["workbench.action.decreaseViewWidth"]
+    },
+    {
+      "before": ["<leader>", "n", "t"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "p", "w"],
+      "commands": ["workbench.action.findInFiles"]
+    }
+  ],
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.lineNumbers": "on"
+}
