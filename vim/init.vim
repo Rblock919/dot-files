@@ -156,7 +156,7 @@ let g:highlightedyank_highlight_duration = 1750
 let g:airline_powerline_fonts = 1
 
 " Hide dist/build/node_modules directories
-let g:NERDTreeIgnore = ['node_modules', 'dist', 'build']
+let g:NERDTreeIgnore = ['^node_modules$', '^dist$', '^build$']
 
 " Set Popup Window Mode and Color Scheme For fzf Search
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
