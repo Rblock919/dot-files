@@ -67,4 +67,5 @@ then last change here
 :CocInstall coc-prettier
 :CocInstall coc-tsserver
 :CocInstall coc-yank
+:CocInstall coc-json
 
