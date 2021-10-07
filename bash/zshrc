@@ -68,7 +68,7 @@ ZSH_THEME="dracula"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose zsh-syntax-highlighting)
+plugins=(git docker docker-compose zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -100,7 +100,7 @@ export FZF_DEFAULT_OPTS='
 '
 
 # Openfaas configuration
-export OPENFAAS_URL=http://192.168.1.11:31112
+export OPENFAAS_URL=http://192.168.1.13:31112
 export OPENFAAS_TEMPLATE_URL="git@github.com:Rblock919/openfaas-templates.git"
 
 # Kubeconfig File
@@ -119,6 +119,9 @@ zstyle ':completion:*' matcher-list '' \
   'r:|?=** m:{a-z\-}={A-Z\_}'
 
 export LC_ALL="en_US.UTF-8"
+
+# Highlight suggestions purple with an underline
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#bd93f9,underline"
 
 # Initialize Starship Prompt
 eval "$(starship init zsh)"
