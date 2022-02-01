@@ -82,6 +82,11 @@ if [ -f ~/.bash_work ]; then
   . ~/.bash_work
 fi
 
+# Load Confidential Variables
+if [ -f ~/.bash_hush ]; then
+  . ~/.bash_hush
+fi
+
 # Load Nice fzf -> git Functions
 if [ -f ~/.git_functions ]; then
   . ~/.git_functions
