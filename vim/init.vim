@@ -179,7 +179,7 @@ colorscheme dracula
 let g:highlightedyank_highlight_duration = 1750
 
 " Enable all Python syntax highlighting features
-let python_highlight_all=1
+let g:python_highlight_all=1
 
 " Set powerline fonts for vim-airline
 let g:airline_powerline_fonts = 1
