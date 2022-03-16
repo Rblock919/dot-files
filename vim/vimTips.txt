@@ -68,4 +68,5 @@ then last change here
 :CocInstall coc-tsserver
 :CocInstall coc-yank
 :CocInstall coc-json
+:CocInstall coc-pyright
 

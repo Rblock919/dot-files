@@ -94,12 +94,35 @@ nnoremap <leader><s-o> :vertical resize -5<CR>
 nnoremap <leader><s-u> :resize -5<CR>
 nnoremap <leader><s-i> :resize +5<CR>
 
+" Open terminal
+nnoremap <C-t> :terminal<CR>
+
 " Settings
+
+" Python File Settings
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \ softtabstop=4
+    \ shiftwidth=4
+    \ textwidth=79
+    \ autoindent
+    \ fileformat=unix
+    \ foldmethod=indent
+    \ foldlevel=99
+    \ encoding=utf-8
+
+" Mark extraneous whitespace as bad
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+" Javascript, Typescript, HTML, CSS File Settings
+au BufNewFile,BufRead *.js,*.ts,*.html,*.css
+    \ set tabstop=2
+    \ softtabstop=2
+    \ shiftwidth=2
+
 set number showmode
 set t_Co=16
 set modeline
-set softtabstop=2
-set shiftwidth=2
 " Do not wrap text to next 'line', make it bump off screen
 set nowrap
 " Autocomplete directories and files
@@ -140,8 +163,11 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'dag/vim-fish'
+Plug 'vim-scripts/indentpython.vim'
 
 call plug#end()
+
+" Plug 'davidhalter/jedi-vim'
 
 " Use dracula Color Theme
 colorscheme dracula
@@ -151,6 +177,9 @@ colorscheme dracula
 
 " Slightly Increase Highlight Duration On Yank
 let g:highlightedyank_highlight_duration = 1750
+
+" Enable all Python syntax highlighting features
+let python_highlight_all=1
 
 " Set powerline fonts for vim-airline
 let g:airline_powerline_fonts = 1
@@ -193,22 +222,3 @@ endfunction
 
 " Allow pressing enter on auto-completed suggestions to trigger any needed actions (such as an import statement)
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Fish settings
-
-" Tell fish to use a different shell for shell commands
-if &shell =~# 'fish$'
-    set shell=sh
-endif
-
-" Don't autofold everything when opening a fish file
-autocmd FileType fish set nofoldenable
-
-" Set up :make to use fish for syntax checking.
-autocmd FileType fish compiler fish
-
-" Set this to have long lines wrap inside comments.
-autocmd FileType fish setlocal textwidth=80
-
-" Enable folding of block structures in fish.
-autocmd FileType fish setlocal foldmethod=expr
