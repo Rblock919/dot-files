@@ -234,7 +234,7 @@ bindsym XF86AudioNext exec mpc next
 
 # #---Application Default Workspace Assignments---# #
 
-assign [class="Firefox"] $ws2
+assign [class="firefox"] $ws2
 assign [class="Code"] $ws3
 assign [class="jetbrains-idea"] $ws3
 assign [class="jetbrains-webstorm"] $ws3
