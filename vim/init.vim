@@ -97,6 +97,9 @@ nnoremap <leader><s-i> :resize +5<CR>
 " Open terminal
 nnoremap <C-t> :terminal<CR>
 
+" Run python against current file
+nnoremap <leader>py :!python3 %<CR>
+
 " Settings
 
 " Python File Settings
@@ -110,6 +113,9 @@ au BufNewFile,BufRead *.py
     \ foldmethod=indent
     \ foldlevel=99
     \ encoding=utf-8
+
+" Define BadWhitespace coloring
+highlight BadWhitespace ctermbg=red guibg=darkred
 
 " Mark extraneous whitespace as bad
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
