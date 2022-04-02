@@ -160,6 +160,7 @@ Plug 'neoclide/coc-yank'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'morhetz/gruvbox'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -168,15 +169,16 @@ Plug 'jparise/vim-graphql'
 Plug 'jiangmiao/auto-pairs'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
-Plug 'dag/vim-fish'
 Plug 'vim-scripts/indentpython.vim'
+Plug 'vim-syntastic/syntastic'
+Plug 'nvie/vim-flake8'
+Plug 'vim-python/python-syntax'
 
 call plug#end()
 
-" Plug 'davidhalter/jedi-vim'
-
-" Use dracula Color Theme
+" Use Color Theme
 colorscheme dracula
+" colorscheme gruvbox
 
 " Detect & Use Xresource Color Scheme
 "colorscheme default
@@ -185,7 +187,7 @@ colorscheme dracula
 let g:highlightedyank_highlight_duration = 1750
 
 " Enable all Python syntax highlighting features
-let g:python_highlight_all=1
+let g:python_highlight_all = 1
 
 " Set powerline fonts for vim-airline
 let g:airline_powerline_fonts = 1
